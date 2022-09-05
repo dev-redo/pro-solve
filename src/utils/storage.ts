@@ -12,8 +12,8 @@ chrome.storage.local.get(['accessToken'], response => {
   );
 
   const idRegex = /(?<=id:\s*)\w+(?=\,)/g;
-  const usernameRegex = /(?<=username:\s*)(\p{L}|\*|"|')+/gu;
-  const emailRegex = /(?<=email:\s)(\p{L}|\*|"|'|@|.)+/g;
+  const usernameRegex = /(?<=username:\s)(\p{L}|\*|"|')+/gu;
+  const emailRegex = /(?<=email:\s)(\p{L}|@|.)+/g;
 
   const userId = sentryScript.innerHTML.match(idRegex)[0];
   const userName = sentryScript.innerHTML.match(usernameRegex)[0];
@@ -25,8 +25,9 @@ chrome.storage.local.get(['accessToken'], response => {
   chrome.storage.local.set({ accessToken });
 });
 
-const getAccessToken = () => {
-  return chrome.storage.local.get(['accessToken']).then(({ accessToken }) => accessToken);
+const getAccessToken = async () => {
+  const { accessToken } = await chrome.storage.local.get(['accessToken']);
+  return accessToken;
 };
 
 export { getAccessToken };
