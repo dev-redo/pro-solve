@@ -20,11 +20,11 @@ const HtmlPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    newtab: getAbsolutePath('src/pages/NewTab/index.tsx'),
-    popup: getAbsolutePath('src/pages/Popup/index.tsx'),
-    background: getAbsolutePath('src/pages/Background/index.ts'),
-    testContent: getAbsolutePath('src/pages/Content/testPage.ts'),
-    solutionContent: getAbsolutePath('src/pages/Content/solutionPage.ts'),
+    newtab: getAbsolutePath('public/pages/NewTab/index.tsx'),
+    popup: getAbsolutePath('public/pages/Popup/index.tsx'),
+    background: getAbsolutePath('public/pages/Background/index.ts'),
+    testContent: getAbsolutePath('public/pages/Content/testPage.ts'),
+    solutionContent: getAbsolutePath('public/pages/Content/solutionPage.ts'),
   },
   output: {
     filename: 'script/[name].js',
@@ -109,7 +109,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: getAbsolutePath('src/static'),
+          from: getAbsolutePath('public/static'),
           to: getAbsolutePath('dist'),
         },
       ],

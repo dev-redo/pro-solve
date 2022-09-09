@@ -1,5 +1,12 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+// import { initializeApp } from 'firebase-admin/app';
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithCredential,
+  setPersistence,
+  browserLocalPersistence,
+} from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getFunctions } from 'firebase/functions';
 
@@ -17,6 +24,6 @@ const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 
 const db = getFirestore(firebaseApp);
-const functions = getFunctions(firebaseApp);
+const functions = getFunctions();
 
-export { auth, db, functions };
+export { firebaseApp, auth, db, functions };
