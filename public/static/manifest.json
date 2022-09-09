@@ -13,16 +13,14 @@
     "default_title": "프로솔브(Pro-Solve)",
     "default_icon": "icon.png"
   },
-  "permissions": ["tabs", "storage", "identity", "identity.email"],
+  "permissions": ["tabs", "storage", "scripting", "activeTab", "identity", "identity.email"],
   "background": {
     "service_worker": "script/background.js"
   },
-  "host_permissions": ["https://school.programmers.co.kr/*"],
+  "host_permissions": ["<all_urls>"],
   "content_scripts": [
     {
-      "matches": [
-        "https://school.programmers.co.kr/learn/courses/30/lessons/*"
-      ],
+      "matches": ["https://school.programmers.co.kr/learn/courses/30/lessons/*"],
       "exclude_matches": [
         "https://school.programmers.co.kr/learn/courses/30/lessons/*/questions",
         "https://school.programmers.co.kr/learn/courses/30/lessons/*/solution_groups?language=*"
@@ -37,7 +35,7 @@
     }
   ],
   "oauth2": {
-    "client_id": "248121374570-4b73prde888kt06c0a19fnug2og5i41p.apps.googleusercontent.com",
+    "client_id": "248121374570-rntej2jvlsgspvufmdvjisguqf7j1c0l.apps.googleusercontent.com",
     "scopes": [
       "https://www.googleapis.com/auth/contacts",
       "https://www.googleapis.com/auth/userinfo.email",
@@ -45,5 +43,5 @@
       "https://www.googleapis.com/auth/drive"
     ]
   },
-  "key": "bjiccofmdejdbpmmjhgpjoggdngckbnb"
+  "key": "koklbgdignablfbgkepbfldcojnnckie"
 }
