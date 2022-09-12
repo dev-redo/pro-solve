@@ -1,22 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { auth } from '../../firebase';
+import { GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../styles/theme';
 import GlobalStyles from '../../styles/global';
-import { auth, db } from '../../firebase';
-import { GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
+import Popup from './Popup';
 
-const Popup = () => {
-  const [userInfo, setUserInfo] = React.useState({}); // TODO: userInfo type 지정
+function PopupLayout() {
+  const [userEmail, setUserEmail] = React.useState('');
+  const [isLoaded, setIsLoaded] = React.useState(true);
 
   auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
-      setUserInfo(firebaseUser);
+      setUserEmail(firebaseUser.email);
     }
+    setIsLoaded(false);
   });
 
-  return <button onClick={getGoogleAuthCredential}>Email: {userInfo?.email}</button>;
-};
+  return (
+    <Popup>
+      <Popup.Header />
+      <Popup.Login
+        isLoaded={isLoaded}
+        userEmail={userEmail}
+        onLoginWithGoogle={getGoogleAuthCredential}
+      />
+      <Popup.Footer />
+    </Popup>
+  );
+}
 
 const getGoogleAuthCredential = () => {
   chrome.identity.getAuthToken({ interactive: true }, token => {
@@ -46,7 +59,7 @@ ReactDOM.createRoot(root as HTMLElement).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Popup />
+      <PopupLayout />
     </ThemeProvider>
   </React.StrictMode>,
 );

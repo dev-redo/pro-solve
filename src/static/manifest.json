@@ -17,7 +17,10 @@
   "background": {
     "service_worker": "script/background.js"
   },
-  "host_permissions": ["<all_urls>"],
+  "host_permissions": ["https://programmers.co.kr/"],
+  "externally_connectable": {
+    "matches": ["https://programmers.co.kr/"]
+  },
   "content_scripts": [
     {
       "matches": ["https://school.programmers.co.kr/learn/courses/30/lessons/*"],
