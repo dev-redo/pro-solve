@@ -1,5 +1,5 @@
 import { auth, db } from '../../firebase';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, Timestamp } from 'firebase/firestore';
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.method === 'postCurrentSolution') {
@@ -7,17 +7,20 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       try {
         const { isSuccess, code, selectedLanguage, problemId, passedTestCase, failedTestCase } =
           request.data;
-        console.log('[Pro Solve] ', request);
         const uid = auth.currentUser.uid;
+        const uploadTime = Timestamp.now();
 
-        // codingTest/{uid}/{문제id}/{language}
-        const codingTestRef = doc(db, 'codingTest', uid, problemId, selectedLanguage);
+        console.log('[Pro Solve] dom node data from background :>> ', request);
+        console.log('[Pro Solve] uid from background :>> ', uid);
+
+        const codingTestRef = doc(db, 'codingTest', uid, problemId, String(uploadTime));
         await setDoc(codingTestRef, {
           isSuccess,
           code,
           passedTestCase,
           failedTestCase,
-          uploadTime: new Date(),
+          selectedLanguage,
+          uploadTime,
         });
 
         console.log('[Pro Solve] 업로드 성공!');
