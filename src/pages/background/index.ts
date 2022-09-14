@@ -1,5 +1,6 @@
 import { auth, db } from '../../firebase';
 import { doc, setDoc, Timestamp } from 'firebase/firestore';
+import { Auth, User } from 'firebase/auth';
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.method === 'postCurrentSolution') {
@@ -7,8 +8,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       try {
         const { isSuccess, code, selectedLanguage, problemId, passedTestCase, failedTestCase } =
           request.data;
-        const uid = auth.currentUser.uid;
         const uploadTime = Timestamp.now();
+        const { uid } = await getCurrentUser();
 
         console.log('[Pro Solve] dom node data from background :>> ', request);
         console.log('[Pro Solve] uid from background :>> ', uid);
@@ -33,3 +34,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     return true;
   }
 });
+
+// TODO: type 지정
+const getCurrentUser = () => {
+  return new Promise((resolve, reject) =>
+    auth.onAuthStateChanged(
+      user => resolve(user),
+      error => reject(error),
+    ),
+  );
+};
