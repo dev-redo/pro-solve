@@ -1,6 +1,15 @@
 import { auth, db } from '../../firebase';
-import { doc, setDoc, Timestamp } from 'firebase/firestore';
-import { Auth, User } from 'firebase/auth';
+import { doc, collection, getDocs, setDoc, query, where, Timestamp } from 'firebase/firestore';
+
+// TODO: type 지정
+const getCurrentUser = () => {
+  return new Promise((resolve, reject) =>
+    auth.onAuthStateChanged(
+      user => resolve(user),
+      error => reject(error),
+    ),
+  );
+};
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.method === 'postCurrentSolution') {
@@ -33,14 +42,32 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     })();
     return true;
   }
-});
 
-// TODO: type 지정
-const getCurrentUser = () => {
-  return new Promise((resolve, reject) =>
-    auth.onAuthStateChanged(
-      user => resolve(user),
-      error => reject(error),
-    ),
-  );
-};
+  if (request.method === 'getAllSolutions') {
+    (async () => {
+      try {
+        const { selectedLanguage, problemId } = request.data;
+        const { uid } = await getCurrentUser();
+
+        const codingTestRef = collection(db, 'codingTest', uid, problemId);
+        const codingTestQuery = query(
+          codingTestRef,
+          where('selectedLanguage', '==', selectedLanguage),
+        );
+
+        const querySnapshot = await getDocs(codingTestQuery);
+        const data = querySnapshot.docs.map(doc => ({
+          ...doc.data(),
+        }));
+        sendResponse({ status: true, data });
+      } catch (error) {
+        if (error instanceof Error) {
+          console.log('[Pro Solve] 풀이를 가져오던 중 에러가 발생했습니다!', error);
+          sendResponse({ status: false, message: error.message });
+        }
+      }
+    })();
+
+    return true;
+  }
+});

@@ -23,8 +23,8 @@ module.exports = {
     newtab: getAbsolutePath('src/pages/newTab/index.tsx'),
     popup: getAbsolutePath('src/pages/popup/index.tsx'),
     background: getAbsolutePath('src/pages/background/index.ts'),
-    testContent: getAbsolutePath('src/pages/content/testPage.ts'),
-    solutionContent: getAbsolutePath('src/pages/content/solutionPage.ts'),
+    testContent: getAbsolutePath('src/pages/content/testPage.tsx'),
+    solutionContent: getAbsolutePath('src/pages/content/solutionPage.tsx'),
   },
   output: {
     filename: 'script/[name].js',
