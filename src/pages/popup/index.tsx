@@ -13,7 +13,7 @@ function PopupLayout() {
 
   auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
-      setUserEmail(firebaseUser.email);
+      setUserEmail(firebaseUser.email as string);
     }
     setIsLoaded(false);
   });

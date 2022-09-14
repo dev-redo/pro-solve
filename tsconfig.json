@@ -19,6 +19,6 @@
   "paths": {
     "chrome": ["node_modules/@types/chrome"]
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }
