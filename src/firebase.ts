@@ -1,5 +1,4 @@
 import { initializeApp } from 'firebase/app';
-// import { initializeApp } from 'firebase-admin/app';
 import {
   getAuth,
   GoogleAuthProvider,
@@ -8,7 +7,6 @@ import {
   browserLocalPersistence,
 } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-import { getFunctions } from 'firebase/functions';
 
 const firebaseConfig = {
   apiKey: process.env.API_KEY,
@@ -24,6 +22,5 @@ const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 
 const db = getFirestore(firebaseApp);
-const functions = getFunctions();
 
-export { firebaseApp, auth, db, functions };
+export { firebaseApp, auth, db };
