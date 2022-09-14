@@ -4,4 +4,8 @@ interface LoginProps {
   onLoginWithGoogle: () => void;
 }
 
-export { LoginProps };
+interface GoogleLoginProps {
+  onLoginWithGoogle: () => void;
+}
+
+export { LoginProps, GoogleLoginProps };

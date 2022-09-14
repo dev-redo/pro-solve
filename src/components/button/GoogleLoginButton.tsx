@@ -1,13 +1,20 @@
+import React from 'react';
 import styled from 'styled-components';
-
-interface GoogleLoginProps {
-  onLoginWithGoogle: () => void;
-}
+import { GoogleLoginProps } from '../../types/popup';
+import { ReactComponent as Spinner } from '../../static/icons/Spinner.svg';
 
 export default function GoogleLoginButton({ onLoginWithGoogle }: GoogleLoginProps) {
+  const [isLoaded, setIsLoaded] = React.useState(false);
+
   return (
-    <GoogleLoginButtonStyle onClick={onLoginWithGoogle}>
-      <span>Sign in with Google</span>
+    <GoogleLoginButtonStyle
+      onClick={() => {
+        setIsLoaded(true);
+        onLoginWithGoogle;
+      }}
+    >
+      {isLoaded || <span>Sign in with Google</span>}
+      {isLoaded && <Spinner />}
     </GoogleLoginButtonStyle>
   );
 }
@@ -15,11 +22,10 @@ export default function GoogleLoginButton({ onLoginWithGoogle }: GoogleLoginProp
 const GoogleLoginButtonStyle = styled.button`
   height: 2.5rem;
   background-color: ${props => props.theme.color.skyBlue};
-  & > div {
-    background-color: ${props => props.theme.color.white};
-  }
   & > span {
     font-size: 1.2rem;
     color: ${props => props.theme.color.white};
+  }
+  & > svg {
   }
 `;
