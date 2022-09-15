@@ -5,6 +5,7 @@ import { GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../styles/theme';
 import GlobalStyles from '../../styles/global';
+import GlobalFonts from '../../styles/font';
 import Popup from './Popup';
 
 function PopupLayout() {
@@ -20,12 +21,14 @@ function PopupLayout() {
 
   return (
     <Popup>
-      <Popup.Header />
-      <Popup.Login
-        isLoaded={isLoaded}
-        userEmail={userEmail}
-        onLoginWithGoogle={getGoogleAuthCredential}
-      />
+      <Popup.Content>
+        <Popup.Title />
+        <Popup.Login
+          isLoaded={isLoaded}
+          userEmail={userEmail}
+          onLoginWithGoogle={getGoogleAuthCredential}
+        />
+      </Popup.Content>
       <Popup.Footer />
     </Popup>
   );
@@ -59,6 +62,7 @@ ReactDOM.createRoot(root as HTMLElement).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles />
+      <GlobalFonts />
       <PopupLayout />
     </ThemeProvider>
   </React.StrictMode>,

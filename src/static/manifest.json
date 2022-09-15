@@ -18,6 +18,12 @@
     "service_worker": "script/background.js"
   },
   "host_permissions": ["https://programmers.co.kr/"],
+  "web_accessible_resources": [
+    {
+      "resources": ["*.png", "*.eot", "*.woff", "*.woff2", "*.ttf", "*.svg"],
+      "matches": ["<all_urls>"]
+    }
+  ],
   "externally_connectable": {
     "matches": ["https://programmers.co.kr/"]
   },
