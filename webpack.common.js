@@ -49,10 +49,6 @@ module.exports = {
         },
       },
       {
-        test: /\.(jpg|jpeg|png|woff|woff2|eot|ttf|svg)$/,
-        type: 'asset/resource',
-      },
-      {
         test: /\.(jpe?g|png|gif)$/i,
         use: [
           {
@@ -60,7 +56,6 @@ module.exports = {
             options: {
               limit: 10000,
               fallback: 'file-loader',
-              name: 'images/[name].[ext]',
             },
           },
         ],
@@ -77,7 +72,6 @@ module.exports = {
             options: {
               limit: 10000,
               fallback: 'file-loader',
-              name: 'fonts/[name].[ext]',
             },
           },
         ],
@@ -104,7 +98,7 @@ module.exports = {
       path: '.env.local',
     }),
     new CleanWebpackPlugin({
-      cleanStaleWebpackAssets: false,
+      cleanOnceBeforeBuildPatterns: ['**/*', path.resolve(process.cwd(), 'dist/**/*')],
     }),
     new CopyPlugin({
       patterns: [
