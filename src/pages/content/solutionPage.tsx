@@ -1,62 +1,45 @@
-const btn = document.createElement('button');
-btn.textContent = 'Login';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import styled from 'styled-components';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../styles/theme';
-import GlobalStyles from '../../styles/global';
-import { SuccessResponse, FailedResponse } from '../../types/code';
 
-function SolutionPage() {
-  // TODO: useState type 지정
-  const [solutions, setSolutions] = React.useState<SuccessResponse | FailedResponse>({});
+const languageRegex = /(?<=language=\s*)\w*(?=\&type=)/g;
+const problemIdRegex = /lessons\/(.+?)\/solution/;
 
-  React.useEffect(() => {
-    async function getAllSolutions() {
-      const languageRegex = /(?<=language=\s*)\w*(?=\&type=my)/g;
-      const problemIdRegex = /lessons\/(.+?)\/solution/;
+const href = window.location.href;
+const selectedLanguage = href.match(languageRegex)![0];
+const [_, problemId] = href.match(problemIdRegex)!;
+const problemName = ([...document.querySelectorAll('ol.breadcrumb > li')] as HTMLElement[])[2]
+  .innerText;
 
-      const href = window.location.href;
-      const selectedLanguage = href.match(languageRegex)![0];
-      const [_, problemId] = href.match(problemIdRegex)!;
-      console.log(`[Pro Solve] 문제 번호:>> ${problemId} 선택한 언어:>> ${selectedLanguage}`);
+const createSolutionTab = () => {
+  chrome.runtime.sendMessage({
+    method: 'newTab',
+    href: { selectedLanguage, problemId, problemName },
+  });
+};
 
-      // TODO: promise type 지정
-      const allSolutions = await new Promise(resolve => {
-        chrome.runtime.sendMessage(
-          {
-            method: 'getAllSolutions',
-            data: {
-              problemId,
-              selectedLanguage,
-            },
-          },
-          response => {
-            resolve(response);
-            console.log('[Pro Solve] 풀이한 코드 List :>>', response);
-          },
-        );
-      });
+const SolutionPage = () => {
+  return <SolutionStyle onClick={createSolutionTab}>제출한 모든 풀이</SolutionStyle>;
+};
 
-      setSolutions(allSolutions);
-    }
+const SolutionStyle = styled.a`
+  padding: 0.3125rem 0.8125rem;
+  font-size: 0.875rem;
+  color: ${props => props.theme.color.white};
+`;
 
-    getAllSolutions();
-  }, []);
-  return (
-    <div>
-      <span>Solution</span>
-    </div>
-  );
-}
+const root = document.querySelector('div.result-tab > div#tab') as HTMLDivElement;
+const contentScript = document.createElement('button');
+contentScript.style.backgroundColor = theme.color.darkGrey;
+contentScript.style.marginLeft = '0.85rem';
+contentScript.style.borderRadius = '0.25rem';
 
-const root = document.querySelector('div.main > div.container') as HTMLDivElement;
-const contentScript = document.createElement('div');
 root.appendChild(contentScript);
 ReactDOM.createRoot(contentScript as HTMLElement).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <GlobalStyles />
       <SolutionPage />
     </ThemeProvider>
   </React.StrictMode>,

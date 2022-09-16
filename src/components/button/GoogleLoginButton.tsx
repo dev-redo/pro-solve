@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GoogleLoginProps } from '../../types/popup';
 import Spinner from '../../../assets/icons/Spinner.svg';
+import { getGoogleAuthCredential } from '../../hooks/getGoogleAuthCredential';
 
-export default function GoogleLoginButton({ onLoginWithGoogle }: GoogleLoginProps) {
+export default function GoogleLoginButton() {
   const [isLoaded, setIsLoaded] = React.useState(false);
 
   return (
     <GoogleLoginButtonStyle
       onClick={() => {
         setIsLoaded(true);
-        onLoginWithGoogle();
+        getGoogleAuthCredential();
       }}
     >
       {isLoaded || <span>Sign in with Google</span>}
