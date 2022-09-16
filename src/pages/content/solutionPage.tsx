@@ -1,51 +1,34 @@
-const btn = document.createElement('button');
-btn.textContent = 'Login';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../styles/theme';
 import GlobalStyles from '../../styles/global';
 import { SuccessResponse, FailedResponse } from '../../types/code';
+import { getAllSolutions } from '../../hooks/getAllSolutions';
 
 function SolutionPage() {
-  // TODO: useState type 지정
+  // TODO: Solution type 지정
   const [solutions, setSolutions] = React.useState<SuccessResponse | FailedResponse>({});
 
   React.useEffect(() => {
-    async function getAllSolutions() {
-      const languageRegex = /(?<=language=\s*)\w*(?=\&type=my)/g;
-      const problemIdRegex = /lessons\/(.+?)\/solution/;
-
-      const href = window.location.href;
-      const selectedLanguage = href.match(languageRegex)![0];
-      const [_, problemId] = href.match(problemIdRegex)!;
-      console.log(`[Pro Solve] 문제 번호:>> ${problemId} 선택한 언어:>> ${selectedLanguage}`);
-
-      // TODO: promise type 지정
-      const allSolutions = await new Promise(resolve => {
-        chrome.runtime.sendMessage(
-          {
-            method: 'getAllSolutions',
-            data: {
-              problemId,
-              selectedLanguage,
-            },
-          },
-          response => {
-            resolve(response);
-            console.log('[Pro Solve] 풀이한 코드 List :>>', response);
-          },
-        );
-      });
-
+    (async () => {
+      const allSolutions = await getAllSolutions();
       setSolutions(allSolutions);
-    }
-
-    getAllSolutions();
+    })();
   }, []);
+
+  // 로딩중 = 스켈레톤 ui (마지막에 구현)
+
+  // [로그인 X]: status = false
+  // 내가 제출한 코드 풀이테이블 + 로그인을 해주세요 문구 띄우기
+
+  // [로그인 O]
+  // 풀이 테이블 띄우기
+
   return (
     <div>
       <span>Solution</span>
+      <span>{JSON.stringify(solutions)}</span>
     </div>
   );
 }
