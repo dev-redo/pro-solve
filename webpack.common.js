@@ -108,6 +108,6 @@ module.exports = {
         },
       ],
     }),
-    ...getHtmlPlugins(['popup']),
+    ...getHtmlPlugins(['popup', 'newtab']),
   ],
 };

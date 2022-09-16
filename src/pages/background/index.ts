@@ -70,4 +70,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
     return true;
   }
+
+  if (request.method === 'newTab') {
+    const { selectedLanguage, problemId, problemName } = request.href;
+    const url = `chrome-extension://${chrome.runtime.id}/newtab.html?num=${problemId}&name=${problemName}&language=${selectedLanguage}`;
+    chrome.tabs.create({ url });
+  }
 });
