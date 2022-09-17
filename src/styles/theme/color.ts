@@ -5,6 +5,8 @@ const color = {
   blue: '#0078FF',
   skyBlue: '#4181EB',
   deepBlue: '#365A90',
+  greyBlue: '#9aa8b6',
+  indigo: '#0c151c',
   red: '#FF0000',
 };
 

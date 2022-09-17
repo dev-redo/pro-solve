@@ -27,8 +27,8 @@
         "*.woff2",
         "*.ttf",
         "*.svg",
-        "newtab.html",
-        "script/newtab.js"
+        "solutionTab.html",
+        "script/solutionTab.js"
       ],
       "matches": ["<all_urls>"]
     }
@@ -41,14 +41,12 @@
       "matches": ["https://school.programmers.co.kr/learn/courses/30/lessons/*"],
       "exclude_matches": [
         "https://school.programmers.co.kr/learn/courses/30/lessons/*/questions",
-        "https://school.programmers.co.kr/learn/courses/30/lessons/*/solution_groups?language=*"
+        "https://school.programmers.co.kr/learn/courses/30/lessons/*/solution_groups*"
       ],
       "js": ["script/testContent.js"]
     },
     {
-      "matches": [
-        "https://school.programmers.co.kr/learn/courses/30/lessons/*/solution_groups?language=*&type=*"
-      ],
+      "matches": ["https://school.programmers.co.kr/learn/courses/30/lessons/*/solution_groups*"],
       "js": ["script/solutionContent.js"]
     }
   ],
