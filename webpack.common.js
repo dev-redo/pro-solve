@@ -5,7 +5,7 @@ const getHtmlPlugins = chunks => {
   return chunks.map(
     chunk =>
       new HtmlPlugin({
-        title: 'React Extension',
+        title: '프로솔브',
         filename: `${chunk}.html`,
         chunks: [chunk],
       }),
@@ -20,7 +20,7 @@ const HtmlPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    newtab: getAbsolutePath('src/pages/newTab/index.tsx'),
+    solutionTab: getAbsolutePath('src/pages/newTab/solution/index.tsx'),
     popup: getAbsolutePath('src/pages/popup/index.tsx'),
     background: getAbsolutePath('src/pages/background/index.ts'),
     testContent: getAbsolutePath('src/pages/content/testPage.tsx'),
@@ -108,6 +108,6 @@ module.exports = {
         },
       ],
     }),
-    ...getHtmlPlugins(['popup', 'newtab']),
+    ...getHtmlPlugins(['popup', 'solutionTab']),
   ],
 };
