@@ -50,11 +50,11 @@ Popup.Login = ({ isLoaded, userEmail }: LoginProps) => {
 
 Popup.Footer = () => {
   return (
-    <FooterStyle>
+    <FooterStyle href="https://github.com/dev-redo/pro-solve" target="_blank">
       <span>
         <img src={GithubLogo} />
       </span>
-      <a href="https://github.com/dev-redo/pro-solve">Github 바로가기</a>
+      <span>Github 바로가기</span>
     </FooterStyle>
   );
 };
@@ -119,7 +119,7 @@ const LoginStyle = styled.div`
   }
 `;
 
-const FooterStyle = styled.div`
+const FooterStyle = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -130,6 +130,6 @@ const FooterStyle = styled.div`
   span {
     font-size: 1rem;
     margin-right: 0.3rem;
-    font-family: 'NanumSquareBold', sans-serif;
+    font-family: 'NanumSquareRegular', sans-serif;
   }
 `;
