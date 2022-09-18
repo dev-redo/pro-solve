@@ -17,13 +17,13 @@ const CopyClipBoard = ({ codeText }: ClibBoardProps) => {
       {isCopy === true && (
         <IconBoxStyle>
           <Check />
-          <p>Copied</p>
+          <p>복사 성공!</p>
         </IconBoxStyle>
       )}
       {isCopy === false && (
         <IconBoxStyle>
           <XCharacter />
-          <p>Failed to copy</p>
+          <p>복사 실패</p>
         </IconBoxStyle>
       )}
     </CopyButton>
@@ -35,7 +35,7 @@ const CopyButton = styled.button`
   align-items: center;
   position: absolute;
   top: 1.5rem;
-  right: 1.5rem;
+  right: 1rem;
   background-color: transparent;
   svg:hover path {
     stroke: #5b7af9;
@@ -46,16 +46,17 @@ const IconBoxStyle = styled.div`
   p {
     display: none;
     position: absolute;
-    width: 5.5rem;
+    width: 5rem;
     padding: 0.4rem;
     top: 2.2rem;
-    right: -2.15rem;
+    right: -1.8rem;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 0.5rem;
     background: ${props => props.theme.color.steelGrey};
     color: ${props => props.theme.color.white};
     font-size: 0.8rem;
+    font-family: 'NotoSansKRRegular', sans-serif;
     &:after {
       position: absolute;
       bottom: 100%;

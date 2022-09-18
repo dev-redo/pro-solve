@@ -4,7 +4,7 @@ import ArrowRight from '../../../../assets/icons/ArrowRight.svg';
 import Spinner from '../../../../assets/icons/BlackSpinner.svg';
 import { SolutionResponse } from '../../../types/solution';
 import { CenterContainer } from '../../../styles/global';
-import CodeMirror from '../../../components/code/CodeMirror';
+import Code from '../../../components/code/Code';
 
 export default function SolutionTab({ children }: { children: JSX.Element[] }) {
   return <ContainerStyle>{children}</ContainerStyle>;
@@ -62,7 +62,7 @@ SolutionTab.Content = ({ isLoaded, solutions }: ContentProps) => {
       {data!.length > 0 && (
         <ContentStyle>
           {data?.map(solution => (
-            <CodeMirror code={solution.code} selectedLanguage={solution.selectedLanguage} />
+            <Code solution={solution} />
           ))}
         </ContentStyle>
       )}
@@ -76,9 +76,11 @@ const ContainerStyle = styled.div`
 `;
 
 const HeaderStyle = styled.div`
-  position: sticky;
   display: flex;
   align-items: center;
+  position: sticky;
+  z-index: 100;
+  top: 0;
   height: 3rem;
   padding: 0.375rem 1rem;
   background-color: ${props => props.theme.color.indigo};
@@ -129,5 +131,5 @@ const NoContentStyle = styled(CenterContainer)`
 `;
 
 const ContentStyle = styled.div`
-  margin: 2rem 4rem;
+  padding: 4rem;
 `;

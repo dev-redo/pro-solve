@@ -1,19 +1,18 @@
 import styled from 'styled-components';
 import Highlight from 'react-highlight';
 import CopyClipBoard from '../button/CopyClipBoard';
+import { Solution } from '../../types/solution';
 
 interface SolutionProps {
-  code: string;
-  selectedLanguage: string;
+  solution: Solution;
 }
 
-const CodeMirror = ({ code, selectedLanguage }: SolutionProps) => {
+const CodeMirror = ({ solution }: SolutionProps) => {
+  const { code, selectedLanguage } = solution;
   return (
     <CodeStyle>
-      <div>
-        <CopyClipBoard codeText={code} />
-        <Highlight className={selectedLanguage}>{code}</Highlight>
-      </div>
+      <CopyClipBoard codeText={code} />
+      <Highlight className={selectedLanguage}>{code}</Highlight>
     </CodeStyle>
   );
 };
@@ -21,10 +20,11 @@ const CodeMirror = ({ code, selectedLanguage }: SolutionProps) => {
 const CodeStyle = styled.div`
   width: 100%;
   font-family: 'Consola', sans-serif;
-  & > div {
-    position: relative;
-    background-color: ${props => props.theme.color.darkGrey};
-    padding: 1rem 1rem;
+  position: relative;
+  code {
+    line-height: 1.3rem;
+    border-radius: 0.2rem;
+    padding: 1.5rem;
   }
   pre {
     width: 100%;
