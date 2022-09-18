@@ -18,4 +18,4 @@ interface SolutionResponse {
   message?: string;
 }
 
-export { SolutionResponse };
+export { Solution, SolutionResponse };
