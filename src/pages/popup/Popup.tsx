@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { LoginProps } from '../../types/popup';
 import GoogleLoginButton from '../../components/button/GoogleLoginButton';
 import GithubLogo from '../../../assets/images/github.png';
 
@@ -20,7 +19,13 @@ Popup.Title = () => {
   );
 };
 
-Popup.Login = ({ isLoaded, userEmail }: LoginProps) => {
+interface LoginProps {
+  isLoaded: boolean;
+  userEmail: string;
+  onLoginWithGoogle: Function;
+}
+
+Popup.Login = ({ isLoaded, userEmail, onLoginWithGoogle }: LoginProps) => {
   if (isLoaded) {
     return (
       <LoadingStyle>
@@ -35,7 +40,7 @@ Popup.Login = ({ isLoaded, userEmail }: LoginProps) => {
       {userEmail === '' && (
         <LoginStyle>
           <span>로그인이 되어있지 않습니다. 로그인을 해주세요!</span>
-          <GoogleLoginButton />
+          <GoogleLoginButton onLogin={onLoginWithGoogle} />
         </LoginStyle>
       )}
       {userEmail === '' || (

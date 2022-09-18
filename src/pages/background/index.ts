@@ -1,8 +1,9 @@
 import { auth, db } from '../../firebase';
 import { doc, collection, getDocs, setDoc, query, where, Timestamp } from 'firebase/firestore';
+import { User } from 'firebase/auth';
 
-// TODO: type 지정
-const getCurrentUser = () => {
+type GetCurrentUserFn = () => Promise<User | null>;
+const getCurrentUser: GetCurrentUserFn = () => {
   return new Promise((resolve, reject) =>
     auth.onAuthStateChanged(
       user => resolve(user),
@@ -11,6 +12,7 @@ const getCurrentUser = () => {
   );
 };
 
+// TODO: uid 타입 지정
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.method === 'postCurrentSolution') {
     (async () => {
@@ -36,7 +38,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         console.log('[Pro Solve] 업로드 성공!');
         sendResponse({ status: true });
       } catch (error) {
-        console.log('[Pro Solve] 로그인을 하지 않아 업로드가 되지 않습니다!', error);
+        console.error('[Pro Solve] 로그인을 하지 않아 업로드가 되지 않습니다!', error);
         sendResponse({ status: false });
       }
     })();

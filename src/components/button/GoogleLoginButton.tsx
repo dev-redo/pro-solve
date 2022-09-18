@@ -1,16 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import Spinner from '../../../assets/icons/Spinner.svg';
-import { getGoogleAuthCredential } from '../../hooks/getGoogleAuthCredential';
+import Spinner from '../../../assets/icons/WhiteSpinner.svg';
 
-export default function GoogleLoginButton() {
+interface LoginProps {
+  onLogin: Function;
+}
+
+export default function GoogleLoginButton({ onLogin }: LoginProps) {
   const [isLoaded, setIsLoaded] = React.useState(false);
 
   return (
     <GoogleLoginButtonStyle
       onClick={() => {
         setIsLoaded(true);
-        getGoogleAuthCredential();
+        onLogin();
       }}
     >
       {isLoaded || <span>Sign in with Google</span>}
