@@ -1,5 +1,6 @@
 const color = {
   white: '#FFFFFF',
+  grayishWhite: '#e0e0e0',
   black: '#000000',
   lightGrey: '#8b939e',
   grey: '#E9ECF3',
@@ -11,6 +12,8 @@ const color = {
   greyBlue: '#9aa8b6',
   indigo: '#0c151c',
   red: '#FF0000',
+  coral: '#F85149',
+  green: '#39D353',
 };
 
 export default color;
