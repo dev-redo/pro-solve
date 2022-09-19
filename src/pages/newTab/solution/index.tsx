@@ -67,12 +67,6 @@ const getAllSolutions: GetAllSolutionFn = async ({ selectedLanguage, problemId }
   return allSolutions;
 };
 
-const link = document.createElement('link');
-link.rel = 'stylesheet';
-link.href =
-  'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atelier-cave-dark.min.css';
-document.getElementsByTagName('head')[0].appendChild(link);
-
 const root = document.createElement('div');
 document.body.appendChild(root);
 ReactDOM.createRoot(root as HTMLElement).render(
