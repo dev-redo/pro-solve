@@ -1,6 +1,6 @@
 const color = {
   white: '#FFFFFF',
-  grayishWhite: '#e0e0e0',
+  grayishWhite: '#d8e2ea',
   lightBlack: '#1A1A1A',
   jetBlack: '#121212',
   black: '#000000',

@@ -155,5 +155,5 @@ const NoContentStyle = styled(CenterContainer)`
 `;
 
 const ContentStyle = styled.div`
-  padding: 4rem;
+  padding: 1rem 10rem;
 `;
