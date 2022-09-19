@@ -22,9 +22,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         const uploadTime = Timestamp.now();
         const { uid } = await getCurrentUser();
 
-        console.log('[Pro Solve] dom node data from background :>> ', request);
-        console.log('[Pro Solve] uid from background :>> ', uid);
-
         const codingTestRef = doc(db, 'codingTest', uid, problemId, String(uploadTime));
         await setDoc(codingTestRef, {
           isSuccess,

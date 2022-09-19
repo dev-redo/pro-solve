@@ -55,7 +55,7 @@ const IconBoxStyle = styled.div`
     border-radius: 0.5rem;
     background: ${props => props.theme.color.steelGrey};
     color: ${props => props.theme.color.white};
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-family: 'NotoSansKRRegular', sans-serif;
     &:after {
       position: absolute;

@@ -19,12 +19,13 @@ const CodeMirror = ({ solution }: SolutionProps) => {
 
 const CodeStyle = styled.div`
   width: 100%;
-  font-family: 'Consola', sans-serif;
+  font-family: 'HackRegular', sans-serif;
   position: relative;
   code {
-    line-height: 1.3rem;
+    line-height: 1.4rem;
     border-radius: 0.2rem;
     padding: 1.5rem;
+    background-color: ${props => props.theme.color.lightBlack};
   }
   pre {
     width: 100%;
