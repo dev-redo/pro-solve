@@ -26,15 +26,10 @@ Dropdown.Menu = ({ isOpen, children }: MenuProps) => {
 };
 
 Dropdown.Item = ({ onChangeOption, children }: ItemProps) => {
-  const onPreventEventPropagation = (event: React.MouseEvent) => event.preventDefault();
+  const onPreventEvent = (event: React.MouseEvent) => event.preventDefault();
 
   return (
-    <ItemStyle
-      type="button"
-      value={children}
-      onMouseDown={onPreventEventPropagation}
-      onClick={onChangeOption}
-    >
+    <ItemStyle type="button" value={children} onMouseDown={onPreventEvent} onClick={onChangeOption}>
       {children}
     </ItemStyle>
   );
@@ -62,7 +57,7 @@ const MenuStyle = styled.div<{ isOpen: boolean }>`
     0 1rem 2rem -0.125rem rgb(20 20 84 / 8%), 0 0 0 0.0625rem rgb(20 20 84 / 12%);
   border-radius: 0.25rem;
   line-height: 1.6;
-  background-color: white;
+  background-color: ${props => props.theme.color.white};
 `;
 
 const ItemStyle = styled.button`
