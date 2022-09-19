@@ -73,6 +73,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.method === 'newTab') {
     const { selectedLanguage, problemId, problemName } = request.href;
     const url = `chrome-extension://${chrome.runtime.id}/solutionTab.html?num=${problemId}&name=${problemName}&language=${selectedLanguage}`;
-    chrome.tabs.create({ url });
+
+    chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+      const tabIndex = tabs[0]!.index;
+      chrome.tabs.create({ url, index: tabIndex + 1 });
+    });
   }
 });

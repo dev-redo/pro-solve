@@ -121,9 +121,6 @@ const HeaderStyle = styled.div`
     padding: 0.375rem 0;
     gap: 0.3rem;
   }
-  svg {
-    height: 1.5rem;
-  }
 `;
 
 const LoaderStyle = styled.div`
