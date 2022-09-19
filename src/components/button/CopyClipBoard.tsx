@@ -35,7 +35,7 @@ const CopyButton = styled.button`
   align-items: center;
   position: absolute;
   top: 1.5rem;
-  right: 1rem;
+  right: 1.5rem;
   background-color: transparent;
   svg:hover path {
     stroke: #5b7af9;
