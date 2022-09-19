@@ -18,15 +18,4 @@ declare module 'react' {
   }
 }
 
-export interface HighlightProps {
-  children?: React.ReactNode;
-  className?: string | undefined;
-  innerHTML?: boolean | undefined;
-}
-
-declare const Highlight: React.ComponentClass<HighlightProps>;
-export default Highlight;
-
-// declare module 'Highlight' {
-//   export default React.ComponentClass<HighlightProps>;
-// }
+declare module 'recoil';
