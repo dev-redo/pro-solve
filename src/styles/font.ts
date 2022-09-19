@@ -4,6 +4,7 @@ import NanumSquareExtraBold from '../../assets/fonts/NanumSquareEB.ttf';
 import NanumSquareLight from '../../assets/fonts/NanumSquareL.ttf';
 import NanumSquareRegular from '../../assets/fonts/NanumSquareR.ttf';
 import Consola from '../../assets/fonts/Consola.ttf';
+import HackRegular from '../../assets/fonts/Hack-Regular.ttf';
 import NotoSansKRBold from '../../assets/fonts/NotoSansKR-Bold.otf';
 import NotoSansKRLight from '../../assets/fonts/NotoSansKR-Light.otf';
 import NotoSansKRMedium from '../../assets/fonts/NotoSansKR-Medium.otf';
@@ -36,6 +37,11 @@ const GlobalFonts = createGlobalStyle`
     font-weight: normal;
   }
   @font-face {
+    font-family: 'HackRegular';
+    src: local("HackRegular"), url(${HackRegular}) format('truetype');
+    font-weight: normal;
+  }
+  @font-face {
     font-family: 'NotoSansKRBold';
     src: local("NotoSansKRBold"), url(${NotoSansKRBold}) format('opentype');
     font-weight: bold;
@@ -55,6 +61,7 @@ const GlobalFonts = createGlobalStyle`
     src: local("NotoSansKRRegular"), url(${NotoSansKRRegular}) format('opentype');
     font-weight: normal;
   }
+  /* Hack-Regular */
 `;
 
 export default GlobalFonts;

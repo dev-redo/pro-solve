@@ -50,7 +50,7 @@ const SubmissionDetailStyle = styled.div`
   margin-bottom: 0.8rem;
   table {
     display: grid;
-    gap: 0.6rem;
+    gap: 0.8rem;
     width: 100%;
   }
   tr {

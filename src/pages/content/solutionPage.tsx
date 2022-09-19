@@ -38,10 +38,12 @@ const SolutionStyle = styled.span`
 
 const root = document.querySelector('div.result-tab > div#tab') as HTMLDivElement;
 const contentScript = document.createElement('button');
-contentScript.style.backgroundColor = theme.color.darkGrey;
-contentScript.style.marginLeft = '0.85rem';
-contentScript.style.borderRadius = '0.25rem';
-contentScript.style.border = 'none';
+contentScript.style.cssText = `
+  background-color: ${theme.color.darkGrey};
+  margin-left: 0.85rem;
+  border-radius: 0.25rem;
+  border: none;
+`;
 
 root.appendChild(contentScript);
 ReactDOM.createRoot(contentScript as HTMLElement).render(
