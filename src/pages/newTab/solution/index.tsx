@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { RecoilRoot } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../../styles/theme';
 import GlobalStyles from '../../../styles/global';
@@ -31,6 +32,7 @@ const SolutionTabLayout = () => {
   return (
     <SolutionTab>
       <SolutionTab.Header selectedLanguage={selectedLanguage} problemName={problemName} />
+      <SolutionTab.Select isLoaded={isLoaded} />
       <SolutionTab.Content isLoaded={isLoaded} solutions={solutions} />
     </SolutionTab>
   );
@@ -75,10 +77,12 @@ const root = document.createElement('div');
 document.body.appendChild(root);
 ReactDOM.createRoot(root as HTMLElement).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <GlobalFonts />
-      <SolutionTabLayout />
-    </ThemeProvider>
+    <RecoilRoot>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <GlobalFonts />
+        <SolutionTabLayout />
+      </ThemeProvider>
+    </RecoilRoot>
   </React.StrictMode>,
 );

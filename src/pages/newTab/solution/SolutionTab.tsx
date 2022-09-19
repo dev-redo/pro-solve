@@ -1,10 +1,14 @@
+import React from 'react';
 import styled from 'styled-components';
+import { useRecoilValue } from 'recoil';
+import { selectedOption } from '../../../store/select';
 import LogoWhite from '../../../../assets/images/logo-white.png';
 import ArrowRight from '../../../../assets/icons/ArrowRight.svg';
 import Spinner from '../../../../assets/icons/BlackSpinner.svg';
-import { SolutionResponse } from '../../../types/solution';
+import { Solution, SolutionList, SolutionResponse } from '../../../types/solution';
 import { CenterContainer } from '../../../styles/global';
 import Code from '../../../components/code/Code';
+import SolutionSelect from '../../../components/select/SolutionSelect';
 
 export default function SolutionTab({ children }: { children: JSX.Element[] }) {
   return <ContainerStyle>{children}</ContainerStyle>;
@@ -30,6 +34,14 @@ SolutionTab.Header = ({ selectedLanguage, problemName }: HeaderProps) => {
       </div>
     </HeaderStyle>
   );
+};
+
+SolutionTab.Select = ({ isLoaded }: { isLoaded: boolean }) => {
+  if (isLoaded) {
+    return <></>;
+  }
+
+  return <SolutionSelect />;
 };
 
 interface ContentProps {
@@ -61,7 +73,7 @@ SolutionTab.Content = ({ isLoaded, solutions }: ContentProps) => {
     <>
       {data!.length > 0 && (
         <ContentStyle>
-          {data?.map(solution => (
+          {filteredSolutions(data!).map((solution: Solution) => (
             <Code solution={solution} />
           ))}
         </ContentStyle>
@@ -69,6 +81,18 @@ SolutionTab.Content = ({ isLoaded, solutions }: ContentProps) => {
       {data!.length === 0 && <NoContentStyle>제출한 풀이가 없습니다.</NoContentStyle>}
     </>
   );
+};
+
+const filteredSolutions = (solutions: SolutionList) => {
+  const selected = useRecoilValue(selectedOption);
+
+  if (selected === '성공한 풀이') {
+    return solutions.filter(({ isSuccess }) => isSuccess);
+  }
+  if (selected === '실패한 풀이') {
+    return solutions.filter(({ isSuccess }) => !isSuccess);
+  }
+  return solutions;
 };
 
 const ContainerStyle = styled.div`
@@ -83,7 +107,7 @@ const HeaderStyle = styled.div`
   top: 0;
   height: 3rem;
   padding: 0.375rem 1rem;
-  background-color: ${props => props.theme.color.indigo};
+  background-color: ${props => props.theme.color.jetBlack};
   color: ${props => props.theme.color.greyBlue};
   font-family: 'NotoSansKRLight', sans-serif;
   & > img {
