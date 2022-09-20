@@ -95,7 +95,7 @@ module.exports = {
   },
   plugins: [
     new Dotenv({
-      path: '.env.local',
+      path: '.env',
     }),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ['**/*', path.resolve(process.cwd(), 'dist/**/*')],
