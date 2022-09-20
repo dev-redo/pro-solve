@@ -12,7 +12,6 @@ const getCurrentUser: GetCurrentUserFn = () => {
   );
 };
 
-// TODO: uid 타입 지정
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.method === 'postCurrentSolution') {
     (async () => {
@@ -20,7 +19,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         const { isSuccess, code, selectedLanguage, problemId, passedTestCase, failedTestCase } =
           request.data;
         const uploadTime = Timestamp.now();
-        const { uid } = await getCurrentUser();
+        const { uid } = (await getCurrentUser()) as User;
 
         const codingTestRef = doc(db, 'codingTest', uid, problemId, String(uploadTime));
         await setDoc(codingTestRef, {
@@ -46,7 +45,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     (async () => {
       try {
         const { selectedLanguage, problemId } = request.data;
-        const { uid } = await getCurrentUser();
+        const { uid } = (await getCurrentUser()) as User;
 
         const codingTestRef = collection(db, 'codingTest', uid, problemId);
         const codingTestQuery = query(
