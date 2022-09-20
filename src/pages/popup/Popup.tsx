@@ -22,10 +22,9 @@ Popup.Title = () => {
 interface LoginProps {
   isLoaded: boolean;
   userEmail: string;
-  onLoginWithGoogle: Function;
 }
 
-Popup.Login = ({ isLoaded, userEmail, onLoginWithGoogle }: LoginProps) => {
+Popup.Login = ({ isLoaded, userEmail }: LoginProps) => {
   if (isLoaded) {
     return (
       <LoadingStyle>
@@ -40,7 +39,7 @@ Popup.Login = ({ isLoaded, userEmail, onLoginWithGoogle }: LoginProps) => {
       {userEmail === '' && (
         <LoginStyle>
           <span>로그인이 되어있지 않습니다. 로그인을 해주세요!</span>
-          <GoogleLoginButton onLogin={onLoginWithGoogle} />
+          <GoogleLoginButton />
         </LoginStyle>
       )}
       {userEmail === '' || (

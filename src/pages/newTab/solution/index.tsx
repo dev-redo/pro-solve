@@ -43,12 +43,10 @@ interface HrefProps {
   problemId: string;
 }
 type GetAllSolutionFn = ({ selectedLanguage, problemId }: HrefProps) => Promise<SolutionResponse>;
-
-// TODO: uid 고친 후 프라미스 반환 unknown 에러 잡기
 const getAllSolutions: GetAllSolutionFn = async ({ selectedLanguage, problemId }: HrefProps) => {
   console.log(`[Pro Solve] 문제 번호:>> ${problemId} 선택한 언어:>> ${selectedLanguage}`);
 
-  const allSolutions = await new Promise(resolve => {
+  const allSolutions = await new Promise<SolutionResponse>(resolve => {
     chrome.runtime.sendMessage(
       {
         method: 'getAllSolutions',
