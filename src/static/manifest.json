@@ -13,7 +13,7 @@
     "default_title": "프로솔브(Pro-Solve)",
     "default_icon": "icon.png"
   },
-  "permissions": ["tabs", "storage", "scripting", "activeTab", "identity", "identity.email"],
+  "permissions": ["tabs", "scripting", "activeTab", "identity", "identity.email"],
   "background": {
     "service_worker": "script/background.js"
   },
@@ -49,15 +49,5 @@
       "matches": ["https://school.programmers.co.kr/learn/courses/30/lessons/*/solution_groups*"],
       "js": ["script/solutionContent.js"]
     }
-  ],
-  "oauth2": {
-    "client_id": "248121374570-rntej2jvlsgspvufmdvjisguqf7j1c0l.apps.googleusercontent.com",
-    "scopes": [
-      "https://www.googleapis.com/auth/contacts",
-      "https://www.googleapis.com/auth/userinfo.email",
-      "https://www.googleapis.com/auth/userinfo.profile",
-      "https://www.googleapis.com/auth/drive"
-    ]
-  },
-  "key": "koklbgdignablfbgkepbfldcojnnckie"
+  ]
 }
