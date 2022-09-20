@@ -49,6 +49,5 @@
       "matches": ["https://school.programmers.co.kr/learn/courses/30/lessons/*/solution_groups*"],
       "js": ["script/solutionContent.js"]
     }
-  ],
-  "key": "koklbgdignablfbgkepbfldcojnnckie"
+  ]
 }
