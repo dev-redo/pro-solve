@@ -13,7 +13,7 @@
     "default_title": "프로솔브(Pro-Solve)",
     "default_icon": "icon.png"
   },
-  "permissions": ["tabs", "identity", "identity.email"],
+  "permissions": ["tabs", "identity"],
   "background": {
     "service_worker": "script/background.js"
   },
