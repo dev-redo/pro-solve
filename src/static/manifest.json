@@ -51,13 +51,12 @@
     }
   ],
   "oauth2": {
-    "client_id": "174269248001-4hdrk97jsdhn85kecrhdb14da37rtv4s.apps.googleusercontent.com",
+    "client_id": "174269248001-77e2mhvt2suuse7a5o9v3sddi3h3n64s.apps.googleusercontent.com",
     "scopes": [
       "https://www.googleapis.com/auth/contacts",
       "https://www.googleapis.com/auth/userinfo.email",
       "https://www.googleapis.com/auth/userinfo.profile",
       "https://www.googleapis.com/auth/drive"
     ]
-  },
-  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqYbmBQfHY+smsGyVFd5OqbM9Ht2b78820XCUe045MJ6BLXTDevNHtoPDBD5bl/b9P0/0zLU6AvphefCzeLbuIUaJEpw28yDq9f0cczAE6XzAbK6i6ZdpPIinwYLsvcvX8neR0xtiB1LP9tUc8ueB+ZLaxgwTb+yM5y8UMM0n3RPtaQij8YsbyOfZjHH1RB2cPbm6jtHIKcujc0ySOAFejXNCNmakK42UIWd4l/vZ9dVvfUlSk/VB4R5u+H9neOWX+i9uQbgPFi0JnbWRqDzj2tmWPyApIksLHnqrqV++IBvXZB7pqCNJw3q/OzBKO0iFEFZFneIIfEsnc9Et+GjdEwIDAQAB"
+  }
 }
