@@ -43,7 +43,7 @@ jobs:
       - name: Publish to Webstore
         uses: mnao305/chrome-extension-upload@3.0.0
         with:
-          file-path: dist/build.zip
+          file-path: build.zip
           extension-id: ampdnbkdfaeojjpipofmkihpkbeffngn
           client-id: ${{ secrets.CLIENT_ID }}
           client-secret: ${{ secrets.CLIENT_SECRET }}
