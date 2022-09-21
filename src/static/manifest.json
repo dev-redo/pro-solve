@@ -50,5 +50,14 @@
       "js": ["script/solutionContent.js"]
     }
   ],
-  "key": "koklbgdignablfbgkepbfldcojnnckie"
+  "oauth2": {
+    "client_id": "641855099918-qbk9tcq6qs9gbml3oilt4ql4hmdeplrf.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/contacts",
+      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/drive"
+    ]
+  },
+  "key": "ampdnbkdfaeojjpipofmkihpkbeffngn"
 }
