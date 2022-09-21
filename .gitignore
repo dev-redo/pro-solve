@@ -5,6 +5,7 @@
 
 # production
 /dist
+build.zip
 .firebase
 
 # misc
