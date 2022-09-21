@@ -2,37 +2,26 @@
 name: Bug report
 about: Create a report to help us improve
 title: ''
-labels: ''
+labels: bug
 assignees: ''
 
 ---
 
-**Describe the bug**
+**버그를 설명해주세요*
 A clear and concise description of what the bug is.
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+**버그가 발생하는 과정을 설명해주세요**
+버그가 아래의 과정을 통해 발생됩니다.
+1. ...
+2. ...
+3. ...
+4. 버그가 발생했습니다.
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**기대했던 동작**
+익스텐션에서 기대했던 동작에 대해 설명해주세요.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**스크린샷**
+자세한 설명을 위해 스크린샷 첨부를 부탁드립니다. (콘솔 등...)
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+**추가 설명**
+추가로 버그에 대해 설명하고 싶은 사항이 있으시다면 여기에 부탁드립니다.
