@@ -1,4 +1,8 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import { theme } from '../../styles/theme';
+import { ThemeProvider } from 'styled-components';
+import ShowSolutionsButtons from '../../components/button/ShowSolutionsButton';
 
 const $submitBtn = document.querySelector('#submit-code') as HTMLButtonElement;
 const $modal = document.querySelector('.modal') as HTMLDivElement;
@@ -9,7 +13,9 @@ const modalMutationOption = {
 const modalMutationObserver = new MutationObserver(mutations => {
   if (!mutations.length) return;
 
-  readyToUpload();
+  printLoadingText();
+  createShowSolutionsButton();
+
   uploadCurrentSolution();
   modalMutationObserver.disconnect();
 });
@@ -18,7 +24,7 @@ $submitBtn.addEventListener('click', () => {
   modalMutationObserver.observe($modal, modalMutationOption);
 });
 
-const readyToUpload = () => {
+const printLoadingText = () => {
   const $modalContent = document.querySelector('div.modal-body') as HTMLDivElement;
   $modalContent.innerHTML = `<span>Pro Solve 익스텐션이 결과를 저장합니다.<br />모달 창을 닫으셔도 됩니다.</span>`;
 
@@ -27,6 +33,33 @@ const readyToUpload = () => {
   modalUploadResult.textContent = 'Loading...';
   modalUploadResult.style.color = theme.color.deepBlue;
   $modalContent.append(modalUploadResult);
+};
+
+const createShowSolutionsButton = () => {
+  const selectedLanguage = (
+    document.querySelector('div.editor > ul > li.nav-item > a') as HTMLAnchorElement
+  ).getAttribute('data-language')!;
+  const problemId = (
+    document.querySelector('div.main > div.lesson-content') as HTMLDivElement
+  ).getAttribute('data-lesson-id')!;
+  const problemName = (
+    document.querySelector('li.algorithm-title') as HTMLLIElement
+  ).textContent!.trim();
+
+  const btn = document.createElement('a');
+  const root = document.querySelector('div.modal-footer') as HTMLDivElement;
+  root.appendChild(btn);
+  ReactDOM.createRoot(btn as HTMLElement).render(
+    <React.StrictMode>
+      <ThemeProvider theme={theme}>
+        <ShowSolutionsButtons
+          selectedLanguage={selectedLanguage}
+          problemId={problemId}
+          problemName={problemName}
+        />
+      </ThemeProvider>
+    </React.StrictMode>,
+  );
 };
 
 const uploadCurrentSolution = async () => {
