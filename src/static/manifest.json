@@ -13,7 +13,7 @@
     "default_title": "프로솔브(Pro-Solve)",
     "default_icon": "icon.png"
   },
-  "permissions": ["tabs", "identity"],
+  "permissions": ["identity"],
   "background": {
     "service_worker": "script/background.js"
   },
@@ -52,11 +52,7 @@
   ],
   "oauth2": {
     "client_id": "174269248001-77e2mhvt2suuse7a5o9v3sddi3h3n64s.apps.googleusercontent.com",
-    "scopes": [
-      "https://www.googleapis.com/auth/contacts",
-      "https://www.googleapis.com/auth/userinfo.email",
-      "https://www.googleapis.com/auth/userinfo.profile",
-      "https://www.googleapis.com/auth/drive"
-    ]
-  }
+    "scopes": ["https://www.googleapis.com/auth/userinfo.email"]
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoqN121A5707dUsfXVRN5ZaFWWbuYnlN02fg5vG7bPx8cqg2nMH1DoK6LhVBD83K3s7BZLZQZTRWHdGV4D4oAabVgFu2vWGJ20cudygfV/RkhEBDpD8B2xnH09RPCB2XExMnC7xY2MwRUzU7zip+Rq6frQp0LiQ2VvJN61MAn7cOSjRuQSOdiyt8Grx753YpIvzriMajFiqOsJy1Pbv1DSb8lCYIYzM79myQilxrX6bsT9j1KIG/8q3vzjZGZGnYDz+fo0GrAQBaCvIrhPxE8ie81XDnLkZ3QqSx5K4MytqxOFBzHmAEy2hNgRqtPE4OQqte4d7M17YWtu4Sr0qWCJQIDAQAB"
 }
