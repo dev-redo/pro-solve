@@ -24,7 +24,7 @@ SolutionTab.Header = ({ selectedLanguage, problemName }: HeaderProps) => {
     <HeaderStyle>
       <img src={LogoWhite} />
       <div>
-        <span>제출한 모든 풀이</span>
+        <span>저장된 모든 풀이</span>
         <span>
           <ArrowRight />
         </span>
@@ -69,16 +69,18 @@ SolutionTab.Content = ({ isLoaded, solutions }: ContentProps) => {
     );
   }
 
+  const submitedSolutions = filteredSolutions(data!);
+
   return (
     <>
-      {data!.length > 0 && (
+      {submitedSolutions!.length > 0 && (
         <ContentStyle>
-          {filteredSolutions(data!).map((solution: Solution) => (
+          {submitedSolutions!.map((solution: Solution) => (
             <Code solution={solution} />
           ))}
         </ContentStyle>
       )}
-      {data!.length === 0 && <NoContentStyle>제출한 풀이가 없습니다.</NoContentStyle>}
+      {submitedSolutions!.length === 0 && <NoContentStyle>저장된 풀이가 없습니다.</NoContentStyle>}
     </>
   );
 };
