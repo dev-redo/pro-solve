@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { uid } from 'react-uid';
 import { SelectProps, TriggerProps, MenuProps, ItemProps } from '../../types/select';
 
 const Select = ({ trigger, isOpen, onChangeOption, options }: SelectProps) => {
@@ -7,8 +8,10 @@ const Select = ({ trigger, isOpen, onChangeOption, options }: SelectProps) => {
     <Dropdown>
       <Dropdown.Trigger as={trigger} />
       <Dropdown.Menu isOpen={isOpen}>
-        {options.map(option => (
-          <Dropdown.Item onChangeOption={onChangeOption}>{option}</Dropdown.Item>
+        {options.map((option: string, index: number) => (
+          <Dropdown.Item key={uid(index)} onChangeOption={onChangeOption}>
+            {option}
+          </Dropdown.Item>
         ))}
       </Dropdown.Menu>
     </Dropdown>

@@ -19,3 +19,4 @@ declare module 'react' {
 }
 
 declare module 'recoil';
+declare module 'react-uid';

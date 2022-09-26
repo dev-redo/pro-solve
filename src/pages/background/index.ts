@@ -12,10 +12,19 @@ const getCurrentUser: GetCurrentUserFn = () => {
   );
 };
 
+// chrome.runtime.onInstalled.addListener(details => {
+//   console.log(details);
+//   if (details.reason == 'update') {
+//     chrome.runtime.reload();
+//     return;
+//   }
+// });
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.method === 'postCurrentSolution') {
     (async () => {
       try {
+        console.log('[Pro Solve] request :>>', request);
         const { isSuccess, code, selectedLanguage, problemId, passedTestCase, failedTestCase } =
           request.data;
         const uploadTime = Timestamp.now();
@@ -44,6 +53,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.method === 'getAllSolutions') {
     (async () => {
       try {
+        console.log('[Pro Solve] request :>>', request);
+
         const { selectedLanguage, problemId } = request.data;
         const { uid } = (await getCurrentUser()) as User;
 
@@ -70,6 +81,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 
   if (request.method === 'newTab') {
+    console.log('[Pro Solve] request :>>', request);
+
     const { selectedLanguage, problemId, problemName } = request.href;
     const url = `chrome-extension://${chrome.runtime.id}/solutionTab.html?num=${problemId}&name=${problemName}&language=${selectedLanguage}`;
 
@@ -77,5 +90,20 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       const tabIndex = tabs[0]!.index;
       chrome.tabs.create({ url, index: tabIndex + 1 });
     });
+
+    // chrome.windows.getAll({ populate: false, windowTypes: ['normal'] }, windows => {
+    //   for (let window of windows) {
+    //     if (window.incognito) {
+    //       chrome.windows.create({ url, incognito: true });
+    //       return;
+    //     }
+    //   }
+
+    //   chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+    //     const tabIndex = tabs[0]!.index;
+    //     chrome.tabs.create({ url, index: tabIndex + 1 });
+    //   });
+    // });
   }
 });
+// });

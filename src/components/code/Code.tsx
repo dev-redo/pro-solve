@@ -3,11 +3,7 @@ import CodeMirror from './CodeMirror';
 import SubmissionDetail from './SubmissionDetail';
 import { Solution } from '../../types/solution';
 
-interface SolutionProps {
-  solution: Solution;
-}
-
-const Code = ({ solution }: SolutionProps) => {
+const Code = ({ solution }: { solution: Solution }) => {
   return (
     <CodeStyle>
       <SubmissionDetail solution={solution} />

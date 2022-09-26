@@ -5,8 +5,8 @@
   "pretty": "prettier --write \"src/**/*.(ts|tsx)\"",
   "scripts": {
     "bundle": "webpack --watch --progress --config webpack.dev.js",
-    "build": "webpack --watch --progress --config webpack.prod.js",
-    "build-zip": "webpack --progress --config webpack.prod.js && bestzip build.zip dist/"
+    "build": "webpack --progress --config webpack.prod.js",
+    "build-zip": "yarn build && bestzip build.zip dist/"
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",
@@ -52,6 +52,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-syntax-highlighter": "^15.5.0",
+    "react-uid": "^2.3.2",
     "recoil": "^0.7.5",
     "styled-components": "^5.3.5",
     "styled-reset": "^4.4.2",
