@@ -19,7 +19,7 @@ const ShowSolutionsButtons = (href: ButtonProps) => {
 
 const ButtonStyle = styled.button`
   background-color: ${props => props.theme.color.darkGrey};
-  margin-left: 0.85rem;
+  margin: 0rem 0.25rem;
   border-radius: 0.25rem;
   border: none;
   color: ${props => props.theme.color.white};
@@ -32,7 +32,7 @@ const ButtonStyle = styled.button`
   transition: color 0.08s ease-in-out, background-color 0.08s ease-in-out,
     border-color 0.08s ease-in-out, box-shadow 0.08s ease-in-out;
 
-  ${({ theme }) => theme.media.desktop`
+  ${({ theme }) => theme.media.tablet`
     padding: 0.3125rem 0.8125rem;
     font-size: 0.875rem;
     line-height: 1.25rem;
