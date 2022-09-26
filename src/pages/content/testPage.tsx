@@ -36,13 +36,13 @@ const printLoadingText = () => {
 };
 
 const createShowSolutionsButton = () => {
-  const selectedLanguage = (
+  const $selectedLanguage = (
     document.querySelector('div.editor > ul > li.nav-item > a') as HTMLAnchorElement
   ).getAttribute('data-language')!;
-  const problemId = (
+  const $problemId = (
     document.querySelector('div.main > div.lesson-content') as HTMLDivElement
   ).getAttribute('data-lesson-id')!;
-  const problemName = (
+  const $problemName = (
     document.querySelector('li.algorithm-title') as HTMLLIElement
   ).textContent!.trim();
 
@@ -53,9 +53,9 @@ const createShowSolutionsButton = () => {
     <React.StrictMode>
       <ThemeProvider theme={theme}>
         <ShowSolutionsButtons
-          selectedLanguage={selectedLanguage}
-          problemId={problemId}
-          problemName={problemName}
+          selectedLanguage={$selectedLanguage}
+          problemId={$problemId}
+          problemName={$problemName}
         />
       </ThemeProvider>
     </React.StrictMode>,
@@ -67,6 +67,7 @@ const uploadCurrentSolution = async () => {
 
   const data = parsingDomNodeToUpload();
   const uploadResult = await new Promise<boolean>(resolve => {
+    console.log('왜안되');
     chrome.runtime.sendMessage({ method: 'postCurrentSolution', data }, response => {
       resolve(response.status);
       console.log('[Pro Solve] 코드 업로드 성공 여부 :>>', response.status);

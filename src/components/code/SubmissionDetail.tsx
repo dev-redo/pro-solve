@@ -14,28 +14,34 @@ const SubmissionDetail = ({ solution }: SolutionProps) => {
   return (
     <SubmissionDetailStyle>
       <table>
-        <tr>
-          <td>
-            <span>성공한 테스트 케이스: </span>
-            <BoldSpanStyle>
-              {passedTestCase} / {passedTestCase + failedTestCase}
-            </BoldSpanStyle>
-          </td>
-          <td>
-            <span>결과: </span>
-            <ResultSpanStyle result={isSuccess}>{isSuccess ? '성공' : '실패'}</ResultSpanStyle>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <span>제출 날짜: </span>
-            <BoldSpanStyle>{formatDate}</BoldSpanStyle>
-          </td>
-          <td>
-            <span>언어: </span>
-            <BoldSpanStyle>{selectedLanguage}</BoldSpanStyle>
-          </td>
-        </tr>
+        <tbody>
+          <tr>
+            <td>
+              <span>성공한 테스트 케이스: </span>
+              <BoldSpanStyle>
+                {passedTestCase} / {passedTestCase + failedTestCase}
+              </BoldSpanStyle>
+            </td>
+            <td>
+              <span>결과: </span>
+              <ResultSpanStyle result={isSuccess.toString()}>
+                {isSuccess ? '성공' : '실패'}
+              </ResultSpanStyle>
+            </td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>
+              <span>제출 날짜: </span>
+              <BoldSpanStyle>{formatDate}</BoldSpanStyle>
+            </td>
+            <td>
+              <span>언어: </span>
+              <BoldSpanStyle>{selectedLanguage}</BoldSpanStyle>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </SubmissionDetailStyle>
   );
@@ -53,11 +59,13 @@ const SubmissionDetailStyle = styled.div`
     gap: 0.8rem;
     width: 100%;
   }
-  tr {
+  tbody {
     width: 100%;
+    padding: 0.25rem;
+  }
+  tr {
     display: flex;
     justify-content: space-between;
-    padding: 0.25rem;
   }
 `;
 
@@ -66,9 +74,9 @@ const BoldSpanStyle = styled.span`
   color: ${props => props.theme.color.darkGrey};
 `;
 
-const ResultSpanStyle = styled(BoldSpanStyle)<{ result: boolean }>`
+const ResultSpanStyle = styled(BoldSpanStyle)<{ result: string }>`
   font-size: '1.1rem';
-  color: ${props => (props.result ? props.theme.color.green : props.theme.color.coral)};
+  color: ${props => (props.result === 'true' ? props.theme.color.green : props.theme.color.coral)};
 `;
 
 export default SubmissionDetail;

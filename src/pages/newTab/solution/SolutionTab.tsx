@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { uid } from 'react-uid';
 import { useRecoilValue } from 'recoil';
 import { selectedOption } from '../../../store/select';
 import LogoWhite from '../../../../assets/images/logo-white.png';
@@ -75,8 +76,8 @@ SolutionTab.Content = ({ isLoaded, solutions }: ContentProps) => {
     <>
       {submitedSolutions!.length > 0 && (
         <ContentStyle>
-          {submitedSolutions!.map((solution: Solution) => (
-            <Code solution={solution} />
+          {submitedSolutions!.map((solution: Solution, index: number) => (
+            <Code key={uid(index)} solution={solution} />
           ))}
         </ContentStyle>
       )}
