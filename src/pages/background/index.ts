@@ -12,14 +12,6 @@ const getCurrentUser: GetCurrentUserFn = () => {
   );
 };
 
-// chrome.runtime.onInstalled.addListener(details => {
-//   console.log(details);
-//   if (details.reason == 'update') {
-//     chrome.runtime.reload();
-//     return;
-//   }
-// });
-
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.method === 'postCurrentSolution') {
     (async () => {
@@ -106,4 +98,3 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     // });
   }
 });
-// });
