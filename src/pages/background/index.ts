@@ -35,7 +35,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         console.log('[Pro Solve] 업로드 성공!');
         sendResponse({ status: true });
       } catch (error) {
-        console.error('[Pro Solve] 로그인을 하지 않아 업로드가 되지 않습니다!', error);
+        console.log('[Pro Solve] 로그인을 하지 않아 업로드가 되지 않습니다!', error);
         sendResponse({ status: false });
       }
     })();

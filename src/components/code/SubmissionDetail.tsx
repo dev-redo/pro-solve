@@ -50,7 +50,7 @@ const SubmissionDetail = ({ solution }: SolutionProps) => {
 const SubmissionDetailStyle = styled.div`
   width: 100%;
   padding: 0.8rem 1.5rem;
-  border: 1px solid ${props => props.theme.color.grayishWhite};
+  border: 1px solid ${({ theme }) => theme.color.grayishWhite};
   border-radius: 0.2rem;
   font-family: 'NotoSansKRLight', sans-serif;
   margin-bottom: 0.8rem;
@@ -67,16 +67,30 @@ const SubmissionDetailStyle = styled.div`
     display: flex;
     justify-content: space-between;
   }
+
+  ${({ theme }) => theme.media.tablet`
+    tr {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    td {
+      display: flex;
+      justify-content: space-between;
+    }
+  `}
 `;
 
 const BoldSpanStyle = styled.span`
   font-family: 'NotoSansKRRegular', sans-serif;
-  color: ${props => props.theme.color.darkGrey};
+  color: ${({ theme }) => theme.color.darkGrey};
 `;
 
 const ResultSpanStyle = styled(BoldSpanStyle)<{ result: string }>`
   font-size: '1.1rem';
-  color: ${props => (props.result === 'true' ? props.theme.color.green : props.theme.color.coral)};
+  color: ${({ result, theme }) => (result === 'true' ? theme.color.green : theme.color.coral)};
 `;
 
 export default SubmissionDetail;

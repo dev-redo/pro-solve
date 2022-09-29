@@ -64,7 +64,7 @@ const createShowSolutionsButton = () => {
 
 const uploadCurrentSolution = async () => {
   console.log('[Pro Solve] 제출한 코드 업로드를 시작합니다.');
-  if (chrome.runtime.id === undefined) {
+  if (chrome.runtime?.id === undefined) {
     printRequestOfRefresh();
     return;
   }
@@ -76,6 +76,7 @@ const uploadCurrentSolution = async () => {
       console.log('[Pro Solve] 코드 업로드 성공 여부 :>>', response.status);
     });
   });
+  console.log(uploadResult);
 
   printIsUploadSuccess(uploadResult);
 };
@@ -88,7 +89,7 @@ const printRequestOfRefresh = () => {
   const $modalUploadResult = document.querySelector('div.modal-upload') as HTMLElement;
   $modalUploadResult.remove();
 
-  $modalContent.innerHTML = `<span>Pro Solve 익스텐션의 세부사항을 변경하셨네요!<br />업로드를 하기 위해 페이지를 새로고침 해주세요.</span>`;
+  $modalContent.innerHTML = `<span>Pro Solve 익스텐션의 세부사항을 변경하셨네요!<br />업로드를 하려면 페이지를 새로고침 해주세요.</span>`;
   $modalContent.style.color = theme.color.red;
 };
 

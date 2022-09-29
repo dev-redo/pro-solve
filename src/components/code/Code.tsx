@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import CodeMirror from './CodeMirror';
 import SubmissionDetail from './SubmissionDetail';
@@ -16,4 +17,4 @@ const CodeStyle = styled.div`
   margin-bottom: 4rem;
 `;
 
-export default Code;
+export default React.memo(Code);

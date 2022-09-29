@@ -51,15 +51,15 @@ const CheckButtonStyle = styled.div<{ isOpen: boolean }>`
   cursor: pointer;
   font-size: 1rem;
   font-family: 'NotoSansKRRegular', sans-serif;
-  color: ${props => props.theme.color.darkGrey};
-  background-color: ${props =>
-    props.isOpen ? props.theme.color.grayishWhite : props.theme.color.grey};
+  color: ${({ theme }) => theme.color.darkGrey};
+  background-color: ${({ isOpen, theme }) =>
+    isOpen ? theme.color.grayishWhite : theme.color.grey};
   margin-bottom: 1rem;
   padding: 0.8rem 1.2rem;
   border-radius: 0.2rem;
-  outline: ${props => props.isOpen && `${props.theme.color.grey} 2px solid`};
+  outline: ${({ isOpen, theme }) => isOpen && `${theme.color.grey} 2px solid`};
   &:hover {
-    background-color: ${props => props.theme.color.grayishWhite};
+    background-color: ${({ theme }) => theme.color.grayishWhite};
   }
   span {
     margin-right: 0.4rem;
