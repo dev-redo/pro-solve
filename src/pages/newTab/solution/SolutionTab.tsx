@@ -21,6 +21,8 @@ interface HeaderProps {
 }
 
 SolutionTab.Header = ({ selectedLanguage, problemName }: HeaderProps) => {
+  console.log('header');
+
   return (
     <HeaderStyle>
       <img src={LogoWhite} />
@@ -52,6 +54,8 @@ interface ContentProps {
 
 SolutionTab.Content = ({ isLoaded, solutions }: ContentProps) => {
   const { status, data } = solutions;
+  const submitedSolutions = filteredSolutions(data!);
+  console.log('content');
 
   if (isLoaded) {
     return (
@@ -69,8 +73,6 @@ SolutionTab.Content = ({ isLoaded, solutions }: ContentProps) => {
       </RequestLoginStyle>
     );
   }
-
-  const submitedSolutions = filteredSolutions(data!);
 
   return (
     <>
@@ -110,8 +112,8 @@ const HeaderStyle = styled.div`
   top: 0;
   height: 3rem;
   padding: 0.375rem 1rem;
-  background-color: ${props => props.theme.color.jetBlack};
-  color: ${props => props.theme.color.greyBlue};
+  background-color: ${({ theme }) => theme.color.jetBlack};
+  color: ${({ theme }) => theme.color.greyBlue};
   font-family: 'NotoSansKRLight', sans-serif;
   & > img {
     width: 1.5rem;
@@ -144,16 +146,20 @@ const RequestLoginStyle = styled(CenterContainer)`
   span {
     font-size: 1.1rem;
     font-family: 'NanumSquareRegular', sans-serif;
-    color: ${props => props.theme.color.darkGrey};
+    color: ${({ theme }) => theme.color.darkGrey};
   }
 `;
 
 const NoContentStyle = styled(CenterContainer)`
   font-size: 1.1rem;
   font-family: 'NanumSquareRegular', sans-serif;
-  color: ${props => props.theme.color.darkGrey};
+  color: ${({ theme }) => theme.color.darkGrey};
 `;
 
 const ContentStyle = styled.div`
-  padding: 1rem 10rem;
+  padding: 1rem 8rem;
+
+  ${({ theme }) => theme.media.tablet`
+    padding: 1rem 5rem;
+  `}
 `;

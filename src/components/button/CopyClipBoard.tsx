@@ -53,8 +53,8 @@ const IconBoxStyle = styled.div`
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 0.5rem;
-    background: ${props => props.theme.color.steelGrey};
-    color: ${props => props.theme.color.white};
+    background: ${({ theme }) => theme.color.steelGrey};
+    color: ${({ theme }) => theme.color.white};
     font-size: 0.85rem;
     font-family: 'NotoSansKRRegular', sans-serif;
     &:after {
@@ -66,7 +66,7 @@ const IconBoxStyle = styled.div`
       margin-left: -10px;
       border: solid transparent;
       border-color: rgba(51, 51, 51, 0);
-      border-bottom-color: ${props => props.theme.color.steelGrey};
+      border-bottom-color: ${({ theme }) => theme.color.steelGrey};
       border-width: 10px;
       pointer-events: none;
       content: ' ';

@@ -88,7 +88,7 @@ const TitleStyle = styled.div`
   span {
     font-size: 1rem;
     font-family: 'NanumSquareRegular', sans-serif;
-    color: ${props => props.theme.color.darkGrey};
+    color: ${({ theme }) => theme.color.darkGrey};
   }
 `;
 
@@ -97,7 +97,7 @@ const LoadingStyle = styled.div`
   grid-row-gap: 0.3rem;
   div {
     font-size: 0.8rem;
-    color: ${props => props.theme.color.darkGrey};
+    color: ${({ theme }) => theme.color.darkGrey};
     font-family: 'NanumSquareRegular', sans-serif;
   }
 `;
@@ -107,11 +107,11 @@ const UserInfoStyle = styled.div`
   gap: 1rem;
   font-family: 'NanumSquareBold', sans-serif;
   span:first-child {
-    color: ${props => props.theme.color.darkGrey};
+    color: ${({ theme }) => theme.color.darkGrey};
     margin-right: 0.5rem;
   }
   span:last-child {
-    color: ${props => props.theme.color.deepBlue};
+    color: ${({ theme }) => theme.color.deepBlue};
   }
 `;
 
@@ -119,7 +119,7 @@ const LoginStyle = styled.div`
   & > span {
     font-size: 0.8rem;
     font-family: 'NanumSquareRegular', sans-serif;
-    color: ${props => props.theme.color.darkGrey};
+    color: ${({ theme }) => theme.color.darkGrey};
   }
 `;
 
