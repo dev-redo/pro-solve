@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../styles/theme';
 import GlobalStyles from '../../styles/global';
-import GlobalFonts from '../../styles/font';
 import { auth } from '../../firebase';
 import Popup from './Popup';
 
@@ -35,7 +34,6 @@ ReactDOM.createRoot(root as HTMLElement).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <GlobalFonts />
       <PopupLayout />
     </ThemeProvider>
   </React.StrictMode>,

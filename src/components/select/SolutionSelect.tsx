@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import CloseBoxOnOutside from '../section/CloseBoxOnOutside';
 import Select from '.';
 import DropdownIcon from '../../../assets/icons/Dropdown.svg';
+import '../../styles/font.css';
 
 const SolutionSelect = () => {
   const options = ['전체 풀이', '성공한 풀이', '실패한 풀이'];
@@ -50,7 +51,8 @@ const CheckButtonStyle = styled.div<{ isOpen: boolean }>`
   z-index: 1;
   cursor: pointer;
   font-size: 1rem;
-  font-family: 'NotoSansKRRegular', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 400;
   color: ${({ theme }) => theme.color.darkGrey};
   background-color: ${({ isOpen, theme }) =>
     isOpen ? theme.color.grayishWhite : theme.color.grey};

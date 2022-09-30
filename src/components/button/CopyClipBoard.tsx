@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import DocumentCopy from '../../../assets/icons/DocumentCopy.svg';
 import XCharacter from '../../../assets/icons/XCharacter.svg';
 import Check from '../../../assets/icons/Check.svg';
-
+import '../../styles/font.css';
 interface ClibBoardProps {
   codeText: string;
 }
@@ -56,7 +56,8 @@ const IconBoxStyle = styled.div`
     background: ${({ theme }) => theme.color.steelGrey};
     color: ${({ theme }) => theme.color.white};
     font-size: 0.85rem;
-    font-family: 'NotoSansKRRegular', sans-serif;
+    font-family: 'NanumSquareRound', sans-serif;
+    font-weight: 400;
     &:after {
       position: absolute;
       bottom: 100%;
