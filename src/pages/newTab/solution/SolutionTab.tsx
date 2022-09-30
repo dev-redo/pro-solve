@@ -22,8 +22,6 @@ interface HeaderProps {
 }
 
 SolutionTab.Header = ({ selectedLanguage, problemName }: HeaderProps) => {
-  console.log('header');
-
   return (
     <HeaderStyle>
       <img src={LogoWhite} />

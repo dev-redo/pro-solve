@@ -76,7 +76,6 @@ const uploadCurrentSolution = async () => {
       console.log('[Pro Solve] 코드 업로드 성공 여부 :>>', response.status);
     });
   });
-  console.log(uploadResult);
 
   printIsUploadSuccess(uploadResult);
 };
