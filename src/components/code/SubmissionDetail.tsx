@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Solution } from '../../types/solution';
 import { formatDateToYmdhms } from '../../utils/formatDateToYmdhms';
+import '../../styles/font.css';
 
 interface SolutionProps {
   solution: Solution;
@@ -52,7 +53,8 @@ const SubmissionDetailStyle = styled.div`
   padding: 0.8rem 1.5rem;
   border: 1px solid ${({ theme }) => theme.color.grayishWhite};
   border-radius: 0.2rem;
-  font-family: 'NotoSansKRLight', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 300;
   margin-bottom: 0.8rem;
   table {
     display: grid;
@@ -84,7 +86,8 @@ const SubmissionDetailStyle = styled.div`
 `;
 
 const BoldSpanStyle = styled.span`
-  font-family: 'NotoSansKRRegular', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: bold;
   color: ${({ theme }) => theme.color.darkGrey};
 `;
 

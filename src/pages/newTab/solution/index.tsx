@@ -4,7 +4,6 @@ import { RecoilRoot } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../../styles/theme';
 import GlobalStyles from '../../../styles/global';
-import GlobalFonts from '../../../styles/font';
 import { SolutionResponse } from '../../../types/solution';
 import SolutionTab from './SolutionTab';
 
@@ -72,7 +71,6 @@ ReactDOM.createRoot(root as HTMLElement).render(
     <RecoilRoot>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
-        <GlobalFonts />
         <SolutionTabLayout />
       </ThemeProvider>
     </RecoilRoot>

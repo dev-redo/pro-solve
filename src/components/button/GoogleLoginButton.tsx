@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Spinner from '../../../assets/icons/WhiteSpinner.svg';
 import { auth } from '../../firebase';
 import { GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
+import '../../styles/font.css';
 
 export default function GoogleLoginButton() {
   const [isLoaded, setIsLoaded] = React.useState(false);
@@ -49,7 +50,8 @@ const GoogleLoginButtonStyle = styled.button`
   background-color: ${({ theme }) => theme.color.skyBlue};
   margin-top: 0.4rem;
   font-size: 1.2rem;
-  font-family: 'NanumSquareBold', sans-serif;
+  font-family: 'SCDream', sans-serif;
+  font-weight: 500;
   color: ${({ theme }) => theme.color.white};
   & > svg {
     width: 1.35rem;

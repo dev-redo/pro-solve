@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { uid } from 'react-uid';
 import { SelectProps, TriggerProps, MenuProps, ItemProps } from '../../types/select';
+import '../../styles/font.css';
 
 const Select = ({ trigger, isOpen, onChangeOption, options }: SelectProps) => {
   return (
@@ -68,9 +69,10 @@ const MenuStyle = styled.div<{ isOpen: boolean }>`
 `;
 
 const ItemStyle = styled.button`
-  padding: 0.125rem 0.875rem;
+  padding: 0.3rem 0.875rem;
   font-size: 1rem;
-  font-family: 'NotoSansKRRegular', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 400;
   color: ${({ theme }) => theme.color.darkGrey};
   background-color: transparent;
 `;

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import GoogleLoginButton from '../../components/button/GoogleLoginButton';
 import GithubLogo from '../../../assets/images/github.png';
+import '../../styles/font.css';
 
 export default function Popup({ children }: { children: JSX.Element[] }) {
   return <ContainerStyle>{children}</ContainerStyle>;
@@ -82,12 +83,14 @@ const TitleStyle = styled.div`
   margin-bottom: 1rem;
   h1 {
     font-size: 2.3rem;
-    font-family: 'NanumSquareBold', sans-serif;
+    font-family: 'SCDream', sans-serif;
+    font-weight: 500;
     padding-bottom: 0.8rem;
   }
   span {
     font-size: 1rem;
-    font-family: 'NanumSquareRegular', sans-serif;
+    font-family: 'SCDream', sans-serif;
+    font-weight: 400;
     color: ${({ theme }) => theme.color.darkGrey};
   }
 `;
@@ -98,14 +101,16 @@ const LoadingStyle = styled.div`
   div {
     font-size: 0.8rem;
     color: ${({ theme }) => theme.color.darkGrey};
-    font-family: 'NanumSquareRegular', sans-serif;
+    font-family: 'SCDream', sans-serif;
+    font-weight: 400;
   }
 `;
 
 const UserInfoStyle = styled.div`
   font-size: 1.1rem;
   gap: 1rem;
-  font-family: 'NanumSquareBold', sans-serif;
+  font-family: 'SCDream', sans-serif;
+  font-weight: 500;
   span:first-child {
     color: ${({ theme }) => theme.color.darkGrey};
     margin-right: 0.5rem;
@@ -118,7 +123,8 @@ const UserInfoStyle = styled.div`
 const LoginStyle = styled.div`
   & > span {
     font-size: 0.8rem;
-    font-family: 'NanumSquareRegular', sans-serif;
+    font-family: 'SCDream', sans-serif;
+    font-weight: 400;
     color: ${({ theme }) => theme.color.darkGrey};
   }
 `;
@@ -134,6 +140,7 @@ const FooterStyle = styled.a`
   span {
     font-size: 1rem;
     margin-right: 0.3rem;
-    font-family: 'NanumSquareRegular', sans-serif;
+    font-family: 'SCDream', sans-serif;
+    font-weight: 400;
   }
 `;

@@ -10,6 +10,7 @@ import { Solution, SolutionList, SolutionResponse } from '../../../types/solutio
 import { CenterContainer } from '../../../styles/global';
 import Code from '../../../components/code/Code';
 import SolutionSelect from '../../../components/select/SolutionSelect';
+import '../../../styles/font.css';
 
 export default function SolutionTab({ children }: { children: JSX.Element[] }) {
   return <ContainerStyle>{children}</ContainerStyle>;
@@ -55,7 +56,6 @@ interface ContentProps {
 SolutionTab.Content = ({ isLoaded, solutions }: ContentProps) => {
   const { status, data } = solutions;
   const submitedSolutions = filteredSolutions(data!);
-  console.log('content');
 
   if (isLoaded) {
     return (
@@ -114,7 +114,8 @@ const HeaderStyle = styled.div`
   padding: 0.375rem 1rem;
   background-color: ${({ theme }) => theme.color.jetBlack};
   color: ${({ theme }) => theme.color.greyBlue};
-  font-family: 'NotoSansKRLight', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 400;
   & > img {
     width: 1.5rem;
     height: 1.5rem;
@@ -142,17 +143,23 @@ const RequestLoginStyle = styled(CenterContainer)`
   display: flex;
   flex-direction: column;
   text-align: center;
-  gap: 0.5rem;
-  span {
-    font-size: 1.1rem;
-    font-family: 'NanumSquareRegular', sans-serif;
-    color: ${({ theme }) => theme.color.darkGrey};
-  }
+  gap: 0.6rem;
+  line-height: 1.65rem;
+  font-size: 1.1rem;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 400;
+  color: ${({ theme }) => theme.color.darkGrey};
+
+  ${({ theme }) => theme.media.tablet`
+    font-size: 0.9rem;
+    line-height: 1.25rem;
+  `}
 `;
 
 const NoContentStyle = styled(CenterContainer)`
   font-size: 1.1rem;
-  font-family: 'NanumSquareRegular', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 400;
   color: ${({ theme }) => theme.color.darkGrey};
 `;
 

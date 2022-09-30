@@ -4,7 +4,13 @@ import { Solution } from '../../types/solution';
 import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter';
 import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
 import hybrid from 'react-syntax-highlighter/dist/esm/styles/hljs/hybrid';
-SyntaxHighlighter.registerLanguage('javascript', js);
+
+(() => {
+  SyntaxHighlighter.registerLanguage('javascript', js);
+  const link = document.createElement('link');
+  link.href = '//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css';
+  document.body.append(link);
+})();
 
 interface SolutionProps {
   solution: Solution;
@@ -20,9 +26,10 @@ const CodeMirror = ({ solution }: SolutionProps) => {
         style={hybrid}
         lineProps={{
           style: {
-            fontFamily: 'HackRegular, sans-serif',
-            fontSize: '1rem',
-            lineHeight: '1.4rem',
+            fontFamily: 'Hack, sans-serif',
+            fontWeight: '400',
+            fontSize: '1.05rem',
+            lineHeight: '1.5rem',
           },
         }}
         customStyle={{ padding: '1.5rem', borderRadius: '0.2rem' }}
