@@ -26,7 +26,7 @@
 
 ## 🙋‍♀️ 어떻게 사용할 수 있나요?
 
-프로솔브 익스텐션을 어떻게 이용할 수 있나요? 이는 [How to use Pro-Solve](https://github.com/dev-redo/pro-solve/blob/main/How%20to%20use%20Pro-Solve.md) 문서를 참고해주세요.
+프로솔브 익스텐션을 어떻게 이용할 수 있나요? 이는 [HOW_TO_USE](https://github.com/dev-redo/pro-solve/blob/main/HOW_TO_USE.md) 문서를 참고해주세요.
 
 ## 😲 Q&A
 프로솔브 익스텐션을 이용하다가 궁금하신 점이 생기셨나요? <br />
