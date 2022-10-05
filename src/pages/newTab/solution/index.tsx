@@ -15,6 +15,7 @@ const href = window.location.href;
 const selectedLanguage = href.match(languageRegex)![1];
 const problemId = href.match(problemIdRegex)![1];
 const problemName = decodeURI(href.match(problemNameRegex)![1]);
+document.title = `프로솔브 - ${problemName}`;
 
 const SolutionTabLayout = () => {
   const [isLoaded, setIsLoaded] = React.useState(true);
