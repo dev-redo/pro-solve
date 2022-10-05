@@ -45,8 +45,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 const postCurrentSolution = async ({ request, sendResponse }: Message) => {
-  console.log('[Pro Solve] request :>>', request);
-
   const { isSuccess, code, selectedLanguage, problemId, passedTestCase, failedTestCase } =
     request.data;
   const uploadTime = Timestamp.now();
@@ -67,8 +65,6 @@ const postCurrentSolution = async ({ request, sendResponse }: Message) => {
 };
 
 const getAllSolutions = async ({ request, sendResponse }: Message) => {
-  console.log('[Pro Solve] request :>>', request);
-
   const { selectedLanguage, problemId } = request.data;
   const { uid } = (await getCurrentUser()) as User;
 
@@ -90,8 +86,6 @@ type Problem = {
 };
 
 const newTab = ({ request }: Message) => {
-  console.log('[Pro Solve] request :>>', request);
-
   const problem = request.href;
   const url = getNewTabUrl(chrome.runtime.id, problem);
 
