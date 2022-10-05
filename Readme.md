@@ -1,6 +1,5 @@
 # 프로솔브(Pro-Solve)
 
-<a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="license"/></a>
 <a href="https://chrome.google.com/webstore/detail/%ED%94%84%EB%A1%9C%EC%86%94%EB%B8%8Cpro-solve/pjffalefhahlellpckbbiehmbljjhihl/related?hl=ko">
   <img src="https://img.shields.io/chrome-web-store/v/pjffalefhahlellpckbbiehmbljjhihl.svg" alt="chrome-webstore"/>
 </a>
