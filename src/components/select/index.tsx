@@ -4,13 +4,17 @@ import { uid } from 'react-uid';
 import { SelectProps, TriggerProps, MenuProps, ItemProps } from '../../types/select';
 import '../../styles/font.css';
 
-const Select = ({ trigger, isOpen, onChangeOption, options }: SelectProps) => {
+const Select = ({ isOpen, trigger, options, onChangeDropdown, filterState }: SelectProps) => {
   return (
     <Dropdown>
       <Dropdown.Trigger as={trigger} />
       <Dropdown.Menu isOpen={isOpen}>
         {options.map((option: string, index: number) => (
-          <Dropdown.Item key={uid(index)} onChangeOption={onChangeOption}>
+          <Dropdown.Item
+            key={uid(index)}
+            onChangeDropdown={onChangeDropdown}
+            filterState={filterState}
+          >
             {option}
           </Dropdown.Item>
         ))}
@@ -29,12 +33,15 @@ Dropdown.Menu = ({ isOpen, children }: MenuProps) => {
   return <MenuStyle isOpen={isOpen}>{children}</MenuStyle>;
 };
 
-Dropdown.Item = ({ onChangeOption, children }: ItemProps) => {
+Dropdown.Item = ({ onChangeDropdown, filterState, children }: ItemProps) => {
+  const optionName = filterState[children];
+
   const onPreventEvent = (event: React.MouseEvent) => event.preventDefault();
+  const onChangeOption = () => onChangeDropdown(children);
 
   return (
     <ItemStyle type="button" value={children} onMouseDown={onPreventEvent} onClick={onChangeOption}>
-      {children}
+      {optionName}
     </ItemStyle>
   );
 };
@@ -43,11 +50,6 @@ const ContainerStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  padding: 2rem 8rem 2rem 8rem;
-
-  ${({ theme }) => theme.media.tablet`
-    padding: 2rem 5rem 2rem 5rem;
-  `}
 `;
 
 const MenuStyle = styled.div<{ isOpen: boolean }>`

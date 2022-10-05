@@ -4,6 +4,7 @@ import DocumentCopy from '../../../assets/icons/DocumentCopy.svg';
 import XCharacter from '../../../assets/icons/XCharacter.svg';
 import Check from '../../../assets/icons/Check.svg';
 import '../../styles/font.css';
+
 interface ClibBoardProps {
   codeText: string;
 }
@@ -28,6 +29,38 @@ const CopyClipBoard = ({ codeText }: ClibBoardProps) => {
       )}
     </CopyButton>
   );
+};
+
+type CopiedValue = boolean | null;
+type CopyFn = (text: string) => Promise<void>;
+
+const useCopyToClipboard = () => {
+  const [isCopy, setIsCopy] = React.useState<CopiedValue>(null);
+
+  const copyToClipboard: CopyFn = async text => {
+    if (!navigator?.clipboard) {
+      alert('클립보드가 지원되지 않는 브라우저입니다.');
+    }
+
+    try {
+      await navigator.clipboard.writeText(text);
+      setIsCopy(true);
+      setTimeout(() => {
+        setIsCopy(null);
+      }, 3000);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error(`풀이 복사에 실패했습니다! :>> ${error.message}`);
+
+        setIsCopy(false);
+        setTimeout(() => {
+          setIsCopy(null);
+        }, 3000);
+      }
+    }
+  };
+
+  return { isCopy, copyToClipboard };
 };
 
 const CopyButton = styled.button`
@@ -77,37 +110,5 @@ const IconBoxStyle = styled.div`
     display: block;
   }
 `;
-
-type CopiedValue = boolean | null;
-type CopyFn = (text: string) => Promise<void>;
-
-const useCopyToClipboard = () => {
-  const [isCopy, setIsCopy] = React.useState<CopiedValue>(null);
-
-  const copyToClipboard: CopyFn = async text => {
-    if (!navigator?.clipboard) {
-      alert('클립보드가 지원되지 않는 브라우저입니다.');
-    }
-
-    try {
-      await navigator.clipboard.writeText(text);
-      setIsCopy(true);
-      setTimeout(() => {
-        setIsCopy(null);
-      }, 3000);
-    } catch (error) {
-      if (error instanceof Error) {
-        console.error(`풀이 복사에 실패했습니다! :>> ${error.message}`);
-
-        setIsCopy(false);
-        setTimeout(() => {
-          setIsCopy(null);
-        }, 3000);
-      }
-    }
-  };
-
-  return { isCopy, copyToClipboard };
-};
 
 export default CopyClipBoard;

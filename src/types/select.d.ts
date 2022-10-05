@@ -1,8 +1,9 @@
 interface SelectProps {
-  trigger: React.ReactNode;
   isOpen: boolean;
-  onChangeOption: (event: React.MouseEvent) => void;
+  trigger: React.ReactNode;
   options: Array<string>;
+  onChangeDropdown: Function;
+  filterState: Object<any>;
 }
 
 interface TriggerProps {
@@ -15,8 +16,22 @@ interface MenuProps {
 }
 
 interface ItemProps {
-  onChangeOption: (event: React.MouseEvent) => void;
+  onChangeDropdown: Function;
+  filterState: Object<any>;
   children: string;
 }
 
-export { SelectProps, TriggerProps, MenuProps, ItemProps };
+interface SolutionType {
+  [key: string]: string;
+  ALL: string;
+  SUCCESS: string;
+  FAILED: string;
+}
+
+interface SortType {
+  [key: string]: string;
+  ASC: string;
+  DESC: string;
+}
+
+export { SelectProps, TriggerProps, MenuProps, ItemProps, SolutionType, SortType };

@@ -1,16 +1,17 @@
-import React from 'react';
 import styled from 'styled-components';
 import { uid } from 'react-uid';
 import { useRecoilValue } from 'recoil';
-import { selectedOption } from '../../../store/select';
 import LogoWhite from '../../../../assets/images/logo-white.png';
 import ArrowRight from '../../../../assets/icons/ArrowRight.svg';
 import Spinner from '../../../../assets/icons/BlackSpinner.svg';
-import { Solution, SolutionList, SolutionResponse } from '../../../types/solution';
 import { CenterContainer } from '../../../styles/global';
 import Code from '../../../components/code/Code';
 import SolutionSelect from '../../../components/select/SolutionSelect';
+import SortSelect from '../../../components/select/SortSelect';
 import '../../../styles/font.css';
+import { solutionOption, sortedOption } from '../../../store/select';
+import { Solution, SolutionList, SolutionResponse } from '../../../types/solution';
+import { formatTimestampToDate } from '../../../utils/formatTimestampToDate';
 
 export default function SolutionTab({ children }: { children: JSX.Element[] }) {
   return <ContainerStyle>{children}</ContainerStyle>;
@@ -43,7 +44,12 @@ SolutionTab.Select = ({ isLoaded }: { isLoaded: boolean }) => {
     return <></>;
   }
 
-  return <SolutionSelect />;
+  return (
+    <SelectStyle>
+      <SolutionSelect />
+      <SortSelect />
+    </SelectStyle>
+  );
 };
 
 interface ContentProps {
@@ -87,12 +93,25 @@ SolutionTab.Content = ({ isLoaded, solutions }: ContentProps) => {
 };
 
 const filteredSolutions = (solutions: SolutionList) => {
-  const selected = useRecoilValue(selectedOption);
+  solutions = solutions || [];
 
-  if (selected === '성공한 풀이') {
+  const selectedSolutionType = useRecoilValue(solutionOption);
+  const selectedSortType = useRecoilValue(sortedOption);
+
+  solutions!.sort(({ uploadTime: prevUploadTime }, { uploadTime: currUploadTime }) => {
+    const prevDate = formatTimestampToDate(prevUploadTime).valueOf();
+    const currDate = formatTimestampToDate(currUploadTime).valueOf();
+
+    if (selectedSortType === 'ASC') {
+      return prevDate - currDate;
+    }
+    return currDate - prevDate;
+  });
+
+  if (selectedSolutionType === 'SUCCESS') {
     return solutions.filter(({ isSuccess }) => isSuccess);
   }
-  if (selected === '실패한 풀이') {
+  if (selectedSolutionType === 'FAILED') {
     return solutions.filter(({ isSuccess }) => !isSuccess);
   }
   return solutions;
@@ -125,6 +144,17 @@ const HeaderStyle = styled.div`
     padding: 0.375rem 0;
     gap: 0.3rem;
   }
+`;
+
+const SelectStyle = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 2rem 8rem;
+  gap: 1rem;
+
+  ${({ theme }) => theme.media.tablet`
+    padding: 2rem 5rem;
+  `}
 `;
 
 const LoaderStyle = styled.div`
