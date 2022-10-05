@@ -1,7 +1,9 @@
-import { Timestamp } from 'firebase/firestore';
+interface TimestampProps {
+  seconds: number;
+  nanoseconds: number;
+}
 
-const formatTimestampToDate = ({ seconds, nanoseconds }: Timestamp) => {
-  return new Date(seconds * 1000 + nanoseconds / 1000000);
-};
+const formatTimestampToDate = ({ seconds, nanoseconds }: TimestampProps) =>
+  new Date(seconds * 1000 + nanoseconds / 1000000);
 
 export { formatTimestampToDate };
