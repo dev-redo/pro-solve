@@ -2,15 +2,15 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 import Select from '.';
 import CheckOption from './CheckOption';
-import { solutionOption } from '../../store/select';
-import { SOLUTION_LIST as options, SOLUTION_TYPE as filterState } from '../../constants/solution';
+import { sortedOption } from '../../store/select';
+import { SORT_LIST as options, SORT_TYPE as filterState } from '../../constants/solution';
 import '../../styles/font.css';
-import { SolutionType } from '../../types/select';
+import { SortType } from '../../types/select';
 
-const SolutionSelect = () => {
+const SortSelect = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [selected, setSelected] = useRecoilState(solutionOption);
-  const selectedName = (filterState as SolutionType)[selected];
+  const [selected, setSelected] = useRecoilState(sortedOption);
+  const selectedName = (filterState as SortType)[selected];
 
   return (
     <Select
@@ -23,4 +23,4 @@ const SolutionSelect = () => {
   );
 };
 
-export default SolutionSelect;
+export default SortSelect;
