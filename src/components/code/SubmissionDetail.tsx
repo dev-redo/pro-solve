@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Solution } from '../../types/solution';
 import { formatDateToYmdhms } from '../../utils/formatDateToYmdhms';
 import '../../styles/font.css';
+import { formatTimestampToDate } from '../../utils/formatTimestampToDate';
 
 interface SolutionProps {
   solution: Solution;
@@ -9,7 +10,7 @@ interface SolutionProps {
 
 const SubmissionDetail = ({ solution }: SolutionProps) => {
   const { isSuccess, passedTestCase, failedTestCase, selectedLanguage, uploadTime } = solution;
-  const fireBaseTime = new Date(uploadTime.seconds * 1000 + uploadTime.nanoseconds / 1000000);
+  const fireBaseTime = formatTimestampToDate(uploadTime);
   const formatDate = formatDateToYmdhms(fireBaseTime);
 
   return (
