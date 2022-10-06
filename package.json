@@ -5,8 +5,7 @@
   "pretty": "prettier --write \"src/**/*.(ts|tsx)\"",
   "scripts": {
     "bundle": "webpack --watch --progress --config webpack.dev.js",
-    "build": "webpack --progress --config webpack.prod.js",
-    "build-zip": "yarn run build && bestzip build.zip dist/"
+    "build-zip": "webpack --progress --config webpack.prod.js && bestzip build.zip dist/"
   },
   "repository": {
     "type": "git",
