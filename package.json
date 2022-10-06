@@ -1,6 +1,6 @@
 {
   "name": "prosolve",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "pretty": "prettier --write \"src/**/*.(ts|tsx)\"",
   "scripts": {
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/dev-redo/pro-solve#readme",
   "browser": {
-    "[module-name]": false   
+    "[module-name]": false
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",
