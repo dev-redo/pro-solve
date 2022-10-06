@@ -53,3 +53,4 @@
 ## 📜 문서
 
 - [개발 시 경험한 Troble Shooting](https://github.com/dev-redo/pro-solve/blob/main/TroubleShooting.md)
+- [버전 패치 노트](https://github.com/dev-redo/pro-solve/tree/main/PATCH_NOTES)
