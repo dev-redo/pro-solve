@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../styles/theme';
-import ShowSolutionsButton from '../../components/button/showSolutionsButton';
+import ShowSolutionsButton from '../../components/button/ShowSolutionsButton';
 import CopyClipBoard from '../../components/button/CopyClipBoard';
 
 (() => {
