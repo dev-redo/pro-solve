@@ -8,7 +8,7 @@ interface ButtonProps {
   problemName: string;
 }
 
-const ShowSolutionsButtons = (href: ButtonProps) => {
+const ShowSolutionsButton = (href: ButtonProps) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const createSolutionTab = () => {
@@ -66,4 +66,4 @@ const ButtonStyle = styled.button`
   `}
 `;
 
-export default ShowSolutionsButtons;
+export default ShowSolutionsButton;

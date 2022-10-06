@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../styles/theme';
-import ShowSolutionsButtons from '../../components/button/showSolutionsButton';
+import ShowSolutionsButton from '../../components/button/showSolutionsButton';
 
 const languageRegex = /(?<=language=\s*)\w*/g;
 const problemIdRegex = /(?<=lessons\/\s*)\w+/g;
@@ -18,7 +18,7 @@ const SolutionPage = () => {
   console.log(`언어 | 문제 번호 | 문제 이름 >> ${selectedLanguage}, ${problemId}, ${problemName}`);
 
   return (
-    <ShowSolutionsButtons
+    <ShowSolutionsButton
       selectedLanguage={selectedLanguage}
       problemId={problemId}
       problemName={problemName}
