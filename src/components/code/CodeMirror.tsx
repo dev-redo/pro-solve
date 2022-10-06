@@ -32,7 +32,7 @@ const CodeMirror = ({ solution }: SolutionProps) => {
             lineHeight: '1.5rem',
           },
         }}
-        customStyle={{ padding: '1.5rem', borderRadius: '0.2rem' }}
+        customStyle={{ padding: '1rem', borderRadius: '0.2rem' }}
         wrapLines={true}
       >
         {code}
