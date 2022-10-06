@@ -70,6 +70,7 @@ const CopyButton = styled.button`
   top: 1.5rem;
   right: 1.5rem;
   background-color: transparent;
+  border: none;
   svg:hover path {
     stroke: #5b7af9;
   }
@@ -82,7 +83,7 @@ const IconBoxStyle = styled.div`
     width: 5rem;
     padding: 0.4rem;
     top: 2.2rem;
-    right: -1.8rem;
+    right: -1.65rem;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 0.5rem;
