@@ -10,7 +10,7 @@ name: Publish to Webstore
 on:
   push:
     branches:
-      - main
+      - release
     paths-ignore:
       - '**.md'
 
