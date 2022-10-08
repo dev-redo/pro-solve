@@ -29,9 +29,18 @@
 
 <br />
 
+## 🎈 지원 기능
+
+|                    **풀이 저장**                     |                      **풀이 클립보드**                      |
+| :----------------------------------------------------: | :-------------------------------------------------------: |
+|   <img src="https://imgur.com/pUFGw2U.png">         | <img src="https://imgur.com/DXv3A8N.png"> |
+
+<br />
+
 ## 🎞 동작 화면
 
 https://user-images.githubusercontent.com/69149030/194714332-ec61e267-1d86-42e3-89ee-93de7ef969ad.mp4
+<p align="center">제출한 풀이 저장 및 보여주기</p>
 
 <br />
 
@@ -52,7 +61,8 @@ https://user-images.githubusercontent.com/69149030/194714332-ec61e267-1d86-42e3-
 <br />
 
 ## 😲 Q&A
-프로솔브 익스텐션을 이용하다가 궁금하신 점이 생기셨나요? <br />
+프로솔브 익스텐션을 이용하다가 궁금하신 점이 생기셨나요?
+
 [Q&A](https://github.com/dev-redo/pro-solve/blob/main/Q&A.md) 문서를 참고해주신 다음, 해당 문서에 존재하지 않는 질문일 시 이슈를 남겨주세요
 
 <br />
@@ -60,4 +70,3 @@ https://user-images.githubusercontent.com/69149030/194714332-ec61e267-1d86-42e3-
 ## 📜 문서
 
 - [개발 시 경험한 Troble Shooting](https://github.com/dev-redo/pro-solve/blob/main/TroubleShooting.md)
-- [버전 패치 노트](https://github.com/dev-redo/pro-solve/tree/main/PATCH_NOTES)
