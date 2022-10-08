@@ -1,13 +1,11 @@
 # 프로솔브(Pro-Solve)
 
-<a href="https://chrome.google.com/webstore/detail/%ED%94%84%EB%A1%9C%EC%86%94%EB%B8%8Cpro-solve/pjffalefhahlellpckbbiehmbljjhihl/related?hl=ko">
-  <img src="https://img.shields.io/chrome-web-store/v/pjffalefhahlellpckbbiehmbljjhihl.svg" alt="chrome-webstore"/>
-</a>
-<a href="https://chrome.google.com/webstore/detail/%ED%94%84%EB%A1%9C%EC%86%94%EB%B8%8Cpro-solve/pjffalefhahlellpckbbiehmbljjhihl/related?hl=ko">
-  <img src="https://img.shields.io/chrome-web-store/d/pjffalefhahlellpckbbiehmbljjhihl.svg" alt="users">
-</a>
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/pjffalefhahlellpckbbiehmbljjhihl)](https://chrome.google.com/webstore/detail/%ED%94%84%EB%A1%9C%EC%86%94%EB%B8%8Cpro-solve/pjffalefhahlellpckbbiehmbljjhihl) 
+![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/pjffalefhahlellpckbbiehmbljjhihl?label=users%40chrome) 
+![Chrome Web Store Rating Count](https://img.shields.io/chrome-web-store/rating-count/pjffalefhahlellpckbbiehmbljjhihl) 
+![Chrome Web Store Ratings](https://img.shields.io/chrome-web-store/rating/pjffalefhahlellpckbbiehmbljjhihl) 
 
-- [프로솔브 다운받기](https://chrome.google.com/webstore/detail/%ED%94%84%EB%A1%9C%EC%86%94%EB%B8%8Cpro-solve/pjffalefhahlellpckbbiehmbljjhihl/related?hl=ko)
+[![Chrome Web Store](https://storage.googleapis.com/chrome-gcs-uploader.appspot.com/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/UV4C4ybeBTsZt43U4xis.png)](https://chrome.google.com/webstore/detail/%ED%94%84%EB%A1%9C%EC%86%94%EB%B8%8Cpro-solve/pjffalefhahlellpckbbiehmbljjhihl/related?hl=ko)
 
 <p align="center">
   <img src="https://imgur.com/ErchPSX.png">
@@ -19,11 +17,15 @@
 ## 🖐 프로솔브 소개하기
 
 
-'프로솔브'는 프로그래머스가 백준과 LeetCode처럼 제출한 모든 풀이를 보여줬으면 좋겠다는 생각에서 시작하게 된 프로젝트입니다.
+'프로솔브'는 프로그래머스가 백준과 LeetCode처럼 **제출한 모든 풀이를 보여주면 좋겠다**는 생각에서 만들게 된 오픈소스 프로젝트입니다.
+
+현재 프로그래머스는 각 언어의 성공한 첫 풀이만을 사용자에게 보여주고 있습니다.
+
+이 점이 아쉬워 사용자가 프로그래머스 문제 풀이 제출 시 저장을 하고 보여주는 서비스를 만들고자 했습니다.
 
 프로그래머스를 통해 알고리즘 공부를 하는 분들이 편리하게 자신의 풀이를 저장하고 비교할 수 있길 바랍니다.
 
-현재 '프로솔브'는 크롬 브라우저에서만 사용할 수 있습니다.
+현재 프로솔브는 크롬 브라우저에서만 사용할 수 있습니다.
 
 <br />
 
