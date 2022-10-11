@@ -20,3 +20,4 @@ declare module 'react' {
 
 declare module 'recoil';
 declare module 'react-uid';
+declare module 'storybook';
