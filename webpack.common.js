@@ -25,6 +25,7 @@ module.exports = {
     background: getAbsolutePath('src/pages/background/index.ts'),
     testContent: getAbsolutePath('src/pages/content/testPage.tsx'),
     solutionContent: getAbsolutePath('src/pages/content/solutionPage.tsx'),
+    problemContent: getAbsolutePath('src/pages/content/problemPage.tsx'),
   },
   output: {
     filename: 'script/[name].js',

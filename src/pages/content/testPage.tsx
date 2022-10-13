@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { theme } from '../../styles/theme';
 import { ThemeProvider } from 'styled-components';
-import ShowSolutionsButton from '../../components/button/ShowSolutionsButton';
+import CreateSolutionsButton from '../../components/button/CreateSolutionsButton';
 
 const $submitBtn = document.querySelector('#submit-code') as HTMLButtonElement;
 const $modal = document.querySelector('.modal') as HTMLDivElement;
@@ -52,7 +52,7 @@ const createShowSolutionsButton = () => {
   ReactDOM.createRoot(btn as HTMLElement).render(
     <React.StrictMode>
       <ThemeProvider theme={theme}>
-        <ShowSolutionsButton
+        <CreateSolutionsButton
           selectedLanguage={$selectedLanguage}
           problemId={$problemId}
           problemName={$problemName}

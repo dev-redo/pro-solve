@@ -48,6 +48,14 @@
     {
       "matches": ["https://school.programmers.co.kr/learn/courses/30/lessons/*/solution_groups*"],
       "js": ["script/solutionContent.js"]
+    },
+    {
+      "matches": ["https://school.programmers.co.kr/learn/challenges*"],
+      "exclude_matches": [
+        "https://school.programmers.co.kr/learn/challenges?tab=algorithm_practice_kit",
+        "https://school.programmers.co.kr/learn/challenges?tab=sql_practice_kit"
+      ],
+      "js": ["script/problemContent.js"]
     }
   ],
   "oauth2": {

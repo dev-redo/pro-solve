@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../styles/theme';
-import ShowSolutionsButton from '../../components/button/ShowSolutionsButton';
-import CopyClipBoard from '../../components/button/CopyClipBoard';
+import CreateSolutionsButton from '../../components/button/CreateSolutionsButton';
+import CopyClipBoardButton from '../../components/button/CopyClipBoardButton';
 
 (() => {
   createCodeClipboard();
@@ -21,7 +21,7 @@ function createCodeClipboard() {
     ReactDOM.createRoot(elem as HTMLElement).render(
       <React.StrictMode>
         <ThemeProvider theme={theme}>
-          <CopyClipBoard codeText={code} />
+          <CopyClipBoardButton codeText={code} />
         </ThemeProvider>
       </React.StrictMode>,
     );
@@ -45,7 +45,7 @@ function createSolutionTabBtn() {
   ReactDOM.createRoot(contentScript as HTMLElement).render(
     <React.StrictMode>
       <ThemeProvider theme={theme}>
-        <ShowSolutionsButton
+        <CreateSolutionsButton
           selectedLanguage={selectedLanguage}
           problemId={problemId}
           problemName={problemName}
