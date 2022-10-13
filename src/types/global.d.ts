@@ -21,3 +21,11 @@ declare module 'react' {
 declare module 'recoil';
 declare module 'react-uid';
 declare module 'storybook';
+
+type Message = {
+  request: any;
+  sender: chrome.runtime.MessageSender;
+  sendResponse: Function;
+};
+
+export { Message };

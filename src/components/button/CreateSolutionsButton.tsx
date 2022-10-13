@@ -8,7 +8,7 @@ interface ButtonProps {
   problemName: string;
 }
 
-const ShowSolutionsButton = (href: ButtonProps) => {
+const CreateSolutionsButton = (href: ButtonProps) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const createSolutionTab = () => {
@@ -17,7 +17,7 @@ const ShowSolutionsButton = (href: ButtonProps) => {
       return;
     }
     chrome.runtime.sendMessage({
-      method: 'newTab',
+      method: 'createSolutionsTab',
       href,
     });
   };
@@ -66,4 +66,4 @@ const ButtonStyle = styled.button`
   `}
 `;
 
-export default ShowSolutionsButton;
+export default CreateSolutionsButton;

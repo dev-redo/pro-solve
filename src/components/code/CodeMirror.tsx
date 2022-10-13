@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import CopyClipBoard from '../button/CopyClipBoard';
+import CopyClipBoardButton from '../button/CopyClipBoardButton';
 import { Solution } from '../../types/solution';
 import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter';
 import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
@@ -20,7 +20,7 @@ const CodeMirror = ({ solution }: SolutionProps) => {
   const { code, selectedLanguage } = solution;
   return (
     <CodeStyle>
-      <CopyClipBoard codeText={code} />
+      <CopyClipBoardButton codeText={code} />
       <SyntaxHighlighter
         language={selectedLanguage}
         style={hybrid}

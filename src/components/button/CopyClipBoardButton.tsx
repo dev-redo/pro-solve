@@ -9,7 +9,7 @@ interface ClibBoardProps {
   codeText: string;
 }
 
-const CopyClipBoard = ({ codeText }: ClibBoardProps) => {
+const CopyClipBoardButton = ({ codeText }: ClibBoardProps) => {
   const { isCopy, copyToClipboard } = useCopyToClipboard();
 
   return (
@@ -112,4 +112,4 @@ const IconBoxStyle = styled.div`
   }
 `;
 
-export default CopyClipBoard;
+export default CopyClipBoardButton;
