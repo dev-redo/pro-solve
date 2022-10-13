@@ -1,6 +1,7 @@
 import { fetchRequest } from '../../utils/fetchRequest';
 import { PROBLEM_URL as BASE_URL } from '../../constants/url';
 import { Message } from '../../types/global';
+import { createChromeTab } from './index';
 
 const createAllSuccessProblemTab = async ({ request, sendResponse }: Message) => {
   const { userName, profileImageUrl, rank, score, solvedChallengesCount } = request.data;
@@ -10,12 +11,6 @@ const createAllSuccessProblemTab = async ({ request, sendResponse }: Message) =>
 
 const getAllSuccessProblemTabUrl = ({ userName }: { userName: string }) =>
   `chrome-extension://success/${userName}`;
-
-const openAllSuccessProblemTab = (url: string) =>
-  chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-    const tabIndex = tabs[0]!.index;
-    chrome.tabs.create({ url, index: tabIndex + 1 });
-  });
 
 const getAllSuccessProblemList = async () => {
   const lastPage = await getEndPageNumber();
