@@ -1,4 +1,5 @@
 import { Message } from '../../types/global';
+import { createChromeTab } from './index';
 
 type Problem = {
   problemId: string;
@@ -10,7 +11,7 @@ const createSolutionsTab = ({ request }: Message) => {
   const problem = request.href;
   const url = getSolutionsTabUrl(chrome.runtime.id, problem);
 
-  openSolutionsTab(url);
+  createChromeTab(url);
 };
 
 const getSolutionsTabUrl = (
@@ -18,11 +19,5 @@ const getSolutionsTabUrl = (
   { problemId, problemName, selectedLanguage }: Problem,
 ) =>
   `chrome-extension://${runtimeId}/solutionTab.html?num=${problemId}&name=${problemName}&language=${selectedLanguage}`;
-
-const openSolutionsTab = (url: string) =>
-  chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-    const tabIndex = tabs[0]!.index;
-    chrome.tabs.create({ url, index: tabIndex + 1 });
-  });
 
 export { createSolutionsTab };
