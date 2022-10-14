@@ -16,16 +16,16 @@ const CopyClipBoardButton = ({ codeText }: ClibBoardProps) => {
     <CopyButton onClick={() => copyToClipboard(codeText)}>
       {isCopy === null && <DocumentCopy />}
       {isCopy === true && (
-        <IconBoxStyle>
+        <>
           <Check />
-          <p>복사 성공!</p>
-        </IconBoxStyle>
+          <ToolTipStyle>복사 성공!</ToolTipStyle>
+        </>
       )}
       {isCopy === false && (
-        <IconBoxStyle>
+        <>
           <XCharacter />
-          <p>복사 실패</p>
-        </IconBoxStyle>
+          <ToolTipStyle>복사 실패</ToolTipStyle>
+        </>
       )}
     </CopyButton>
   );
@@ -76,39 +76,33 @@ const CopyButton = styled.button`
   }
 `;
 
-const IconBoxStyle = styled.div`
-  p {
-    display: none;
+const ToolTipStyle = styled.p`
+  position: absolute;
+  width: 5rem;
+  padding: 0.4rem;
+  top: 2.2rem;
+  right: -1.65rem;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 0.5rem;
+  background: ${({ theme }) => theme.color.steelGrey};
+  color: ${({ theme }) => theme.color.white};
+  font-size: 0.85rem;
+  font-family: 'NanumSquareRound', sans-serif;
+  font-weight: 400;
+  &:after {
     position: absolute;
-    width: 5rem;
-    padding: 0.4rem;
-    top: 2.2rem;
-    right: -1.65rem;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 0.5rem;
-    background: ${({ theme }) => theme.color.steelGrey};
-    color: ${({ theme }) => theme.color.white};
-    font-size: 0.85rem;
-    font-family: 'NanumSquareRound', sans-serif;
-    font-weight: 400;
-    &:after {
-      position: absolute;
-      bottom: 100%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      margin-left: -10px;
-      border: solid transparent;
-      border-color: rgba(51, 51, 51, 0);
-      border-bottom-color: ${({ theme }) => theme.color.steelGrey};
-      border-width: 10px;
-      pointer-events: none;
-      content: ' ';
-    }
-  }
-  svg:hover + p {
-    display: block;
+    bottom: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: -10px;
+    border: solid transparent;
+    border-color: rgba(51, 51, 51, 0);
+    border-bottom-color: ${({ theme }) => theme.color.steelGrey};
+    border-width: 10px;
+    pointer-events: none;
+    content: ' ';
   }
 `;
 

@@ -20,12 +20,13 @@ const HtmlPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    solutionTab: getAbsolutePath('src/pages/newTab/solution/index.tsx'),
     popup: getAbsolutePath('src/pages/popup/index.tsx'),
     background: getAbsolutePath('src/pages/background/index.ts'),
     testContent: getAbsolutePath('src/pages/content/testPage.tsx'),
     solutionContent: getAbsolutePath('src/pages/content/solutionPage.tsx'),
     problemContent: getAbsolutePath('src/pages/content/problemPage.tsx'),
+    solutionTab: getAbsolutePath('src/pages/newTab/solution/index.tsx'),
+    profileTab: getAbsolutePath('src/pages/newTab/profile/index.tsx'),
   },
   output: {
     filename: 'script/[name].js',
@@ -113,6 +114,6 @@ module.exports = {
         },
       ],
     }),
-    ...getHtmlPlugins(['popup', 'solutionTab']),
+    ...getHtmlPlugins(['popup', 'solutionTab', 'profileTab']),
   ],
 };

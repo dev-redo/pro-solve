@@ -51,10 +51,7 @@
     },
     {
       "matches": ["https://school.programmers.co.kr/learn/challenges*"],
-      "exclude_matches": [
-        "https://school.programmers.co.kr/learn/challenges?tab=algorithm_practice_kit",
-        "https://school.programmers.co.kr/learn/challenges?tab=sql_practice_kit"
-      ],
+      "exclude_matches": ["https://school.programmers.co.kr/learn/courses/30/lessons/*"],
       "js": ["script/problemContent.js"]
     }
   ],
