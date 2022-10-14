@@ -1,7 +1,7 @@
 import { postCurrentSolution } from './postCurrentSolution';
 import { getAllSolutions } from './getAllSolutions';
 import { createSolutionsTab } from './createSolutionsTab';
-import { createAllSuccessProblemTab } from './createAllSuccessProblemTab';
+import { createSuccessProblemTab } from './createSuccessProblemTab';
 
 export const createChromeTab = (url: string) =>
   chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
@@ -34,7 +34,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     createSolutionsTab(message);
   }
 
-  if (request.method === 'getAllSuccessProblemList') {
-    return true;
+  if (request.method === 'createSuccessProblemTab') {
+    createSuccessProblemTab();
   }
 });

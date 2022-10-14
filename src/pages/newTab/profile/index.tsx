@@ -1,16 +1,7 @@
-import { fetchRequest } from '../../utils/fetchRequest';
-import { PROBLEM_URL as BASE_URL } from '../../constants/url';
-import { Message } from '../../types/global';
-import { createChromeTab } from './index';
+import { fetchRequest } from '../../../utils/fetchRequest';
+import { PROBLEM_URL as BASE_URL } from '../../../constants/url';
 
-const createAllSuccessProblemTab = async ({ request, sendResponse }: Message) => {
-  const { userName, profileImageUrl, rank, score, solvedChallengesCount } = request.data;
-
-  const allSuccessProblem = getAllSuccessProblemList();
-};
-
-const getAllSuccessProblemTabUrl = ({ userName }: { userName: string }) =>
-  `chrome-extension://success/${userName}`;
+console.log('HI');
 
 const getAllSuccessProblemList = async () => {
   const lastPage = await getEndPageNumber();

@@ -24,14 +24,17 @@ export default function GoogleLoginButton() {
 type GoogleLoginFn = () => void;
 const getGoogleAuthCredential: GoogleLoginFn = () => {
   chrome.identity.getAuthToken({ interactive: true }, token => {
-    if (chrome.runtime.lastError) {
-      console.error(
-        '[Pro-Solve] Token을 받아오던 중 문제가 발생했습니다! :>> ',
-        chrome.runtime.lastError.message,
+    if (chrome.runtime.lastError || !token) {
+      alert(
+        `[Pro-Solve] Token을 받아오던 중 문제가 발생했습니다! :>> ${
+          chrome.runtime.lastError!.message
+        }`,
       );
+      return;
     }
 
     const credential = GoogleAuthProvider.credential(null, token);
+    console.log('[Pro-Solve] Firebase Google Oauth credential :>> ', credential);
     signInWithCredential(auth, credential)
       .then(firebaseAuth => {
         console.log('[Pro-Solve] Firebase 사용자 인증 정보 :>>', firebaseAuth);

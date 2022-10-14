@@ -53,5 +53,6 @@ const CheckOptionStyle = styled.div<{ isOpen: boolean }>`
   }
 `;
 
+
 export default GlobalStyles;
 export { CenterContainer, CheckOptionStyle };

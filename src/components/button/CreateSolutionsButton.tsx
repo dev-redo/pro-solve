@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Modal from '../modal/Modal';
+import RefreshRequestBox from '../box/RefreshRequestBox';
 
 interface ButtonProps {
   selectedLanguage: string;
@@ -25,24 +26,12 @@ const CreateSolutionsButton = (href: ButtonProps) => {
   return (
     <>
       <Modal isOpen={isModalOpen} closeModal={() => setIsModalOpen(false)}>
-        <ModalContentStyle>새로고침을 해주세요!</ModalContentStyle>
+        <RefreshRequestBox />
       </Modal>
       <ButtonStyle onClick={createSolutionTab}>저장된 모든 풀이</ButtonStyle>
     </>
   );
 };
-
-const ModalContentStyle = styled.div`
-  transform: translate(-50%, 0%);
-  background-color: ${({ theme }) => theme.color.grey};
-  padding: 0.4375rem 0.8125rem;
-  color: ${({ theme }) => theme.color.black};
-  font-size: 1rem;
-  font-weight: 500;
-  border-radius: 0.25rem;
-  box-shadow: 0 0.25rem 0.5rem rgb(20 20 84 / 4%), 0 0.5rem 1.125rem rgb(20 20 84 / 8%),
-    0 1rem 2rem -0.125rem rgb(20 20 84 / 8%), 0 0 0 0.0625rem rgb(20 20 84 / 12%);
-`;
 
 const ButtonStyle = styled.button`
   background-color: ${({ theme }) => theme.color.darkGrey};
