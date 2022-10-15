@@ -5,7 +5,7 @@ import { theme } from '../../../styles/theme';
 import styled from 'styled-components';
 import GlobalStyles from '../../../styles/global';
 import { fetchRequest } from '../../../utils/fetchRequest';
-import { PROBLEM_URL as BASE_URL } from '../../../constants/url';
+import { ALL_PROBLEM_URL, PROBLEM_URL } from '../../../constants/url';
 import { SolvedProblemType } from '../../../types/profile';
 import DonutChart from '../../../components/chart/DonutChart';
 
@@ -18,12 +18,17 @@ const userImg = decodeURI(href.match(userImgRegex)![1]);
 
 const ProfileTab = () => {
   const [isLoaded, setIsLoaded] = React.useState(true);
+  const [allProblems, setAllSolvedProblems] = React.useState<SolvedProblemType>([]);
   const [solvedProblems, setSolvedProblems] = React.useState<SolvedProblemType>([]);
 
   React.useEffect(() => {
     (async () => {
-      const solvedProblems = await getAllSuccessProblemList();
+      const allProblems = await getAllProblemsList();
+      setAllSolvedProblems(allProblems);
+
+      const solvedProblems = await getAllSuccessProblemsList();
       setSolvedProblems(solvedProblems);
+
       setIsLoaded(false);
     })();
   }, []);
@@ -32,6 +37,7 @@ const ProfileTab = () => {
     <div>
       <div>{userName}</div>
       <img src={userImg} alt="profile" />
+      <div>{JSON.stringify(allProblems)}</div>
       <div>{JSON.stringify(solvedProblems)}</div>
       <DonutStyle>
         <DonutChart color="#0078FF" percent={0.65} size="8rem" />
@@ -45,18 +51,12 @@ const DonutStyle = styled.div`
   padding: 10px;
 `;
 
-const root = document.createElement('div');
-document.body.appendChild(root);
-ReactDOM.createRoot(root as HTMLElement).render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <ProfileTab />
-    </ThemeProvider>
-  </React.StrictMode>,
-);
+const getAllProblemsList = async () =>
+  await fetchRequest({
+    url: ALL_PROBLEM_URL,
+  });
 
-const getAllSuccessProblemList = async () => {
+const getAllSuccessProblemsList = async () => {
   const lastPage = await getEndPageNumber();
   const promisedFetchedDataList = [...new Array(lastPage)].map((_, idx) =>
     fetchProblemPageList(idx + 1),
@@ -67,7 +67,7 @@ const getAllSuccessProblemList = async () => {
 };
 
 const fetchProblemPageList = async (pageNum: number) =>
-  (await fetchRequest({ url: BASE_URL + pageNum })).result;
+  (await fetchRequest({ url: PROBLEM_URL + pageNum })).result;
 
 const getEndPageNumber = async () => {
   const end = await initEndPageNum();
@@ -117,4 +117,13 @@ const binarySearch = async ({ start, end }: binarySearchType) => {
   }
 };
 
-export { getAllSuccessProblemList };
+const root = document.createElement('div');
+document.body.appendChild(root);
+ReactDOM.createRoot(root as HTMLElement).render(
+  <React.StrictMode>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <ProfileTab />
+    </ThemeProvider>
+  </React.StrictMode>,
+);
