@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import GlobalStyles from '../../../styles/global';
 import { fetchRequest } from '../../../utils/fetchRequest';
 import { ALL_PROBLEM_URL } from '../../../constants/url';
-import { SolvedProblemType } from '../../../types/profile';
+import { ProblemType, SolvedProblemType } from '../../../types/profile';
 import ProfileTab from './ProfileTab';
 import DonutChart from '../../../components/chart/DonutChart';
 import LineChart from '../../../components/chart/LineChart';
@@ -18,24 +18,19 @@ const href = window.location.href;
 const userName = decodeURI(href.match(userNameRegex)![1]);
 const userImg = decodeURI(href.match(userImgRegex)![1]);
 
-interface SolutionResponse {
-  status?: boolean;
-  solvedProblem?: string[];
-  message?: string;
-}
-
 const ProfileTabLayout = () => {
   const [isLoaded, setIsLoaded] = React.useState(true);
   const [allProblems, setAllSolvedProblems] = React.useState<SolvedProblemType>([]);
-  const [solvedProblems, setSolvedProblems] = React.useState<SolutionResponse>({});
+  const [solvedProblems, setSolvedProblems] = React.useState<SolvedProblemType>([]);
 
   React.useEffect(() => {
     (async () => {
       const allProblems = await getAllProblemsList();
       setAllSolvedProblems(allProblems);
 
-      const solvedIdList = await getSolvedProblemIdList();
-      setSolvedProblems(solvedIdList);
+      const { solvedProblem } = await chrome.storage.local.get(['solvedProblem']);
+      const solvedProblemList = await getSolvedProblemList(allProblems, solvedProblem);
+      setSolvedProblems(solvedProblemList);
 
       setIsLoaded(false);
     })();
@@ -56,22 +51,6 @@ const ProfileTabLayout = () => {
   );
 };
 
-const getSolvedProblemIdList = async () => {
-  const solvedProblems = await new Promise<SolutionResponse>(resolve => {
-    chrome.runtime.sendMessage(
-      {
-        method: 'getSuccessProblems',
-      },
-      response => {
-        resolve(response);
-        console.log('[Pro Solve] 성공한 문제 List :>>', response);
-      },
-    );
-  });
-
-  return solvedProblems;
-};
-
 const DonutStyle = styled.div`
   display: flex;
   padding: 10px;
@@ -81,6 +60,19 @@ const getAllProblemsList = async () =>
   await fetchRequest({
     url: ALL_PROBLEM_URL,
   });
+
+const getSolvedProblemList = async (
+  allProblems: SolvedProblemType,
+  solvedProblemIdList: number[],
+) =>
+  allProblems.reduce((prev: SolvedProblemType, curr: ProblemType) => {
+    solvedProblemIdList.forEach(problem => {
+      if (problem === curr.id) {
+        prev.push(curr);
+      }
+    });
+    return prev;
+  }, []);
 
 const root = document.createElement('div');
 document.body.appendChild(root);

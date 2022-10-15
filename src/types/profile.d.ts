@@ -10,4 +10,4 @@ interface ProblemType {
 
 type SolvedProblemType = ProblemType[];
 
-export { SolvedProblemType };
+export { ProblemType, SolvedProblemType };
