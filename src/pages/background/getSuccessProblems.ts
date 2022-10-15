@@ -2,13 +2,6 @@ import { fetchRequest } from '../../utils/fetchRequest';
 import { PROBLEM_URL } from '../../constants/url';
 import { Message } from '../../types/global';
 
-const getSuccessProblems = async ({ sendResponse }: Message) => {
-  chrome.storage.local.get(['solvedProblem'], async response => {
-    const { solvedProblem } = response;
-    await sendResponse({ status: true, solvedProblem });
-  });
-};
-
 const getSuccessProblemIdList = async () => {
   const lastPage = await getEndPageNumber();
   const promisedFetchedDataList = [...new Array(lastPage)].map((_, idx) =>
@@ -21,7 +14,7 @@ const getSuccessProblemIdList = async () => {
     .map(({ id }: { id: string }) => id);
 };
 
-export { getSuccessProblems, getSuccessProblemIdList };
+export { getSuccessProblemIdList };
 
 const fetchProblemPageList = async (pageNum: number) =>
   (await fetchRequest({ url: PROBLEM_URL + pageNum })).result;
