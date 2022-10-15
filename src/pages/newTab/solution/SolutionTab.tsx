@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil';
 import LogoWhite from '../../../../assets/images/logo-white.png';
 import ArrowRight from '../../../../assets/icons/ArrowRight.svg';
 import Spinner from '../../../../assets/icons/BlackSpinner.svg';
-import { CenterContainer } from '../../../styles/global';
+import { HeaderStyle, CenterContainer } from '../../../styles/global';
 import Code from '../../../components/code/Code';
 import SolutionSelect from '../../../components/select/SolutionSelect';
 import SortSelect from '../../../components/select/SortSelect';
@@ -119,31 +119,6 @@ const filteredSolutions = (solutions: SolutionList) => {
 
 const ContainerStyle = styled.div`
   height: 100%;
-`;
-
-const HeaderStyle = styled.div`
-  display: flex;
-  align-items: center;
-  position: sticky;
-  z-index: 100;
-  top: 0;
-  height: 3rem;
-  padding: 0.375rem 1rem;
-  background-color: ${({ theme }) => theme.color.jetBlack};
-  color: ${({ theme }) => theme.color.greyBlue};
-  font-family: 'Nanum Gothic', sans-serif;
-  font-weight: 400;
-  & > img {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-  & > div {
-    display: flex;
-    align-items: center;
-    margin-left: 0.85rem;
-    padding: 0.375rem 0;
-    gap: 0.3rem;
-  }
 `;
 
 const SelectStyle = styled.div`

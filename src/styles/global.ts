@@ -53,6 +53,30 @@ const CheckOptionStyle = styled.div<{ isOpen: boolean }>`
   }
 `;
 
+const HeaderStyle = styled.div`
+  display: flex;
+  align-items: center;
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  height: 3rem;
+  padding: 0.375rem 1rem;
+  background-color: ${({ theme }) => theme.color.jetBlack};
+  color: ${({ theme }) => theme.color.greyBlue};
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 400;
+  & > img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  & > div {
+    display: flex;
+    align-items: center;
+    margin-left: 0.85rem;
+    padding: 0.375rem 0;
+    gap: 0.3rem;
+  }
+`;
 
 export default GlobalStyles;
-export { CenterContainer, CheckOptionStyle };
+export { CenterContainer, CheckOptionStyle, HeaderStyle };
