@@ -24,4 +24,13 @@ const postCurrentSolution = async ({ request, sendResponse }: Message) => {
   sendResponse({ status: true });
 };
 
-export { postCurrentSolution };
+const addSolvedProblemId = (id: number) => {
+  chrome.storage.local.get(['solvedProblem'], response => {
+    const { solvedProblem } = response;
+    chrome.storage.local.set({
+      solvedProblem: [...solvedProblem, id],
+    });
+  });
+};
+
+export { postCurrentSolution, addSolvedProblemId };
