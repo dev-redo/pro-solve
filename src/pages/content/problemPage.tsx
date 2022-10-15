@@ -15,8 +15,16 @@ const OpenSuccessTabButton = () => {
       setIsModalOpen(true);
       return;
     }
+
+    const userName = (document.querySelector('.name') as HTMLHRElement).innerText;
+    const userImg = (document.querySelector('img[alt="profile image"]') as HTMLImageElement).src;
+
     chrome.runtime.sendMessage({
       method: 'createSuccessProblemTab',
+      userInfo: {
+        userName,
+        userImg,
+      },
     });
   };
 

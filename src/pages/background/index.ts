@@ -35,6 +35,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 
   if (request.method === 'createSuccessProblemTab') {
-    createSuccessProblemTab();
+    createSuccessProblemTab(message);
   }
 });
