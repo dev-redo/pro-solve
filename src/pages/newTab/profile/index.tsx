@@ -11,13 +11,6 @@ import ProfileTab from './ProfileTab';
 import DonutChart from '../../../components/chart/DonutChart';
 import LineChart from '../../../components/chart/LineChart';
 
-const userNameRegex = /name=(.*)&img/;
-const userImgRegex = /&img=(.*)/;
-
-const href = window.location.href;
-const userName = decodeURI(href.match(userNameRegex)![1]);
-const userImg = decodeURI(href.match(userImgRegex)![1]);
-
 const ProfileTabLayout = () => {
   const [isLoaded, setIsLoaded] = React.useState(true);
   const [allProblems, setAllSolvedProblems] = React.useState<SolvedProblemType>([]);
@@ -27,6 +20,7 @@ const ProfileTabLayout = () => {
     (async () => {
       const allProblems = await getAllProblemsList();
       setAllSolvedProblems(allProblems);
+      console.log(allProblems);
 
       const { solvedProblem } = await chrome.storage.local.get(['solvedProblem']);
       const solvedProblemList = await getSolvedProblemList(allProblems, solvedProblem);
@@ -37,17 +31,14 @@ const ProfileTabLayout = () => {
   }, []);
 
   return (
-    <>
-      <ProfileTab>
-        <ProfileTab.Header userName={userName} />
-        <ProfileTab.UserInfo userName={userName} userImg={userImg} />
-      </ProfileTab>
+    <ProfileTab>
+      <ProfileTab.Header />
       <div>{JSON.stringify(solvedProblems)}</div>
       <DonutStyle>
         <DonutChart color="#0078FF" percent={0.65} size="8rem" />
       </DonutStyle>
       <LineChart />
-    </>
+    </ProfileTab>
   );
 };
 
@@ -73,6 +64,21 @@ const getSolvedProblemList = async (
     });
     return prev;
   }, []);
+
+type ProblemsCntType = {
+  allProblems: SolvedProblemType;
+  solvedProblems: SolvedProblemType;
+};
+const getProblemsCnt = ({ allProblems, solvedProblems }: ProblemsCntType) => {
+  all: allProblems.length;
+  solved: solvedProblems.length;
+};
+
+const getProblemsLevelList = (problems: SolvedProblemType) =>
+  problems.reduce((prev, { level }) => {
+    prev[level] += 1;
+    return prev;
+  }, new Array(6).fill(0));
 
 const root = document.createElement('div');
 document.body.appendChild(root);
