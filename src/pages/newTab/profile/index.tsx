@@ -39,7 +39,10 @@ const ProfileTabLayout = () => {
       <ProfileTab.Header />
       <ProfileTab.Statistics>
         <ProfileTab.StatisticsHeader problemCnt={problemCnt} />
-        <ProfileTab.Doughnut problemCnt={problemCnt} solvedLevelCnt={solvedLevelCnt} />
+        <ProfileTab.StatisticsContent>
+          <ProfileTab.Doughnut problemCnt={problemCnt} solvedLevelCnt={solvedLevelCnt} />
+          <ProfileTab.Table />
+        </ProfileTab.StatisticsContent>
       </ProfileTab.Statistics>
     </ProfileTab>
   );
