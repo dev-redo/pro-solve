@@ -78,5 +78,9 @@ const HeaderStyle = styled.div`
   }
 `;
 
+const BoldTextStyle = styled.span`
+  font-weight: 600;
+`;
+
 export default GlobalStyles;
-export { CenterContainer, CheckOptionStyle, HeaderStyle };
+export { CenterContainer, CheckOptionStyle, HeaderStyle, BoldTextStyle };

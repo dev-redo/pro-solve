@@ -10,4 +10,19 @@ interface ProblemType {
 
 type SolvedProblemType = ProblemType[];
 
-export { ProblemType, SolvedProblemType };
+type ProblemsCntType = {
+  allProblems: SolvedProblemType;
+  solvedProblems: SolvedProblemType;
+};
+
+interface ProblemCntType {
+  allCnt: number;
+  solvedCnt: number;
+}
+
+type DoughnutType = {
+  problemCnt: ProblemCntType;
+  solvedLevelCnt: number[];
+};
+
+export { ProblemType, SolvedProblemType, ProblemsCntType, ProblemCntType, DoughnutType };

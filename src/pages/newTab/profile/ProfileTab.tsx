@@ -1,11 +1,20 @@
 import styled from 'styled-components';
 import { uid } from 'react-uid';
 import LogoWhite from '../../../../assets/images/logo-white.png';
-import { HeaderStyle } from '../../../styles/global';
 import 'chart.js/auto';
 import { Doughnut } from 'react-chartjs-2';
 import { level, levelColor } from '../../../constants/level';
+import Chart from '../../../../assets/icons/Chart.svg';
+import {
+  ProblemType,
+  SolvedProblemType,
+  ProblemsCntType,
+  ProblemCntType,
+  DoughnutType,
+} from '../../../types/profile';
 import '../../../styles/font.css';
+import { HeaderStyle } from '../../../styles/global';
+import { BoldTextStyle } from '../../../styles/global';
 
 export default function ProfileTab({ children }: { children: JSX.Element | JSX.Element[] }) {
   return <ContainerStyle>{children}</ContainerStyle>;
@@ -26,12 +35,22 @@ ProfileTab.Statistics = ({ children }: { children: JSX.Element | JSX.Element[] }
   return <BoxStyle>{children}</BoxStyle>;
 };
 
-type DoughnutType = {
-  problemCnt: {
-    allCnt: number;
-    solvedCnt: number;
-  };
-  solvedLevelCnt: number[];
+ProfileTab.StatisticsHeader = ({ problemCnt }: { problemCnt: ProblemCntType }) => {
+  const { allCnt, solvedCnt } = problemCnt;
+  return (
+    <StatisticsHeaderStyle>
+      <ChartHeaderStyle>
+        <Chart />
+        <span>난이도 분포</span>
+      </ChartHeaderStyle>
+      <SolvedHeaderStyle>
+        <BoldTextStyle>{allCnt}</BoldTextStyle>
+        <span>문제 중 </span>
+        <BoldTextStyle>{solvedCnt}</BoldTextStyle>
+        <span>개 성공</span>
+      </SolvedHeaderStyle>
+    </StatisticsHeaderStyle>
+  );
 };
 
 ProfileTab.Doughnut = ({ problemCnt, solvedLevelCnt }: DoughnutType) => {
@@ -75,6 +94,24 @@ const BoxStyle = styled.div`
   box-shadow: 0 0 #0000, 0 0 #0000, 0px 1px 3px rgba(0, 0, 0, 0.04),
     0px 6px 16px rgba(0, 0, 0, 0.12);
   border-radius: 0.5rem;
+`;
+
+const StatisticsHeaderStyle = styled.div`
+  font-family: 'NotoSansCJKkr';
+  padding: 1rem;
+`;
+
+const ChartHeaderStyle = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: ${({ theme }) => theme.color.darkGrey};
+  font-size: 1.05rem;
+`;
+
+const SolvedHeaderStyle = styled.div`
+  padding: 0.75rem 0;
+  font-size: 1.5rem;
 `;
 
 const DoughnutWrapperStyle = styled.div`
@@ -126,4 +163,5 @@ const ProblemPercentStyle = styled.div`
 const SolvedStyle = styled.span`
   font-size: 1rem;
   font-weight: 400;
+  color: ${({ theme }) => theme.color.darkGrey};
 `;

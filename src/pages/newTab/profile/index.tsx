@@ -5,7 +5,13 @@ import { theme } from '../../../styles/theme';
 import GlobalStyles from '../../../styles/global';
 import { fetchRequest } from '../../../utils/fetchRequest';
 import { ALL_PROBLEM_URL } from '../../../constants/url';
-import { ProblemType, SolvedProblemType } from '../../../types/profile';
+import {
+  ProblemType,
+  SolvedProblemType,
+  ProblemsCntType,
+  ProblemCntType,
+  DoughnutType,
+} from '../../../types/profile';
 import ProfileTab from './ProfileTab';
 
 const ProfileTabLayout = () => {
@@ -26,14 +32,14 @@ const ProfileTabLayout = () => {
     })();
   }, []);
 
+  const problemCnt = getProblemsCnt({ allProblems, solvedProblems });
+  const solvedLevelCnt = getProblemsLevelList(solvedProblems);
   return (
     <ProfileTab>
       <ProfileTab.Header />
       <ProfileTab.Statistics>
-        <ProfileTab.Doughnut
-          problemCnt={getProblemsCnt({ allProblems, solvedProblems })}
-          solvedLevelCnt={getProblemsLevelList(solvedProblems)}
-        />
+        <ProfileTab.StatisticsHeader problemCnt={problemCnt} />
+        <ProfileTab.Doughnut problemCnt={problemCnt} solvedLevelCnt={solvedLevelCnt} />
       </ProfileTab.Statistics>
     </ProfileTab>
   );
@@ -57,10 +63,6 @@ const getSolvedProblemList = async (
     return prev;
   }, []);
 
-type ProblemsCntType = {
-  allProblems: SolvedProblemType;
-  solvedProblems: SolvedProblemType;
-};
 const getProblemsCnt = ({ allProblems, solvedProblems }: ProblemsCntType) => ({
   allCnt: allProblems.length,
   solvedCnt: solvedProblems.length,
