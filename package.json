@@ -78,10 +78,12 @@
   "dependencies": {
     "@types/estree": "^1.0.0",
     "bestzip": "^2.2.1",
+    "chart.js": "^3.9.1",
     "cors": "^2.8.5",
     "expo-font": "^10.2.0",
     "fontfaceobserver": "^2.3.0",
     "react": "^18.2.0",
+    "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.2.0",
     "react-syntax-highlighter": "^15.5.0",
     "react-uid": "^2.3.2",

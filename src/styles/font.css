@@ -1,26 +1,51 @@
 @font-face {
-  font-family: 'Inter';
+  font-family: 'NotoSansCJKkr';
+  src: url(https://cdn.jsdelivr.net/gh/naen-nae/fonts@purge-cache-for-subsets/files/NotoSansCJKkr/NotoSansCJKkr-Thin.otf)
+    format('opentype');
+  font-weight: 100;
   font-style: normal;
+}
+@font-face {
+  font-family: 'NotoSansCJKkr';
+  src: url(https://cdn.jsdelivr.net/gh/naen-nae/fonts@purge-cache-for-subsets/files/NotoSansCJKkr/NotoSansCJKkr-Light.otf)
+    format('opentype');
   font-weight: 300;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa2JL7SUc.woff2)
-    format('woff2');
+  font-style: normal;
 }
 @font-face {
-  font-family: 'Inter';
+  font-family: 'NotoSansCJKkr';
+  src: url(https://cdn.jsdelivr.net/gh/naen-nae/fonts@purge-cache-for-subsets/files/NotoSansCJKkr/NotoSansCJKkr-DemiLight.otf)
+    format('opentype');
+  font-weight: 350;
   font-style: normal;
+}
+@font-face {
+  font-family: 'NotoSansCJKkr';
+  src: url(https://cdn.jsdelivr.net/gh/naen-nae/fonts@purge-cache-for-subsets/files/NotoSansCJKkr/NotoSansCJKkr-Regular.otf)
+    format('opentype');
   font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa2JL7SUc.woff2)
-    format('woff2');
+  font-style: normal;
 }
 @font-face {
-  font-family: 'Inter';
-  font-style: normal;
+  font-family: 'NotoSansCJKkr';
+  src: url(https://cdn.jsdelivr.net/gh/naen-nae/fonts@purge-cache-for-subsets/files/NotoSansCJKkr/NotoSansCJKkr-Medium.otf)
+    format('opentype');
   font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa2JL7SUc.woff2)
-    format('woff2');
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NotoSansCJKkr';
+  src: url(https://cdn.jsdelivr.net/gh/naen-nae/fonts@purge-cache-for-subsets/files/NotoSansCJKkr/NotoSansCJKkr-Bold.otf)
+    format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NotoSansCJKkr';
+  src: url(https://cdn.jsdelivr.net/gh/naen-nae/fonts@purge-cache-for-subsets/files/NotoSansCJKkr/NotoSansCJKkr-Black.otf)
+    format('opentype');
+  font-weight: 900;
+  font-style: normal;
 }
 @font-face {
   font-family: 'Nanum Gothic';
