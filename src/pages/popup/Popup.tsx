@@ -2,12 +2,13 @@ import styled from 'styled-components';
 import GoogleLoginButton from '../../components/button/GoogleLoginButton';
 import GithubLogo from '../../../assets/images/github.png';
 import '../../styles/font.css';
+import { Children } from '../../types/global';
 
-export default function Popup({ children }: { children: JSX.Element[] }) {
+export default function Popup({ children }: Children) {
   return <ContainerStyle>{children}</ContainerStyle>;
 }
 
-Popup.Content = ({ children }: { children: JSX.Element[] }) => {
+Popup.Content = ({ children }: Children) => {
   return <ContentStyle>{children}</ContentStyle>;
 };
 

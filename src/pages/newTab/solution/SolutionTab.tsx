@@ -12,8 +12,10 @@ import '../../../styles/font.css';
 import { solutionOption, sortedOption } from '../../../store/select';
 import { Solution, SolutionList, SolutionResponse } from '../../../types/solution';
 import { formatTimestampToDate } from '../../../utils/formatTimestampToDate';
+import { LoaderStyle } from '../../../styles/global';
+import { Children } from '../../../types/global';
 
-export default function SolutionTab({ children }: { children: JSX.Element[] }) {
+export default function SolutionTab({ children }: Children) {
   return <ContainerStyle>{children}</ContainerStyle>;
 }
 
@@ -130,16 +132,6 @@ const SelectStyle = styled.div`
   ${({ theme }) => theme.media.tablet`
     padding: 2rem 5rem;
   `}
-`;
-
-const LoaderStyle = styled.div`
-  height: 100%;
-  & > svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
 `;
 
 const RequestLoginStyle = styled(CenterContainer)`

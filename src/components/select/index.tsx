@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { uid } from 'react-uid';
 import { SelectProps, TriggerProps, MenuProps, ItemProps } from '../../types/select';
 import '../../styles/font.css';
+import { Children } from '../../types/global';
 
 const Select = ({ isOpen, trigger, options, onChangeDropdown, filterState }: SelectProps) => {
   return (
@@ -23,7 +24,7 @@ const Select = ({ isOpen, trigger, options, onChangeDropdown, filterState }: Sel
   );
 };
 
-const Dropdown = ({ children }: { children: JSX.Element[] }) => {
+const Dropdown = ({ children }: Children) => {
   return <ContainerStyle>{children}</ContainerStyle>;
 };
 
