@@ -1,14 +1,24 @@
 import styled from 'styled-components';
+import { theme } from '../../styles/theme';
 
-const RefreshRequestBox = () => {
-  return <BoxStyle>새로고침을 해주세요!</BoxStyle>;
+type BoxProps = {
+  backgroundColor?: string;
+  color?: string;
 };
 
-const BoxStyle = styled.div`
+const RefreshRequestBox = ({ backgroundColor, color }: BoxProps) => {
+  return (
+    <BoxStyle backgroundColor={backgroundColor} color={color}>
+      새로고침을 해주세요!
+    </BoxStyle>
+  );
+};
+
+const BoxStyle = styled.div<BoxProps>`
   transform: translate(-50%, 0%);
-  background-color: ${({ theme }) => theme.color.grey};
+  background-color: ${({ backgroundColor }) => backgroundColor || theme.color.grey};
   padding: 0.4375rem 0.8125rem;
-  color: ${({ theme }) => theme.color.black};
+  color: ${({ color }) => color || theme.color.black};
   font-size: 1rem;
   font-weight: 500;
   border-radius: 0.25rem;
