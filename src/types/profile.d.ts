@@ -25,4 +25,34 @@ type DoughnutType = {
   solvedLevelCnt: number[];
 };
 
-export { ProblemType, SolvedProblemType, ProblemsCntType, ProblemCntType, DoughnutType };
+interface LevelsInfo {
+  level: string;
+  color: string;
+}
+
+type LevelsInfoList = LevelsInfo[];
+
+interface ChartInfo {
+  level: string;
+  color: string;
+  allCnt: number;
+  solvedCnt: number;
+}
+
+type ChartInfoList = ChartInfo[];
+
+type TableType = {
+  levelsInfo: LevelsInfoList;
+  chartInfoList: ChartInfoList;
+};
+
+export {
+  ProblemType,
+  SolvedProblemType,
+  ProblemsCntType,
+  ProblemCntType,
+  DoughnutType,
+  LevelsInfoList,
+  ChartInfo,
+  ChartInfoList,
+};
