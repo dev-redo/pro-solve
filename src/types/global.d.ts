@@ -28,4 +28,8 @@ type Message = {
   sendResponse: Function;
 };
 
-export { Message };
+type Children = {
+  children: JSX.Element | JSX.Element[];
+};
+
+export { Message, Children };

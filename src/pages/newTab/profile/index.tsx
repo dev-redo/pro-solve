@@ -16,12 +16,15 @@ import {
 } from '../../../types/profile';
 import { levels, levelsColor } from '../../../constants/level';
 import ProfileTab from './ProfileTab';
-import { RecoilRoot } from 'recoil';
+import { RecoilRoot, useRecoilValue } from 'recoil';
+import { navOption } from '../../../store/profile';
+import Statistics from './Statistics';
 
 const ProfileTabLayout = () => {
   const [isLoaded, setIsLoaded] = React.useState(true);
   const [allProblems, setAllSolvedProblems] = React.useState<SolvedProblemType>([]);
   const [solvedProblems, setSolvedProblems] = React.useState<SolvedProblemType>([]);
+  const selectedItem = useRecoilValue(navOption);
 
   React.useEffect(() => {
     (async () => {
@@ -38,19 +41,21 @@ const ProfileTabLayout = () => {
 
   const problemCnt = getProblemsCnt({ allProblems, solvedProblems });
   const solvedLevelCnt = getProblemsLevelList(solvedProblems);
-  const levelsInfo = getLevelsInfoList();
   const chartInfoList = getChartInfoList({ allProblems, solvedProblems });
   return (
     <ProfileTab>
       <ProfileTab.Header />
       <ProfileTab.Nav />
-      <ProfileTab.Statistics>
-        <ProfileTab.StatisticsHeader problemCnt={problemCnt} />
-        <ProfileTab.StatisticsContent>
-          <ProfileTab.Doughnut problemCnt={problemCnt} solvedLevelCnt={solvedLevelCnt} />
-          <ProfileTab.Table chartInfoList={chartInfoList} />
-        </ProfileTab.StatisticsContent>
-      </ProfileTab.Statistics>
+      <ProfileTab.Content isLoaded={isLoaded}>
+        {selectedItem === 'MAIN' && (
+          <Statistics
+            problemCnt={problemCnt}
+            solvedLevelCnt={solvedLevelCnt}
+            chartInfoList={chartInfoList}
+          />
+        )}
+        {selectedItem === 'PROBLEM' && <div>Hi</div>}
+      </ProfileTab.Content>
       <ProfileTab.Footer />
     </ProfileTab>
   );

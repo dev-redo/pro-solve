@@ -82,5 +82,23 @@ const BoldTextStyle = styled.span`
   font-weight: 600;
 `;
 
+const BoxStyle = styled.div`
+  margin: 2rem;
+  background-color: ${({ theme }) => theme.color.white};
+  box-shadow: 0 0 #0000, 0 0 #0000, 0px 1px 3px rgba(0, 0, 0, 0.04),
+    0px 6px 16px rgba(0, 0, 0, 0.12);
+  border-radius: 0.5rem;
+`;
+
+const LoaderStyle = styled.div`
+  height: 100vh;
+  & > svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+`;
+
 export default GlobalStyles;
-export { CenterContainer, CheckOptionStyle, HeaderStyle, BoldTextStyle };
+export { CenterContainer, CheckOptionStyle, HeaderStyle, BoldTextStyle, BoxStyle, LoaderStyle };
