@@ -52,6 +52,22 @@ type NavType = {
   PROBLEM: string;
 };
 
+type SelectNameType = 'level' | 'finishedCount' | 'acceptanceRate';
+type SelectSortType = 'ASC' | 'DESC';
+
+type SortType = {
+  [key: string]: string;
+  type: SelectNameType;
+  sort: SelectSortType;
+};
+
+type SortItemType = {
+  [key: string]: string;
+  level: string;
+  finishedCount: string;
+  acceptanceRate: string;
+};
+
 export {
   ProblemType,
   SolvedProblemType,
@@ -62,4 +78,8 @@ export {
   ChartInfo,
   ChartInfoList,
   NavType,
+  SelectNameType,
+  SelectSortType,
+  SortType,
+  SortItemType,
 };
