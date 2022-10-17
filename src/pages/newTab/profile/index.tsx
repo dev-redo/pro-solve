@@ -12,9 +12,11 @@ import {
   ProblemCntType,
   DoughnutType,
   ChartInfoList,
+  NavType,
 } from '../../../types/profile';
 import { levels, levelsColor } from '../../../constants/level';
 import ProfileTab from './ProfileTab';
+import { RecoilRoot } from 'recoil';
 
 const ProfileTabLayout = () => {
   const [isLoaded, setIsLoaded] = React.useState(true);
@@ -102,9 +104,11 @@ const root = document.createElement('div');
 document.body.appendChild(root);
 ReactDOM.createRoot(root as HTMLElement).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <ProfileTabLayout />
-    </ThemeProvider>
+    <RecoilRoot>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <ProfileTabLayout />
+      </ThemeProvider>
+    </RecoilRoot>
   </React.StrictMode>,
 );
