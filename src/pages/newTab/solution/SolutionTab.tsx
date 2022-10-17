@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil';
 import LogoWhite from '../../../../assets/images/logo-white.png';
 import ArrowRight from '../../../../assets/icons/ArrowRight.svg';
 import Spinner from '../../../../assets/icons/BlackSpinner.svg';
-import { HeaderStyle, CenterContainer } from '../../../styles/global';
+import { GNBStyle, CenterContainer } from '../../../styles/global';
 import Code from '../../../components/code/Code';
 import SolutionSelect from '../../../components/select/SolutionSelect';
 import SortSelect from '../../../components/select/SortSelect';
@@ -26,7 +26,7 @@ interface HeaderProps {
 
 SolutionTab.Header = ({ selectedLanguage, problemName }: HeaderProps) => {
   return (
-    <HeaderStyle>
+    <GNBStyle>
       <img src={LogoWhite} />
       <div>
         <span>저장된 모든 풀이</span>
@@ -37,7 +37,7 @@ SolutionTab.Header = ({ selectedLanguage, problemName }: HeaderProps) => {
           [{selectedLanguage}] {problemName}
         </span>
       </div>
-    </HeaderStyle>
+    </GNBStyle>
   );
 };
 

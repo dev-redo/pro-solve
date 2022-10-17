@@ -13,7 +13,7 @@ import {
   NavType,
 } from '../../../types/profile';
 import '../../../styles/font.css';
-import { HeaderStyle } from '../../../styles/global';
+import { GNBStyle } from '../../../styles/global';
 import { NAV_LIST, NAV_TYPE } from '../../../constants/profile';
 import { useRecoilState } from 'recoil';
 import { navOption } from '../../../store/profile';
@@ -27,12 +27,12 @@ export default function ProfileTab({ children }: Children) {
 
 ProfileTab.Header = () => {
   return (
-    <HeaderStyle>
+    <GNBStyle>
       <img src={LogoWhite} />
       <div>
         <span>성공한 문제 정보</span>
       </div>
-    </HeaderStyle>
+    </GNBStyle>
   );
 };
 
