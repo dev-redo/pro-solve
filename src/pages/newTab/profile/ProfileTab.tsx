@@ -75,7 +75,7 @@ ProfileTab.Footer = () => {
 };
 
 const ContainerStyle = styled.div`
-  background-color: #f7f8fa;
+  background-color: ${({ theme }) => theme.color.whiter};
   min-width: 768px;
 `;
 
