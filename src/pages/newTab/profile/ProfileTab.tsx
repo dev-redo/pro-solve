@@ -34,6 +34,35 @@ ProfileTab.Header = () => {
   );
 };
 
+ProfileTab.Nav = () => {
+  return (
+    <NavStyle>
+      <b>개요</b>
+      <span>문제</span>
+    </NavStyle>
+  );
+};
+
+const NavStyle = styled.nav`
+  display: flex;
+  width: 100%;
+  border-bottom: 2px solid ${({ theme }) => theme.color.grey};
+  padding: 0 2rem;
+  margin-top: 0.5rem;
+  font-family: 'NotoSansCJKkr';
+  font-size: 1.1rem;
+  cursor: pointer;
+  span {
+    padding: 1rem 2.5rem;
+    font-weight: 300;
+  }
+  b {
+    padding: 1rem 2.5rem;
+    font-weight: 500;
+    border-bottom: 2px solid black;
+  }
+`;
+
 ProfileTab.Statistics = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
   return <BoxStyle>{children}</BoxStyle>;
 };
@@ -218,12 +247,12 @@ const TableHeadStyle = styled.thead`
     display: table-row;
   }
   td {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-family: 'NotoSansCJKkr';
     font-weight: 500;
     text-align: center;
     border-bottom: 1px solid #dddfe0;
-    padding: 0.5rem;
+    padding: 1rem;
   }
 `;
 
@@ -264,6 +293,7 @@ const CenterTextStyle = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 2.5rem;
+  user-select: none;
   &:not(:hover) {
     div:first-child {
       display: inline-block;
