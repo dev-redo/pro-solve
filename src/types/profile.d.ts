@@ -46,6 +46,12 @@ type TableType = {
   chartInfoList: ChartInfoList;
 };
 
+type NavType = {
+  [key: string]: string;
+  MAIN: string;
+  PROBLEM: string;
+};
+
 export {
   ProblemType,
   SolvedProblemType,
@@ -55,4 +61,5 @@ export {
   LevelsInfoList,
   ChartInfo,
   ChartInfoList,
+  NavType,
 };
