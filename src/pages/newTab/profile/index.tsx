@@ -5,20 +5,13 @@ import { theme } from '../../../styles/theme';
 import GlobalStyles from '../../../styles/global';
 import { fetchRequest } from '../../../utils/fetchRequest';
 import { ALL_PROBLEM_URL } from '../../../constants/url';
-import {
-  ProblemType,
-  SolvedProblemType,
-  ProblemsCntType,
-  ProblemCntType,
-  DoughnutType,
-  ChartInfoList,
-  NavType,
-} from '../../../types/profile';
+import { ProblemType, SolvedProblemType, ProblemsCntType } from '../../../types/profile';
 import { levels, levelsColor } from '../../../constants/level';
 import ProfileTab from './ProfileTab';
 import { RecoilRoot, useRecoilValue } from 'recoil';
 import { navOption } from '../../../store/profile';
 import Statistics from './Statistics';
+import Problems from './Problems';
 
 const ProfileTabLayout = () => {
   const [isLoaded, setIsLoaded] = React.useState(true);
@@ -54,7 +47,7 @@ const ProfileTabLayout = () => {
             chartInfoList={chartInfoList}
           />
         )}
-        {selectedItem === 'PROBLEM' && <div>Hi</div>}
+        {selectedItem === 'PROBLEM' && <Problems />}
       </ProfileTab.Content>
       <ProfileTab.Footer />
     </ProfileTab>

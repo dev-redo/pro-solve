@@ -24,7 +24,7 @@ const OpenSuccessTabButton = () => {
   return (
     <>
       <Modal isOpen={isModalOpen} closeModal={() => setIsModalOpen(false)}>
-        <RefreshRequestBox />
+        <RefreshRequestBox backgroundColor={theme.color.jetBlack} color={theme.color.white} />
       </Modal>
       <ButtonStyle onClick={createSuccessProblemTab}>
         <ToolTipStyle>나의 풀이 바로가기</ToolTipStyle>
@@ -43,7 +43,7 @@ const ButtonStyle = styled.button`
   right: 5%;
   z-index: 10000;
   svg {
-    filter: drop-shadow(#4b4d4d 0px 5px 5px);
+    filter: drop-shadow(#707373 0px 5px 5px);
     transition: all 0.2s linear;
   }
   span {
@@ -53,7 +53,7 @@ const ButtonStyle = styled.button`
     transform: translateY(-5%);
     transition: 0.4s ease-in-out;
     svg {
-      filter: drop-shadow(rgb(125, 127, 130) 0px 5px 5px);
+      filter: drop-shadow(rgb(154, 156, 160) 0px 5px 5px);
     }
     span {
       display: block;
