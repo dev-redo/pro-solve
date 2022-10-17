@@ -9,6 +9,7 @@ import '../../../styles/font.css';
 import { BoxStyle, BoldTextStyle } from '../../../styles/global';
 import { getPercentile } from '../../../utils/getPercentile';
 import { Children } from '../../../types/global';
+import { ContentHeaderStyle, ContentHeaderInfoStyle } from '../../../styles/global';
 
 interface StatisticsType {
   problemCnt: ProblemCntType;
@@ -31,18 +32,18 @@ export default function Statistics({ problemCnt, solvedLevelCnt, chartInfoList }
 Statistics.StatisticsHeader = ({ problemCnt }: { problemCnt: ProblemCntType }) => {
   const { allCnt, solvedCnt } = problemCnt;
   return (
-    <StatisticsHeaderStyle>
-      <ChartHeaderStyle>
+    <ContentHeaderStyle>
+      <ContentHeaderInfoStyle>
         <Chart />
         <span>난이도 분포</span>
-      </ChartHeaderStyle>
+      </ContentHeaderInfoStyle>
       <SolvedHeaderStyle>
         <BoldTextStyle>{allCnt}</BoldTextStyle>
         <span>문제 중 </span>
         <BoldTextStyle>{solvedCnt}</BoldTextStyle>
         <span>문제 성공</span>
       </SolvedHeaderStyle>
-    </StatisticsHeaderStyle>
+    </ContentHeaderStyle>
   );
 };
 
@@ -136,19 +137,6 @@ Statistics.TableCell = ({ chart }: { chart: ChartInfo }) => {
     </TableCellStyle>
   );
 };
-
-const StatisticsHeaderStyle = styled.div`
-  font-family: 'NotoSansCJKkr';
-  padding: 1rem;
-`;
-
-const ChartHeaderStyle = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: ${({ theme }) => theme.color.darkGrey};
-  font-size: 1.05rem;
-`;
 
 const StatisticsContentStyle = styled.div`
   display: flex;

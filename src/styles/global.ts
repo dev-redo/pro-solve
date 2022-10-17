@@ -53,7 +53,7 @@ const CheckOptionStyle = styled.div<{ isOpen: boolean }>`
   }
 `;
 
-const HeaderStyle = styled.div`
+const GNBStyle = styled.div`
   display: flex;
   align-items: center;
   position: sticky;
@@ -78,6 +78,16 @@ const HeaderStyle = styled.div`
   }
 `;
 
+const LoaderStyle = styled.div`
+  height: 100vh;
+  & > svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+`;
+
 const BoldTextStyle = styled.span`
   font-weight: 600;
 `;
@@ -90,15 +100,27 @@ const BoxStyle = styled.div`
   border-radius: 0.5rem;
 `;
 
-const LoaderStyle = styled.div`
-  height: 100vh;
-  & > svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+const ContentHeaderStyle = styled.div`
+  font-family: 'NotoSansCJKkr';
+  padding: 1rem;
+`;
+
+const ContentHeaderInfoStyle = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: ${({ theme }) => theme.color.darkGrey};
+  font-size: 1.05rem;
 `;
 
 export default GlobalStyles;
-export { CenterContainer, CheckOptionStyle, HeaderStyle, BoldTextStyle, BoxStyle, LoaderStyle };
+export {
+  CenterContainer,
+  CheckOptionStyle,
+  GNBStyle,
+  BoldTextStyle,
+  BoxStyle,
+  LoaderStyle,
+  ContentHeaderStyle,
+  ContentHeaderInfoStyle,
+};
