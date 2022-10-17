@@ -11,7 +11,9 @@ import {
   ProblemsCntType,
   ProblemCntType,
   DoughnutType,
+  ChartInfoList,
 } from '../../../types/profile';
+import { levels, levelsColor } from '../../../constants/level';
 import ProfileTab from './ProfileTab';
 
 const ProfileTabLayout = () => {
@@ -34,6 +36,8 @@ const ProfileTabLayout = () => {
 
   const problemCnt = getProblemsCnt({ allProblems, solvedProblems });
   const solvedLevelCnt = getProblemsLevelList(solvedProblems);
+  const levelsInfo = getLevelsInfoList();
+  const chartInfoList = getChartInfoList({ allProblems, solvedProblems });
   return (
     <ProfileTab>
       <ProfileTab.Header />
@@ -41,9 +45,10 @@ const ProfileTabLayout = () => {
         <ProfileTab.StatisticsHeader problemCnt={problemCnt} />
         <ProfileTab.StatisticsContent>
           <ProfileTab.Doughnut problemCnt={problemCnt} solvedLevelCnt={solvedLevelCnt} />
-          <ProfileTab.Table />
+          <ProfileTab.Table chartInfoList={chartInfoList} />
         </ProfileTab.StatisticsContent>
       </ProfileTab.Statistics>
+      <ProfileTab.Footer />
     </ProfileTab>
   );
 };
@@ -71,11 +76,26 @@ const getProblemsCnt = ({ allProblems, solvedProblems }: ProblemsCntType) => ({
   solvedCnt: solvedProblems.length,
 });
 
-const getProblemsLevelList = (problems: SolvedProblemType) =>
+type LevelListFunc = (problems: SolvedProblemType) => number[];
+const getProblemsLevelList: LevelListFunc = (problems: SolvedProblemType) =>
   problems.reduce((prev, { level }) => {
     prev[level] += 1;
     return prev;
   }, new Array(6).fill(0));
+
+const getLevelsInfoList = () => levels.map((level, idx) => ({ level, color: levelsColor[idx] }));
+
+const getChartInfoList = ({ allProblems, solvedProblems }: ProblemsCntType) => {
+  const problemsCnt = getProblemsLevelList(allProblems);
+  const solvedCnt = getProblemsLevelList(solvedProblems);
+
+  return levels.map((level, idx) => ({
+    level,
+    color: levelsColor[idx],
+    allCnt: problemsCnt[idx],
+    solvedCnt: solvedCnt[idx],
+  }));
+};
 
 const root = document.createElement('div');
 document.body.appendChild(root);
