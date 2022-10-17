@@ -41,6 +41,7 @@ const ProfileTabLayout = () => {
   return (
     <ProfileTab>
       <ProfileTab.Header />
+      <ProfileTab.Nav />
       <ProfileTab.Statistics>
         <ProfileTab.StatisticsHeader problemCnt={problemCnt} />
         <ProfileTab.StatisticsContent>
