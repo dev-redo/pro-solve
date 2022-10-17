@@ -126,7 +126,7 @@ const SortTextItemStyle = styled(SortItemStyle)`
 
 const SortSelectedItemStyle = styled(SortItemStyle)<{ selected: boolean }>`
   display: flex;
-  align-item: center;
+  align-items: center;
   font-weight: ${({ selected }) => selected && 700};
   background-color: ${({ selected }) => selected && '#dddfe0'};
   &:hover {
