@@ -6,7 +6,7 @@ export const navOption = atom<string>({
   default: 'MAIN',
 });
 
-export const sortOption = atom<SortType | null>({
+export const sortOption = atom<SortType>({
   key: 'Nav/Sort',
-  default: null,
+  default: {},
 });

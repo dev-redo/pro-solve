@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { uid } from 'react-uid';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { levels, levelsColor } from '../../../constants/level';
 import { BoxStyle, BoldTextStyle } from '../../../styles/global';
 import { ContentHeaderStyle, ContentHeaderInfoStyle } from '../../../styles/global';
@@ -56,31 +56,35 @@ Problems.Sort = () => {
 };
 
 Problems.SortItem = ({ item }: { item: SelectNameType }) => {
-  const sortType = useRecoilValue(sortOption);
+  const [sortType, setSortType] = useRecoilState(sortOption);
   const itemName = (SORT_TYPE as SortItemType)[item];
+  const { type, isAscending } = sortType as SortType;
 
-  if (sortType === null) {
-    return (
-      <SortSelectedItemStyle selected={false}>
-        <span>{itemName}</span>
-      </SortSelectedItemStyle>
-    );
-  }
+  const onChangeSortRule = () => {
+    if (type === item) {
+      setSortType({ type, isAscending: !isAscending });
+      return;
+    }
 
-  const { type, sort } = sortType!;
-  if (type === item) {
+    setSortType({
+      type: item,
+      isAscending: false,
+    });
+  };
+
+  if (type === undefined || type !== item) {
     return (
-      <SortSelectedItemStyle selected={true}>
+      <SortSelectedItemStyle selected={false} onClick={onChangeSortRule}>
         <span>{itemName}</span>
-        {sort === 'ASC' && <ArrowUp />}
-        {sort === 'DESC' && <ArrowDown />}
       </SortSelectedItemStyle>
     );
   }
 
   return (
-    <SortSelectedItemStyle selected={false}>
+    <SortSelectedItemStyle selected={true} onClick={onChangeSortRule}>
       <span>{itemName}</span>
+      {isAscending && <ArrowUp />}
+      {isAscending || <ArrowDown />}
     </SortSelectedItemStyle>
   );
 };
@@ -120,12 +124,11 @@ const SortTextItemStyle = styled(SortItemStyle)`
   cursor: default;
 `;
 
-// TODO: 선택된 Item background => #dddfe0
 const SortSelectedItemStyle = styled(SortItemStyle)<{ selected: boolean }>`
   display: flex;
-  align-item: center;
+  align-items: center;
   font-weight: ${({ selected }) => selected && 700};
-  background-color: ${({ theme, selected }) => selected && theme.color.grey};
+  background-color: ${({ selected }) => selected && '#dddfe0'};
   &:hover {
     background-color: ${({ theme }) => theme.color.whiter};
   }

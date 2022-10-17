@@ -53,12 +53,12 @@ type NavType = {
 };
 
 type SelectNameType = 'level' | 'finishedCount' | 'acceptanceRate';
-type SelectSortType = 'ASC' | 'DESC';
+type SelectSortType = boolean;
 
 type SortType = {
-  [key: string]: string;
-  type: SelectNameType;
-  sort: SelectSortType;
+  [key: string]: string | boolean;
+  type?: SelectNameType;
+  isAscending?: SelectSortType;
 };
 
 type SortItemType = {
