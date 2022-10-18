@@ -10,6 +10,10 @@ interface ProblemType {
 
 type SolvedProblemType = ProblemType[];
 
+type SolvedProblemProps = {
+  solvedProblems: SolvedProblemType;
+};
+
 type ProblemsCntType = {
   allProblems: SolvedProblemType;
   solvedProblems: SolvedProblemType;
@@ -71,6 +75,7 @@ type SortItemType = {
 export {
   ProblemType,
   SolvedProblemType,
+  SolvedProblemProps,
   ProblemsCntType,
   ProblemCntType,
   DoughnutType,

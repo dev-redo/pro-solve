@@ -10,6 +10,7 @@ import { BoxStyle, BoldTextStyle } from '../../../styles/global';
 import { getPercentile } from '../../../utils/getPercentile';
 import { Children } from '../../../types/global';
 import { ContentHeaderInfoStyle } from '../../../styles/global';
+import { STATIST_HEAD } from '../../../constants/profile';
 
 interface StatisticsType {
   problemCnt: ProblemCntType;
@@ -92,12 +93,10 @@ Statistics.Table = ({ chartInfoList }: { chartInfoList: ChartInfoList }) => {
 };
 
 Statistics.TableHead = () => {
-  const headInfo = ['레벨', '푼 문제', '전체 문제', '백분위'];
-
   return (
     <TableHeadStyle>
       <tr>
-        {headInfo.map((info, idx) => (
+        {STATIST_HEAD.map((info, idx) => (
           <td key={uid(idx)}>{info}</td>
         ))}
       </tr>
