@@ -9,18 +9,37 @@ import Book from '../../../../assets/icons/Book.svg';
 import ArrowUp from '../../../../assets/icons/ArrowUp.svg';
 import ArrowDown from '../../../../assets/icons/ArrowDown.svg';
 import { sortOption } from '../../../store/profile';
-import { SORT_LIST, SORT_TYPE } from '../../../constants/profile';
+import { PROBLEM_LIST, SORT_LIST, SORT_TYPE } from '../../../constants/profile';
 import '../../../styles/font.css';
-import { SolvedProblemType, SelectNameType, SortType, SortItemType } from '../../../types/profile';
-import { Children } from '../../../types/global';
+import {
+  ProblemType,
+  SolvedProblemProps,
+  SelectNameType,
+  SortType,
+  SortItemType,
+} from '../../../types/profile';
 import Pagination from '../../../components/section/Pagination';
+import { Children } from '../../../types/global';
 
-export default function Problems({ solvedProblems }: { solvedProblems: SolvedProblemType }) {
+export default function Problems({ solvedProblems }: SolvedProblemProps) {
+  const [pageIdx, setPageIdx] = React.useState(0);
+  const limit = 10;
+  const offset = pageIdx * limit;
+
   return (
     <BoxStyle>
       <Problems.Header />
       <Problems.Sort />
-      <Problems.Content solvedProblems={solvedProblems} />
+      <Problems.Content>
+        <Problems.ItemList solvedProblems={solvedProblems} />
+        <Pagination
+          total={solvedProblems.length}
+          limit={limit}
+          unit={5}
+          pageIdx={pageIdx}
+          setPageIdx={setPageIdx}
+        />
+      </Problems.Content>
     </BoxStyle>
   );
 }
@@ -34,16 +53,14 @@ Problems.Header = () => {
   );
 };
 
-Problems.Sort = () => {
-  return (
-    <SortStyle>
-      <SortTextItemStyle>정렬 —</SortTextItemStyle>
-      {SORT_LIST.map((item, idx) => (
-        <Problems.SortItem key={uid(idx)} item={item} />
-      ))}
-    </SortStyle>
-  );
-};
+Problems.Sort = () => (
+  <SortStyle>
+    <SortTextItemStyle>정렬 —</SortTextItemStyle>
+    {SORT_LIST.map((item, idx) => (
+      <Problems.SortItem key={uid(idx)} item={item} />
+    ))}
+  </SortStyle>
+);
 
 Problems.SortItem = ({ item }: { item: SelectNameType }) => {
   const [sortType, setSortType] = useRecoilState(sortOption);
@@ -79,100 +96,60 @@ Problems.SortItem = ({ item }: { item: SelectNameType }) => {
   );
 };
 
-Problems.Content = ({ solvedProblems }: { solvedProblems: SolvedProblemType }) => {
-  const [pageIdx, setPageIdx] = React.useState(0);
-  const limit = 10;
-  const offset = pageIdx * limit;
+Problems.Content = ({ children }: Children) => {
+  return <>{children}</>;
+};
 
+Problems.ItemList = ({ solvedProblems }: SolvedProblemProps) => (
+  <ItemTableStyle>
+    <Problems.TableHead />
+    <Problems.TableBody solvedProblems={solvedProblems} />
+  </ItemTableStyle>
+);
+
+Problems.TableHead = () => (
+  <ItemTableHeadStyle>
+    <tr>
+      {PROBLEM_LIST.map(({ item, name }, idx) => (
+        <ItemTableThStyle key={uid(idx)} item={item}>
+          {name}
+        </ItemTableThStyle>
+      ))}
+    </tr>
+  </ItemTableHeadStyle>
+);
+
+Problems.TableBody = ({ solvedProblems }: SolvedProblemProps) => {
   return (
-    <>
-      <Problems.ItemList />
-      <Pagination
-        total={solvedProblems.length}
-        limit={limit}
-        unit={5}
-        pageIdx={pageIdx}
-        setPageIdx={setPageIdx}
-      />
-    </>
+    <ItemTableBodyStyle>
+      {solvedProblems.map((problem, idx) => (
+        <Problems.TableCell key={uid(idx)} problem={problem} />
+      ))}
+    </ItemTableBodyStyle>
   );
 };
 
-Problems.ItemList = () => {
-  const headList = [
-    { item: 'id', name: '문제 번호' },
-    { item: 'title', name: '제목' },
-    { item: 'level', name: '난이도' },
-    { item: 'finished-count', name: '완료한 사람' },
-    { item: 'acceptance-rate', name: '정답률' },
-  ];
+// {
+//   "id": 76501,
+//   "title": "음양 더하기",
+//   "partTitle": "월간 코드 챌린지 시즌2",
+//   "level": 1,
+//   "finishedCount": 31170,
+//   "acceptanceRate": 82,
+//   "status": "solved"
+// }
+
+Problems.TableCell = ({ problem }: { problem: ProblemType }) => {
+  const arr = ['id', 'title', 'partTitle', 'level', 'finishedCount', 'acceptanceRate'];
 
   return (
-    <ItemTableStyle>
-      <ItemTableHeadStyle>
-        <tr>
-          {headList.map(({ item, name }, idx) => (
-            <ItemTableThStyle key={uid(idx)} item={item}>
-              {name}
-            </ItemTableThStyle>
-          ))}
-        </tr>
-      </ItemTableHeadStyle>
-    </ItemTableStyle>
+    <tr>
+      {arr.map((el, idx) => (
+        <ItemTableTdStyle item={el}>{problem[el]}</ItemTableTdStyle>
+      ))}
+    </tr>
   );
 };
-
-const ItemTableStyle = styled.table`
-  width: 100%;
-  table-layout: fixed;
-  border-collapse: collapse;
-  padding: 0 1rem;
-`;
-
-const ItemTableHeadStyle = styled.thead`
-  tr {
-    border-bottom: 0.0625rem solid rgb(215, 226, 235);
-  }
-`;
-
-const ItemTableThStyle = styled.th<{ item: string }>`
-  padding: 0.5625rem 0px;
-  text-align: center;
-  font-weight: 700;
-  line-height: 150%;
-  font-size: 1rem;
-  color: ${({ theme }) => theme.color.black};
-  font-family: 'Noto Sans KR', sans-serif;
-  font-weight: 500;
-  text-align: center;
-  ${({ item }) => {
-    if (item === 'id') {
-      return css`
-        width: 10rem;
-        text-align: center;
-      `;
-    }
-    if (item === 'level') {
-      return css`
-        width: 6rem;
-      `;
-    }
-    if (item === 'finished-count') {
-      return css`
-        text-align: right;
-        padding: 0.5625rem 0.75rem;
-        width: 8rem;
-      `;
-    }
-    if (item === 'acceptance-rate') {
-      return css`
-        text-align: right;
-        padding: 0.5625rem 0.75rem;
-        width: 6rem;
-      `;
-    }
-  }};
-`;
 
 const HeaderStyle = styled.div`
   display: flex;
@@ -218,4 +195,70 @@ const SortSelectedItemStyle = styled(SortItemStyle)<{ selected: boolean }>`
   &:hover {
     background-color: ${({ theme }) => theme.color.whiter};
   }
+`;
+
+const ItemTableStyle = styled.table`
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  padding: 0 1rem;
+`;
+
+const tableSectionCss = css`
+  tr {
+    border-bottom: 0.0625rem solid rgb(215, 226, 235);
+  }
+`;
+
+const tableItemCss = css<{ item: string }>`
+  padding: 0.5625rem 0px;
+  text-align: center;
+  font-weight: 700;
+  line-height: 150%;
+  font-size: 1rem;
+  color: ${({ theme }) => theme.color.black};
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  text-align: center;
+  ${({ item }) => {
+    if (item === 'id') {
+      return css`
+        width: 10rem;
+        text-align: center;
+      `;
+    }
+    if (item === 'level') {
+      return css`
+        width: 6rem;
+      `;
+    }
+    if (item === 'finished-count') {
+      return css`
+        text-align: right;
+        padding: 0.5625rem 0.75rem;
+        width: 8rem;
+      `;
+    }
+    if (item === 'acceptance-rate') {
+      return css`
+        text-align: right;
+        padding: 0.5625rem 0.75rem;
+        width: 6rem;
+      `;
+    }
+  }};
+`;
+
+const ItemTableHeadStyle = styled.thead`
+  ${tableSectionCss}
+`;
+const ItemTableBodyStyle = styled.tbody`
+  ${tableSectionCss}
+`;
+
+const ItemTableThStyle = styled.th<{ item: string }>`
+  ${tableItemCss}
+`;
+const ItemTableTdStyle = styled.td<{ item: string }>`
+  ${tableItemCss}
 `;
