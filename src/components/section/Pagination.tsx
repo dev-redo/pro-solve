@@ -1,41 +1,46 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { uid } from 'react-uid';
 
 interface PaginationProps {
   total: number;
   limit: number;
-  pageNum: number;
-  setPageNum: (page: number) => void;
+  unit: number;
+  pageIdx: number;
+  setPageIdx: (page: number) => void;
 }
 
-const Pagination = ({ total, limit, pageNum, setPageNum }: PaginationProps) => {
+const Pagination = ({ total, unit, limit, pageIdx, setPageIdx }: PaginationProps) => {
   const numPages = Math.ceil(total / limit);
+  const pageButtonList = getPaginationArray({
+    numPages,
+    pageIdx,
+    unit,
+  });
 
   return (
     <>
       <NavStyle>
         <ButtonStyle
-          onClick={() => setPageNum(pageNum - 1)}
-          disabled={pageNum === 1}
+          onClick={() => setPageIdx(pageIdx - 1)}
+          disabled={pageIdx === 0}
           aria-label="이전 페이지"
         >
           &lt;
         </ButtonStyle>
         <PageListStyle>
-          {[...new Array(numPages)].map((_, idx) => (
+          {pageButtonList.map((pageNum, idx) => (
             <ButtonStyle
               key={uid(idx + 1)}
-              onClick={() => setPageNum(idx + 1)}
-              aria-current={pageNum === idx + 1 ? 'page' : null}
-              primary
+              onClick={() => setPageIdx(pageNum - 1)}
+              aria-current={pageIdx + 1 === pageNum ? 'page' : null}
             >
-              {idx + 1}
+              {pageNum}
             </ButtonStyle>
           ))}
         </PageListStyle>
         <ButtonStyle
-          onClick={() => setPageNum(pageNum + 1)}
-          disabled={pageNum === numPages}
+          onClick={() => setPageIdx(pageIdx + 1)}
+          disabled={pageIdx === numPages - 1}
           aria-label="다음 페이지"
         >
           &gt;
@@ -46,6 +51,21 @@ const Pagination = ({ total, limit, pageNum, setPageNum }: PaginationProps) => {
 };
 
 export default Pagination;
+
+type PaginationArrayProps = {
+  numPages: number;
+  pageIdx: number;
+  unit: number;
+};
+
+const getPaginationArray = ({ numPages, pageIdx, unit }: PaginationArrayProps) => {
+  const pageButtonList = [...new Array(numPages)].map((_, idx) => idx + 1);
+
+  const weight = pageIdx % unit;
+  const initPage = pageIdx - weight;
+
+  return pageButtonList.slice(initPage, initPage + unit);
+};
 
 const NavStyle = styled.nav`
   display: flex;

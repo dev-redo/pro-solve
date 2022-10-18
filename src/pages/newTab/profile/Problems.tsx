@@ -29,19 +29,12 @@ import {
 import { Children } from '../../../types/global';
 import Pagination from '../../../components/section/Pagination';
 
-type SolvedProblemProps = {
-  solvedProblems: SolvedProblemType;
-};
-export default function Problems({ solvedProblems }: SolvedProblemProps) {
+export default function Problems({ solvedProblems }: { solvedProblems: SolvedProblemType }) {
   return (
     <BoxStyle>
       <Problems.Header />
       <Problems.Sort />
-      <Problems.Pagination />
-      {/* <Problems.Content solvedProblems={solvedProblems}>
-        <Problems.ItemList />
-        <Problems.Pagination />
-      </Problems.Content> */}
+      <Problems.Content solvedProblems={solvedProblems} />
     </BoxStyle>
   );
 }
@@ -101,25 +94,22 @@ Problems.SortItem = ({ item }: { item: SelectNameType }) => {
 };
 
 // TODO: 페이지네이션 적용
-// Problems.Content = ({
-//   // children,
-//   solvedProblems,
-// }: SolvedProblemProps) => {
-//   const [limit, setLimit] = React.useState(10);
-//   const [page, setPage] = React.useState(1);
-//   const offset = (page - 1) * limit;
-
-//   return <>Hi</>;
-// };
-
-Problems.Pagination = () => {
-  const [posts, setPosts] = React.useState([...new Array(150).fill(0)]);
-  const [limit, setLimit] = React.useState(10);
-  const [pageNum, setPageNum] = React.useState(1);
-  const offset = (pageNum - 1) * limit;
+Problems.Content = ({ solvedProblems }: { solvedProblems: SolvedProblemType }) => {
+  const [posts, setPosts] = React.useState([...new Array(225).fill(0)]);
+  const [pageIdx, setPageIdx] = React.useState(0);
+  const limit = 10;
+  const offset = pageIdx * limit;
 
   return (
-    <Pagination total={posts.length} limit={limit} pageNum={pageNum} setPageNum={setPageNum} />
+    <>
+      <Pagination
+        total={posts.length}
+        limit={limit}
+        unit={5}
+        pageIdx={pageIdx}
+        setPageIdx={setPageIdx}
+      />
+    </>
   );
 };
 
