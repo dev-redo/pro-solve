@@ -71,6 +71,7 @@ const NavStyle = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 5rem;
 `;
 
 const PageListStyle = styled.span`

@@ -9,7 +9,7 @@ import '../../../styles/font.css';
 import { BoxStyle, BoldTextStyle } from '../../../styles/global';
 import { getPercentile } from '../../../utils/getPercentile';
 import { Children } from '../../../types/global';
-import { ContentHeaderStyle, ContentHeaderInfoStyle } from '../../../styles/global';
+import { ContentHeaderInfoStyle } from '../../../styles/global';
 
 interface StatisticsType {
   problemCnt: ProblemCntType;
@@ -32,7 +32,7 @@ export default function Statistics({ problemCnt, solvedLevelCnt, chartInfoList }
 Statistics.Header = ({ problemCnt }: { problemCnt: ProblemCntType }) => {
   const { allCnt, solvedCnt } = problemCnt;
   return (
-    <ContentHeaderStyle>
+    <>
       <ContentHeaderInfoStyle>
         <Chart />
         <span>난이도 분포</span>
@@ -43,7 +43,7 @@ Statistics.Header = ({ problemCnt }: { problemCnt: ProblemCntType }) => {
         <BoldTextStyle>{solvedCnt}</BoldTextStyle>
         <span>문제 성공</span>
       </SolvedHeaderStyle>
-    </ContentHeaderStyle>
+    </>
   );
 };
 

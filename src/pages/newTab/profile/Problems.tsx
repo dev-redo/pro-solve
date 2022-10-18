@@ -1,31 +1,17 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { uid } from 'react-uid';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { levels, levelsColor } from '../../../constants/level';
-import { BoxStyle, BoldTextStyle } from '../../../styles/global';
-import { ContentHeaderStyle, ContentHeaderInfoStyle } from '../../../styles/global';
+import { BoxStyle } from '../../../styles/global';
+import { ContentHeaderInfoStyle } from '../../../styles/global';
 import Book from '../../../../assets/icons/Book.svg';
 import ArrowUp from '../../../../assets/icons/ArrowUp.svg';
 import ArrowDown from '../../../../assets/icons/ArrowDown.svg';
 import { sortOption } from '../../../store/profile';
 import { SORT_LIST, SORT_TYPE } from '../../../constants/profile';
 import '../../../styles/font.css';
-import {
-  ProblemType,
-  SolvedProblemType,
-  ProblemsCntType,
-  ProblemCntType,
-  DoughnutType,
-  LevelsInfoList,
-  ChartInfo,
-  ChartInfoList,
-  NavType,
-  SelectNameType,
-  SelectSortType,
-  SortType,
-  SortItemType,
-} from '../../../types/profile';
+import { SolvedProblemType, SelectNameType, SortType, SortItemType } from '../../../types/profile';
 import { Children } from '../../../types/global';
 import Pagination from '../../../components/section/Pagination';
 
@@ -93,17 +79,16 @@ Problems.SortItem = ({ item }: { item: SelectNameType }) => {
   );
 };
 
-// TODO: 페이지네이션 적용
 Problems.Content = ({ solvedProblems }: { solvedProblems: SolvedProblemType }) => {
-  const [posts, setPosts] = React.useState([...new Array(225).fill(0)]);
   const [pageIdx, setPageIdx] = React.useState(0);
   const limit = 10;
   const offset = pageIdx * limit;
 
   return (
     <>
+      <Problems.ItemList />
       <Pagination
-        total={posts.length}
+        total={solvedProblems.length}
         limit={limit}
         unit={5}
         pageIdx={pageIdx}
@@ -113,8 +98,85 @@ Problems.Content = ({ solvedProblems }: { solvedProblems: SolvedProblemType }) =
   );
 };
 
-const HeaderStyle = styled(ContentHeaderStyle)`
+Problems.ItemList = () => {
+  const headList = [
+    { item: 'id', name: '문제 번호' },
+    { item: 'title', name: '제목' },
+    { item: 'level', name: '난이도' },
+    { item: 'finished-count', name: '완료한 사람' },
+    { item: 'acceptance-rate', name: '정답률' },
+  ];
+
+  return (
+    <ItemTableStyle>
+      <ItemTableHeadStyle>
+        <tr>
+          {headList.map(({ item, name }, idx) => (
+            <ItemTableThStyle key={uid(idx)} item={item}>
+              {name}
+            </ItemTableThStyle>
+          ))}
+        </tr>
+      </ItemTableHeadStyle>
+    </ItemTableStyle>
+  );
+};
+
+const ItemTableStyle = styled.table`
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  padding: 0 1rem;
+`;
+
+const ItemTableHeadStyle = styled.thead`
+  tr {
+    border-bottom: 0.0625rem solid rgb(215, 226, 235);
+  }
+`;
+
+const ItemTableThStyle = styled.th<{ item: string }>`
+  padding: 0.5625rem 0px;
+  text-align: center;
+  font-weight: 700;
+  line-height: 150%;
+  font-size: 1rem;
+  color: ${({ theme }) => theme.color.black};
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  text-align: center;
+  ${({ item }) => {
+    if (item === 'id') {
+      return css`
+        width: 10rem;
+        text-align: center;
+      `;
+    }
+    if (item === 'level') {
+      return css`
+        width: 6rem;
+      `;
+    }
+    if (item === 'finished-count') {
+      return css`
+        text-align: right;
+        padding: 0.5625rem 0.75rem;
+        width: 8rem;
+      `;
+    }
+    if (item === 'acceptance-rate') {
+      return css`
+        text-align: right;
+        padding: 0.5625rem 0.75rem;
+        width: 6rem;
+      `;
+    }
+  }};
+`;
+
+const HeaderStyle = styled.div`
   display: flex;
+  align-items: center;
   gap: 0.5rem;
 `;
 
@@ -124,9 +186,9 @@ const SortStyle = styled.div`
   vertical-align: middle;
   display: flex;
   align-items: center;
-  margin: 0 1rem;
-  font-family: 'Noto Sans KR';
+  font-family: 'Noto Sans KR', sans-serif;
   font-weight: 500;
+  margin: 1rem 0;
 `;
 
 const SortItemStyle = styled.span`

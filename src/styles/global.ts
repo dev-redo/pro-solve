@@ -98,11 +98,8 @@ const BoxStyle = styled.div`
   box-shadow: 0 0 #0000, 0 0 #0000, 0px 1px 3px rgba(0, 0, 0, 0.04),
     0px 6px 16px rgba(0, 0, 0, 0.12);
   border-radius: 0.5rem;
-`;
-
-const ContentHeaderStyle = styled.div`
-  font-family: 'Noto Sans KR';
   padding: 1rem;
+  font-family: 'Noto Sans KR', sans-serif;
 `;
 
 const ContentHeaderInfoStyle = styled.div`
@@ -121,6 +118,5 @@ export {
   BoldTextStyle,
   BoxStyle,
   LoaderStyle,
-  ContentHeaderStyle,
   ContentHeaderInfoStyle,
 };
