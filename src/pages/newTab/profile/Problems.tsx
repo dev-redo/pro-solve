@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { uid } from 'react-uid';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -25,12 +26,22 @@ import {
   SortType,
   SortItemType,
 } from '../../../types/profile';
+import { Children } from '../../../types/global';
+import Pagination from '../../../components/section/Pagination';
 
-export default function Problems() {
+type SolvedProblemProps = {
+  solvedProblems: SolvedProblemType;
+};
+export default function Problems({ solvedProblems }: SolvedProblemProps) {
   return (
     <BoxStyle>
       <Problems.Header />
       <Problems.Sort />
+      <Problems.Pagination />
+      {/* <Problems.Content solvedProblems={solvedProblems}>
+        <Problems.ItemList />
+        <Problems.Pagination />
+      </Problems.Content> */}
     </BoxStyle>
   );
 }
@@ -89,6 +100,29 @@ Problems.SortItem = ({ item }: { item: SelectNameType }) => {
   );
 };
 
+// TODO: 페이지네이션 적용
+// Problems.Content = ({
+//   // children,
+//   solvedProblems,
+// }: SolvedProblemProps) => {
+//   const [limit, setLimit] = React.useState(10);
+//   const [page, setPage] = React.useState(1);
+//   const offset = (page - 1) * limit;
+
+//   return <>Hi</>;
+// };
+
+Problems.Pagination = () => {
+  const [posts, setPosts] = React.useState([...new Array(150).fill(0)]);
+  const [limit, setLimit] = React.useState(10);
+  const [pageNum, setPageNum] = React.useState(1);
+  const offset = (pageNum - 1) * limit;
+
+  return (
+    <Pagination total={posts.length} limit={limit} pageNum={pageNum} setPageNum={setPageNum} />
+  );
+};
+
 const HeaderStyle = styled(ContentHeaderStyle)`
   display: flex;
   gap: 0.5rem;
@@ -101,7 +135,7 @@ const SortStyle = styled.div`
   display: flex;
   align-items: center;
   margin: 0 1rem;
-  font-family: 'NotoSansCJKkr';
+  font-family: 'Noto Sans KR';
   font-weight: 500;
 `;
 

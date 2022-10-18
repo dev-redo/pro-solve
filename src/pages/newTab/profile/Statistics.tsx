@@ -20,16 +20,16 @@ interface StatisticsType {
 export default function Statistics({ problemCnt, solvedLevelCnt, chartInfoList }: StatisticsType) {
   return (
     <BoxStyle>
-      <Statistics.StatisticsHeader problemCnt={problemCnt} />
-      <Statistics.StatisticsContent>
+      <Statistics.Header problemCnt={problemCnt} />
+      <Statistics.Content>
         <Statistics.Doughnut problemCnt={problemCnt} solvedLevelCnt={solvedLevelCnt} />
         <Statistics.Table chartInfoList={chartInfoList} />
-      </Statistics.StatisticsContent>
+      </Statistics.Content>
     </BoxStyle>
   );
 }
 
-Statistics.StatisticsHeader = ({ problemCnt }: { problemCnt: ProblemCntType }) => {
+Statistics.Header = ({ problemCnt }: { problemCnt: ProblemCntType }) => {
   const { allCnt, solvedCnt } = problemCnt;
   return (
     <ContentHeaderStyle>
@@ -47,7 +47,7 @@ Statistics.StatisticsHeader = ({ problemCnt }: { problemCnt: ProblemCntType }) =
   );
 };
 
-Statistics.StatisticsContent = ({ children }: Children) => (
+Statistics.Content = ({ children }: Children) => (
   <StatisticsContentStyle>{children}</StatisticsContentStyle>
 );
 
@@ -180,7 +180,7 @@ const TableHeadStyle = styled.thead`
   }
   td {
     font-size: 1rem;
-    font-family: 'NotoSansCJKkr';
+    font-family: 'Noto Sans KR';
     font-weight: 500;
     text-align: center;
     border-bottom: 1px solid #dddfe0;
@@ -190,7 +190,7 @@ const TableHeadStyle = styled.thead`
 
 const TableBodyStyle = styled.tbody`
   display: table-row-group;
-  font-family: 'NotoSansCJKkr';
+  font-family: 'Noto Sans KR';
   font-size: 1.1rem;
   font-weight: 400;
   color: ${({ theme }) => theme.color.darkGrey};
@@ -219,7 +219,7 @@ const CenterTextStyle = styled.div`
   justify-content: center;
   align-items: center;
   line-height: 1.5;
-  font-family: 'NotoSansCJKkr';
+  font-family: 'Noto Sans KR';
   position: absolute;
   top: 57%;
   left: 50%;
