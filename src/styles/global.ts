@@ -63,7 +63,7 @@ const GNBStyle = styled.div`
   padding: 0.375rem 1rem;
   background-color: ${({ theme }) => theme.color.jetBlack};
   color: ${({ theme }) => theme.color.greyBlue};
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   & > img {
     width: 1.5rem;
@@ -101,7 +101,7 @@ const BoxStyle = styled.div`
 `;
 
 const ContentHeaderStyle = styled.div`
-  font-family: 'NotoSansCJKkr';
+  font-family: 'Noto Sans KR';
   padding: 1rem;
 `;
 

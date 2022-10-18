@@ -47,7 +47,7 @@ const ProfileTabLayout = () => {
             chartInfoList={chartInfoList}
           />
         )}
-        {selectedItem === 'PROBLEM' && <Problems />}
+        {selectedItem === 'PROBLEM' && <Problems solvedProblems={solvedProblems} />}
       </ProfileTab.Content>
       <ProfileTab.Footer />
     </ProfileTab>

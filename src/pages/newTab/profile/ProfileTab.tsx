@@ -85,7 +85,7 @@ const NavStyle = styled.nav`
   border-bottom: 2px solid ${({ theme }) => theme.color.grey};
   padding: 0 2rem;
   margin-top: 0.5rem;
-  font-family: 'NotoSansCJKkr';
+  font-family: 'Noto Sans KR';
   font-size: 1.1rem;
   cursor: pointer;
 `;
