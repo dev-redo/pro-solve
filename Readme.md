@@ -6,7 +6,6 @@
 ![Chrome Web Store Ratings](https://img.shields.io/chrome-web-store/rating/pjffalefhahlellpckbbiehmbljjhihl)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-
 [![Chrome Web Store](https://storage.googleapis.com/chrome-gcs-uploader.appspot.com/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/UV4C4ybeBTsZt43U4xis.png)](https://chrome.google.com/webstore/detail/%ED%94%84%EB%A1%9C%EC%86%94%EB%B8%8Cpro-solve/pjffalefhahlellpckbbiehmbljjhihl/related?hl=ko)
 
 ## ✨ 지원 기능
@@ -18,6 +17,26 @@
 | <img src="https://imgur.com/ee3Gjqs.png"> | <img src="https://imgur.com/5BQfmJh.png"> |
 |               **풀이 저장**               |             **풀이 클립보드**             |
 | <img src="https://imgur.com/pUFGw2U.png"> | <img src="https://imgur.com/DXv3A8N.png"> |
+
+<br />
+
+## 🎞 동작 화면
+
+https://user-images.githubusercontent.com/69149030/196756245-4cccaffe-3f1b-44f9-9309-1585142cb75f.mp4
+
+<p align="center">성공한 문제 차트 & 표</p>
+
+<br />
+
+https://user-images.githubusercontent.com/69149030/194714332-ec61e267-1d86-42e3-89ee-93de7ef969ad.mp4
+
+<p align="center">제출한 풀이 저장 및 보여주기</p>
+
+<br />
+
+https://user-images.githubusercontent.com/69149030/196757224-1fd436c6-cef2-45b7-931f-d216c19c3ae3.mp4
+
+<p align="center">다른 사람 풀이 페이지의 코드 클립보드</p>
 
 <br />
 
@@ -59,26 +78,6 @@ Chart는 유저가 각 레벨 문제들을 전체 중 몇 개(퍼센트) 풀었�
 <br />
 
 코드가 길 시 드래그를 하며 복사하기 힘들어 클립보드 기능을 구현하였습니다.
-
-<br />
-
-## 🎞 동작 화면
-
-https://user-images.githubusercontent.com/69149030/196756245-4cccaffe-3f1b-44f9-9309-1585142cb75f.mp4
-
-<p align="center">성공한 문제 차트 & 표</p>
-
-<br />
-
-https://user-images.githubusercontent.com/69149030/194714332-ec61e267-1d86-42e3-89ee-93de7ef969ad.mp4
-
-<p align="center">제출한 풀이 저장 및 보여주기</p>
-
-<br />
-
-https://user-images.githubusercontent.com/69149030/196757224-1fd436c6-cef2-45b7-931f-d216c19c3ae3.mp4
-
-<p align="center">다른 사람 풀이 페이지의 코드 클립보드</p>
 
 <br />
 
