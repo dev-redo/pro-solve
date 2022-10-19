@@ -6,10 +6,10 @@ interface PaginationProps {
   limit: number;
   unit: number;
   pageIdx: number;
-  setPageIdx: (page: number) => void;
+  onChangePageIdx: (page: number) => void;
 }
 
-const Pagination = ({ total, unit, limit, pageIdx, setPageIdx }: PaginationProps) => {
+const Pagination = ({ total, unit, limit, pageIdx, onChangePageIdx }: PaginationProps) => {
   const numPages = Math.ceil(total / limit);
   const pageButtonList = getPaginationArray({
     numPages,
@@ -21,7 +21,7 @@ const Pagination = ({ total, unit, limit, pageIdx, setPageIdx }: PaginationProps
     <>
       <NavStyle>
         <ButtonStyle
-          onClick={() => setPageIdx(pageIdx - 1)}
+          onClick={() => onChangePageIdx(pageIdx - 1)}
           disabled={pageIdx === 0}
           aria-label="이전 페이지"
         >
@@ -31,7 +31,7 @@ const Pagination = ({ total, unit, limit, pageIdx, setPageIdx }: PaginationProps
           {pageButtonList.map((pageNum, idx) => (
             <ButtonStyle
               key={uid(idx + 1)}
-              onClick={() => setPageIdx(pageNum - 1)}
+              onClick={() => onChangePageIdx(pageNum - 1)}
               aria-current={pageIdx + 1 === pageNum ? 'page' : null}
             >
               {pageNum}
@@ -39,7 +39,7 @@ const Pagination = ({ total, unit, limit, pageIdx, setPageIdx }: PaginationProps
           ))}
         </PageListStyle>
         <ButtonStyle
-          onClick={() => setPageIdx(pageIdx + 1)}
+          onClick={() => onChangePageIdx(pageIdx + 1)}
           disabled={pageIdx === numPages - 1}
           aria-label="다음 페이지"
         >

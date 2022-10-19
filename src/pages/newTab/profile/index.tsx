@@ -5,11 +5,26 @@ import { theme } from '../../../styles/theme';
 import GlobalStyles from '../../../styles/global';
 import { fetchRequest } from '../../../utils/fetchRequest';
 import { ALL_PROBLEM_URL } from '../../../constants/url';
-import { ProblemType, SolvedProblemType, ProblemsCntType } from '../../../types/profile';
+import {
+  ProblemType,
+  SolvedProblemType,
+  SolvedProblemProps,
+  ProblemsCntType,
+  ProblemCntType,
+  DoughnutType,
+  LevelsInfoList,
+  ChartInfo,
+  ChartInfoList,
+  NavType,
+  SelectNameType,
+  SelectSortType,
+  SortType,
+  SortItemType,
+} from '../../../types/profile';
 import { levels, levelsColor } from '../../../constants/level';
 import ProfileTab from './ProfileTab';
 import { RecoilRoot, useRecoilValue } from 'recoil';
-import { navOption } from '../../../store/profile';
+import { navOption, sortOption } from '../../../store/profile';
 import Statistics from './Statistics';
 import Problems from './Problems';
 
@@ -35,6 +50,7 @@ const ProfileTabLayout = () => {
   const problemCnt = getProblemsCnt({ allProblems, solvedProblems });
   const solvedLevelCnt = getProblemsLevelList(solvedProblems);
   const chartInfoList = getChartInfoList({ allProblems, solvedProblems });
+  const filteredSolvedProblems = getFilteredSolvedProblems({ solvedProblems });
   return (
     <ProfileTab>
       <ProfileTab.Header />
@@ -47,7 +63,7 @@ const ProfileTabLayout = () => {
             chartInfoList={chartInfoList}
           />
         )}
-        {selectedItem === 'PROBLEM' && <Problems solvedProblems={solvedProblems} />}
+        {selectedItem === 'PROBLEM' && <Problems solvedProblems={filteredSolvedProblems} />}
       </ProfileTab.Content>
       <ProfileTab.Footer />
     </ProfileTab>
@@ -97,6 +113,29 @@ const getChartInfoList = ({ allProblems, solvedProblems }: ProblemsCntType) => {
     solvedCnt: solvedCnt[idx],
   }));
 };
+
+const getFilteredSolvedProblems = ({ solvedProblems }: SolvedProblemProps) => {
+  const sortType = useRecoilValue(sortOption);
+  const { type, isAscending } = sortType as SortType;
+
+  if (type !== undefined && isAscending !== undefined) {
+    return filterSolvedProblems({ solvedProblems, type, isAscending });
+  }
+
+  return solvedProblems;
+};
+
+type FilterProps = {
+  solvedProblems: SolvedProblemType;
+  type: SelectNameType;
+  isAscending: boolean;
+};
+
+const filterSolvedProblems = ({ solvedProblems, type, isAscending }: FilterProps) =>
+  solvedProblems.sort((prev, curr) => {
+    if (isAscending) return prev[type] - curr[type];
+    return curr[type] - prev[type];
+  });
 
 const root = document.createElement('div');
 document.body.appendChild(root);

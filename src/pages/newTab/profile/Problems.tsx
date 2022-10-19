@@ -13,10 +13,12 @@ import { PROBLEM_LIST, SORT_LIST, SORT_TYPE } from '../../../constants/profile';
 import '../../../styles/font.css';
 import {
   ProblemType,
+  SolvedProblemType,
   SolvedProblemProps,
   SelectNameType,
   SortType,
   SortItemType,
+  ProblemTableProps,
 } from '../../../types/profile';
 import Pagination from '../../../components/section/Pagination';
 import { Children } from '../../../types/global';
@@ -29,15 +31,15 @@ export default function Problems({ solvedProblems }: SolvedProblemProps) {
   return (
     <BoxStyle>
       <Problems.Header />
-      <Problems.Sort />
+      <Problems.Sort onChangePageIdx={setPageIdx} />
       <Problems.Content>
-        <Problems.ItemList solvedProblems={solvedProblems} />
+        <Problems.ItemList start={offset} end={offset + limit} solvedProblems={solvedProblems} />
         <Pagination
           total={solvedProblems.length}
           limit={limit}
           unit={5}
           pageIdx={pageIdx}
-          setPageIdx={setPageIdx}
+          onChangePageIdx={setPageIdx}
         />
       </Problems.Content>
     </BoxStyle>
@@ -53,29 +55,35 @@ Problems.Header = () => {
   );
 };
 
-Problems.Sort = () => (
+Problems.Sort = ({ onChangePageIdx }: { onChangePageIdx: (page: number) => void }) => (
   <SortStyle>
     <SortTextItemStyle>정렬 —</SortTextItemStyle>
     {SORT_LIST.map((item, idx) => (
-      <Problems.SortItem key={uid(idx)} item={item} />
+      <Problems.SortItem key={uid(idx)} item={item} onChangePageIdx={onChangePageIdx} />
     ))}
   </SortStyle>
 );
 
-Problems.SortItem = ({ item }: { item: SelectNameType }) => {
+type SortItemProps = {
+  item: SelectNameType;
+  onChangePageIdx: (page: number) => void;
+};
+
+Problems.SortItem = ({ item, onChangePageIdx }: SortItemProps) => {
   const [sortType, setSortType] = useRecoilState(sortOption);
   const itemName = (SORT_TYPE as SortItemType)[item];
   const { type, isAscending } = sortType as SortType;
 
   const onChangeSortRule = () => {
     if (type === item) {
-      setSortType({ type, isAscending: !isAscending });
-      return;
+      onChangePageIdx(0);
+      return setSortType({ type, isAscending: !isAscending });
     }
 
+    onChangePageIdx(0);
     setSortType({
       type: item,
-      isAscending: false,
+      isAscending: true,
     });
   };
 
@@ -100,10 +108,10 @@ Problems.Content = ({ children }: Children) => {
   return <>{children}</>;
 };
 
-Problems.ItemList = ({ solvedProblems }: SolvedProblemProps) => (
+Problems.ItemList = ({ start, end, solvedProblems }: ProblemTableProps) => (
   <ItemTableStyle>
     <Problems.TableHead />
-    <Problems.TableBody solvedProblems={solvedProblems} />
+    <Problems.TableBody start={start} end={end} solvedProblems={solvedProblems} />
   </ItemTableStyle>
 );
 
@@ -119,10 +127,11 @@ Problems.TableHead = () => (
   </ItemTableHeadStyle>
 );
 
-Problems.TableBody = ({ solvedProblems }: SolvedProblemProps) => {
+Problems.TableBody = ({ start, end, solvedProblems }: ProblemTableProps) => {
+  const paginatedProblems = solvedProblems.slice(start, end);
   return (
     <ItemTableBodyStyle>
-      {solvedProblems.map((problem, idx) => (
+      {paginatedProblems.map((problem, idx) => (
         <Problems.TableCell key={uid(idx)} problem={problem} />
       ))}
     </ItemTableBodyStyle>
@@ -145,7 +154,9 @@ Problems.TableCell = ({ problem }: { problem: ProblemType }) => {
   return (
     <tr>
       {arr.map((el, idx) => (
-        <ItemTableTdStyle item={el}>{problem[el]}</ItemTableTdStyle>
+        <ItemTableTdStyle key={uid(idx)} item={el}>
+          {problem[el]}
+        </ItemTableTdStyle>
       ))}
     </tr>
   );
