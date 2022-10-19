@@ -60,9 +60,9 @@ type SelectNameType = 'level' | 'finishedCount' | 'acceptanceRate';
 type SelectSortType = boolean;
 
 type SortType = {
-  [key: string]: string | boolean | undefined;
-  type?: SelectNameType;
-  isAscending?: SelectSortType;
+  [key: string]: string | boolean;
+  type: SelectNameType;
+  isAscending: SelectSortType;
 };
 
 type SortItemType = {

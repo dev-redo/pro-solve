@@ -16,9 +16,8 @@ const SORT_TYPE = {
 const STATIST_HEAD = ['레벨', '푼 문제', '전체 문제', '백분위'];
 
 const PROBLEM_LIST = [
-  { item: 'id', name: '문제 번호' },
-  { item: 'title', name: '제목' },
   { item: 'level', name: '난이도' },
+  { item: 'title', name: '제목' },
   { item: 'finished-count', name: '완료한 사람' },
   { item: 'acceptance-rate', name: '정답률' },
 ];
