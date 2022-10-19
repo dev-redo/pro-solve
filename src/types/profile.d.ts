@@ -37,7 +37,7 @@ interface LevelsInfo {
 type LevelsInfoList = LevelsInfo[];
 
 interface ChartInfo {
-  level: string;
+  level: number;
   color: string;
   allCnt: number;
   solvedCnt: number;
@@ -60,7 +60,7 @@ type SelectNameType = 'level' | 'finishedCount' | 'acceptanceRate';
 type SelectSortType = boolean;
 
 type SortType = {
-  [key: string]: string | boolean;
+  [key: string]: string | boolean | undefined;
   type?: SelectNameType;
   isAscending?: SelectSortType;
 };
@@ -70,6 +70,12 @@ type SortItemType = {
   level: string;
   finishedCount: string;
   acceptanceRate: string;
+};
+
+type ProblemTableProps = {
+  start: number;
+  end: number;
+  solvedProblems: SolvedProblemType;
 };
 
 export {
@@ -87,4 +93,5 @@ export {
   SelectSortType,
   SortType,
   SortItemType,
+  ProblemTableProps,
 };

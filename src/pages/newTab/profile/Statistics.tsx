@@ -53,12 +53,13 @@ Statistics.Content = ({ children }: Children) => (
 );
 
 Statistics.Doughnut = ({ problemCnt, solvedLevelCnt }: DoughnutType) => {
+  const levelsName = levels.map(level => `Lv. ${level}`);
   const options = { maintainAspectRatio: false, responsive: false };
   const data = {
-    labels: levels,
+    labels: levelsName,
     datasets: [
       {
-        labels: levels,
+        labels: levelsName,
         data: solvedLevelCnt,
         backgroundColor: levelsColor,
         fill: true,
@@ -122,7 +123,7 @@ Statistics.TableCell = ({ chart }: { chart: ChartInfo }) => {
   return (
     <TableCellStyle color={color}>
       <td>
-        <b>{level}</b>
+        <b>Lv. {level}</b>
       </td>
       <td>
         <span>{solvedCnt}</span>
