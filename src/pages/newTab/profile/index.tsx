@@ -10,16 +10,8 @@ import {
   SolvedProblemType,
   SolvedProblemProps,
   ProblemsCntType,
-  ProblemCntType,
-  DoughnutType,
-  LevelsInfoList,
-  ChartInfo,
-  ChartInfoList,
-  NavType,
   SelectNameType,
-  SelectSortType,
   SortType,
-  SortItemType,
 } from '../../../types/profile';
 import { levels, levelsColor } from '../../../constants/level';
 import ProfileTab from './ProfileTab';
@@ -100,8 +92,6 @@ const getProblemsLevelList: LevelListFunc = (problems: SolvedProblemType) =>
     return prev;
   }, new Array(6).fill(0));
 
-const getLevelsInfoList = () => levels.map((level, idx) => ({ level, color: levelsColor[idx] }));
-
 const getChartInfoList = ({ allProblems, solvedProblems }: ProblemsCntType) => {
   const problemsCnt = getProblemsLevelList(allProblems);
   const solvedCnt = getProblemsLevelList(solvedProblems);
@@ -118,11 +108,7 @@ const getFilteredSolvedProblems = ({ solvedProblems }: SolvedProblemProps) => {
   const sortType = useRecoilValue(sortOption);
   const { type, isAscending } = sortType as SortType;
 
-  if (type !== undefined && isAscending !== undefined) {
-    return filterSolvedProblems({ solvedProblems, type, isAscending });
-  }
-
-  return solvedProblems;
+  return filterSolvedProblems({ solvedProblems, type, isAscending });
 };
 
 type FilterProps = {
@@ -138,6 +124,10 @@ const filterSolvedProblems = ({ solvedProblems, type, isAscending }: FilterProps
   });
 
 const root = document.createElement('div');
+root.style.cssText = `
+  background-color: ${theme.color.whiter};
+  height: 100vh;
+`;
 document.body.appendChild(root);
 ReactDOM.createRoot(root as HTMLElement).render(
   <React.StrictMode>

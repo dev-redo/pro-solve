@@ -98,7 +98,7 @@ const BoxStyle = styled.div`
   box-shadow: 0 0 #0000, 0 0 #0000, 0px 1px 3px rgba(0, 0, 0, 0.04),
     0px 6px 16px rgba(0, 0, 0, 0.12);
   border-radius: 0.5rem;
-  padding: 1rem;
+  padding: 1.5rem;
   font-family: 'Noto Sans KR', sans-serif;
 `;
 

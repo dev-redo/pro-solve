@@ -8,5 +8,8 @@ export const navOption = atom<string>({
 
 export const sortOption = atom<SortType>({
   key: 'Nav/Sort',
-  default: {},
+  default: {
+    type: 'level',
+    isAscending: true,
+  },
 });

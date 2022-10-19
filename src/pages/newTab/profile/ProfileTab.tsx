@@ -2,16 +2,7 @@ import styled from 'styled-components';
 import { uid } from 'react-uid';
 import LogoWhite from '../../../../assets/images/logo-white.png';
 import 'chart.js/auto';
-import {
-  ProblemType,
-  SolvedProblemType,
-  ProblemsCntType,
-  ProblemCntType,
-  DoughnutType,
-  ChartInfo,
-  ChartInfoList,
-  NavType,
-} from '../../../types/profile';
+import { NavType } from '../../../types/profile';
 import '../../../styles/font.css';
 import { GNBStyle } from '../../../styles/global';
 import { NAV_LIST, NAV_TYPE } from '../../../constants/profile';
@@ -25,26 +16,22 @@ export default function ProfileTab({ children }: Children) {
   return <ContainerStyle>{children}</ContainerStyle>;
 }
 
-ProfileTab.Header = () => {
-  return (
-    <GNBStyle>
-      <img src={LogoWhite} />
-      <div>
-        <span>성공한 문제 정보</span>
-      </div>
-    </GNBStyle>
-  );
-};
+ProfileTab.Header = () => (
+  <GNBStyle>
+    <img src={LogoWhite} />
+    <div>
+      <span>성공한 문제 정보</span>
+    </div>
+  </GNBStyle>
+);
 
-ProfileTab.Nav = () => {
-  return (
-    <NavStyle>
-      {NAV_LIST.map((item, idx) => (
-        <ProfileTab.NavItem key={uid(idx)} item={item} />
-      ))}
-    </NavStyle>
-  );
-};
+ProfileTab.Nav = () => (
+  <NavStyle>
+    {NAV_LIST.map((item, idx) => (
+      <ProfileTab.NavItem key={uid(idx)} item={item} />
+    ))}
+  </NavStyle>
+);
 
 ProfileTab.NavItem = ({ item }: { item: string }) => {
   const [selectedItem, setSelectedItem] = useRecoilState(navOption);
@@ -70,9 +57,7 @@ ProfileTab.Content = ({ children, isLoaded }: { children: React.ReactNode; isLoa
   return <>{children}</>;
 };
 
-ProfileTab.Footer = () => {
-  return <FooterStyle />;
-};
+ProfileTab.Footer = () => <FooterStyle />;
 
 const ContainerStyle = styled.div`
   background-color: ${({ theme }) => theme.color.whiter};

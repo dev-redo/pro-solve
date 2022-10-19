@@ -1,8 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { uid } from 'react-uid';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { levels, levelsColor } from '../../../constants/level';
+import { useRecoilState } from 'recoil';
 import { BoxStyle } from '../../../styles/global';
 import { ContentHeaderInfoStyle } from '../../../styles/global';
 import Book from '../../../../assets/icons/Book.svg';
@@ -13,15 +12,17 @@ import { PROBLEM_LIST, SORT_LIST, SORT_TYPE } from '../../../constants/profile';
 import '../../../styles/font.css';
 import {
   ProblemType,
-  SolvedProblemType,
   SolvedProblemProps,
   SelectNameType,
   SortType,
   SortItemType,
   ProblemTableProps,
+  SolvedProblemType,
 } from '../../../types/profile';
 import Pagination from '../../../components/section/Pagination';
-import { Children } from '../../../types/global';
+import { levelsColor } from '../../../constants/level';
+import { SOLVING_PROBLEM_URL as BASE_URL } from '../../../constants/url';
+import NoContent from '../../../../assets/images/noContent.png';
 
 export default function Problems({ solvedProblems }: SolvedProblemProps) {
   const [pageIdx, setPageIdx] = React.useState(0);
@@ -32,7 +33,7 @@ export default function Problems({ solvedProblems }: SolvedProblemProps) {
     <BoxStyle>
       <Problems.Header />
       <Problems.Sort onChangePageIdx={setPageIdx} />
-      <Problems.Content>
+      <Problems.Content solvedProblems={solvedProblems}>
         <Problems.ItemList start={offset} end={offset + limit} solvedProblems={solvedProblems} />
         <Pagination
           total={solvedProblems.length}
@@ -104,16 +105,32 @@ Problems.SortItem = ({ item, onChangePageIdx }: SortItemProps) => {
   );
 };
 
-Problems.Content = ({ children }: Children) => {
+type ContentProps = {
+  children: JSX.Element | JSX.Element[];
+  solvedProblems: SolvedProblemType;
+};
+
+Problems.Content = ({ children, solvedProblems }: ContentProps) => {
+  if (solvedProblems.length === 0) {
+    return (
+      <NoContentStyle>
+        <img src={NoContent} />
+        <span>아직 성공한 풀이가 없습니다.</span>
+      </NoContentStyle>
+    );
+  }
+
   return <>{children}</>;
 };
 
-Problems.ItemList = ({ start, end, solvedProblems }: ProblemTableProps) => (
-  <ItemTableStyle>
-    <Problems.TableHead />
-    <Problems.TableBody start={start} end={end} solvedProblems={solvedProblems} />
-  </ItemTableStyle>
-);
+Problems.ItemList = ({ start, end, solvedProblems }: ProblemTableProps) => {
+  return (
+    <ItemTableStyle>
+      <Problems.TableHead />
+      <Problems.TableBody start={start} end={end} solvedProblems={solvedProblems} />
+    </ItemTableStyle>
+  );
+};
 
 Problems.TableHead = () => (
   <ItemTableHeadStyle>
@@ -138,26 +155,24 @@ Problems.TableBody = ({ start, end, solvedProblems }: ProblemTableProps) => {
   );
 };
 
-// {
-//   "id": 76501,
-//   "title": "음양 더하기",
-//   "partTitle": "월간 코드 챌린지 시즌2",
-//   "level": 1,
-//   "finishedCount": 31170,
-//   "acceptanceRate": 82,
-//   "status": "solved"
-// }
-
 Problems.TableCell = ({ problem }: { problem: ProblemType }) => {
-  const arr = ['id', 'title', 'partTitle', 'level', 'finishedCount', 'acceptanceRate'];
+  const { id, title, partTitle, level, finishedCount, acceptanceRate } = problem;
+  const levelColor = levelsColor[level];
+  const problemUrl = BASE_URL + id;
 
   return (
     <tr>
-      {arr.map((el, idx) => (
-        <ItemTableTdStyle key={uid(idx)} item={el}>
-          {problem[el]}
-        </ItemTableTdStyle>
-      ))}
+      <ItemTableTdStyle item="level" levelColor={levelColor}>
+        Lv. {level}
+      </ItemTableTdStyle>
+      <ItemTableTdStyle item="title">
+        <a href={problemUrl} target="_blank">
+          <span>{title}</span>
+          <small>{partTitle}</small>
+        </a>
+      </ItemTableTdStyle>
+      <ItemTableTdStyle item="finishedCount">{finishedCount}명</ItemTableTdStyle>
+      <ItemTableTdStyle item="acceptanceRate">{acceptanceRate}%</ItemTableTdStyle>
     </tr>
   );
 };
@@ -208,6 +223,20 @@ const SortSelectedItemStyle = styled(SortItemStyle)<{ selected: boolean }>`
   }
 `;
 
+const NoContentStyle = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0 2rem 0;
+  flex-direction: column;
+  gap: 1rem;
+  font-family: 'Noto Sans KR', sans-serif;
+  img {
+    width: 5rem;
+  }
+`;
+
 const ItemTableStyle = styled.table`
   width: 100%;
   table-layout: fixed;
@@ -220,56 +249,100 @@ const tableSectionCss = css`
     border-bottom: 0.0625rem solid rgb(215, 226, 235);
   }
 `;
+const ItemTableHeadStyle = styled.thead`
+  ${tableSectionCss}
+`;
+const ItemTableBodyStyle = styled.tbody`
+  ${tableSectionCss}
+  tr:hover {
+    background-color: #f9fafc;
+  }
+`;
 
-const tableItemCss = css<{ item: string }>`
+const tableItemCss = css`
   padding: 0.5625rem 0px;
   text-align: center;
   font-weight: 700;
   line-height: 150%;
   font-size: 1rem;
   color: ${({ theme }) => theme.color.black};
-  font-family: 'Noto Sans KR', sans-serif;
   font-weight: 500;
   text-align: center;
+`;
+
+const ItemTableThStyle = styled.th<{ item: string }>`
+  ${tableItemCss}
+  font-family: 'Noto Sans KR', sans-serif;
   ${({ item }) => {
-    if (item === 'id') {
-      return css`
-        width: 10rem;
-        text-align: center;
-      `;
-    }
     if (item === 'level') {
       return css`
         width: 6rem;
+        text-align: center;
       `;
     }
     if (item === 'finished-count') {
       return css`
         text-align: right;
-        padding: 0.5625rem 0.75rem;
         width: 8rem;
       `;
     }
     if (item === 'acceptance-rate') {
       return css`
         text-align: right;
-        padding: 0.5625rem 0.75rem;
-        width: 6rem;
+        width: 8rem;
+        transform: translate(-10px, 0px);
       `;
     }
   }};
 `;
 
-const ItemTableHeadStyle = styled.thead`
-  ${tableSectionCss}
-`;
-const ItemTableBodyStyle = styled.tbody`
-  ${tableSectionCss}
-`;
-
-const ItemTableThStyle = styled.th<{ item: string }>`
+const ItemTableTdStyle = styled.td<{ item: string; levelColor?: string }>`
   ${tableItemCss}
-`;
-const ItemTableTdStyle = styled.td<{ item: string }>`
-  ${tableItemCss}
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  vertical-align: middle;
+  ${({ item, levelColor }) => {
+    if (item === 'level') {
+      return css`
+        color: ${levelColor};
+        font-weight: 600;
+      `;
+    }
+    if (item === 'title') {
+      return css`
+        a {
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        small {
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin-top: 0.0625rem;
+          font-size: 0.75rem;
+          color: rgb(120, 144, 160);
+          line-height: 150%;
+        }
+      `;
+    }
+    if (item === 'finishedCount') {
+      return css`
+        font-size: 0.875rem;
+        color: rgb(38, 55, 71);
+        text-align: right;
+      `;
+    }
+    if (item === 'acceptanceRate') {
+      return css`
+        font-size: 0.875rem;
+        color: rgb(38, 55, 71);
+        text-align: right;
+        transform: translate(-10px, 0px);
+      `;
+    }
+  }}
 `;

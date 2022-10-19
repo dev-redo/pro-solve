@@ -4,4 +4,6 @@ const ALL_PROBLEM_URL =
 const PROBLEM_URL =
   'https://school.programmers.co.kr/api/v1/school/challenges/?statuses[]=solved&page=';
 
-export { ALL_PROBLEM_URL, PROBLEM_URL };
+const SOLVING_PROBLEM_URL = 'https://school.programmers.co.kr/learn/courses/30/lessons/';
+
+export { ALL_PROBLEM_URL, PROBLEM_URL, SOLVING_PROBLEM_URL };
