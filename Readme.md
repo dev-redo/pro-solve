@@ -4,6 +4,7 @@
 ![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/pjffalefhahlellpckbbiehmbljjhihl?label=users%40chrome)
 ![Chrome Web Store Rating Count](https://img.shields.io/chrome-web-store/rating-count/pjffalefhahlellpckbbiehmbljjhihl)
 ![Chrome Web Store Ratings](https://img.shields.io/chrome-web-store/rating/pjffalefhahlellpckbbiehmbljjhihl)
+[![sync-problems](https://github.com/dev-redo/programmers-problems/actions/workflows/sync-problems.yaml/badge.svg)](https://github.com/dev-redo/programmers-problems/actions/workflows/sync-problems.yaml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [![Chrome Web Store](https://storage.googleapis.com/chrome-gcs-uploader.appspot.com/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/UV4C4ybeBTsZt43U4xis.png)](https://chrome.google.com/webstore/detail/%ED%94%84%EB%A1%9C%EC%86%94%EB%B8%8Cpro-solve/pjffalefhahlellpckbbiehmbljjhihl/related?hl=ko)
@@ -98,6 +99,7 @@ Chart는 유저가 각 레벨 문제들을 전체 중 몇 개(퍼센트) 풀었�
 
 <br />
 
-## 📜 문서
+## 📜 링크 & 문서
 
-- [개발 시 경험한 Troble Shooting](https://github.com/dev-redo/pro-solve/blob/main/md/TroubleShooting.md)
+- [전체 문제 저장소](https://github.com/dev-redo/programmers-problems)
+- [개발 시 경험한 Troble Shooting](https://github.com/dev-redo/pro-solve/blob/main/md/TROUBLE_SHOOTING.md.md)

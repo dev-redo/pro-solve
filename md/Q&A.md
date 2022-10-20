@@ -22,13 +22,12 @@
 - 처음 익스텐션을 다운로드 할 때 프로그래머스의 api 크롤링을 통해 지금까지 유저가 성공한 문제들의 id를 chrome api의 local storage에 저장합니다. <br />
 - 사용자가 새로운 문제를 성공할 시 local storage에 해당 문제의 id를 추가합니다. <br />
 - 성공한 문제 차트 & 표 tab에 진입 시 프로그래머스 전체 문제 list를 받아옵니다.
-  - 전체 문제 list는 제가 일정 기간마다 크롤링을 한 후 jsDelivr Opensource CDN를 이용해 제공하고 있습니다.
+  - 전체 문제 list는 github action을 이용해 매일 UTC 기준 0시에 크롤링 한 후 jsDelivr Opensource CDN를 이용해 제공하고 있습니다.
   - [해당 cdn 주소](https://cdn.jsdelivr.net/gh/dev-redo/programmers-problems@main/problems.json)로 request하여 전체 문제 list를 받아옵니다.
+  - [전체 문제를 저장하는 리포지토리](https://github.com/dev-redo/programmers-problems)
 - 전체 문제 중 유저가 풀이한 문제만을 필터링한 후 제공하고 있습니다.
 
 따라서 추가된 문제를 업데이트하지 못했을 시 그 문제는 보여지지 않게 됩니다.
-
-현재 프로솔브는 일정 기간마다 전체 문제를 업데이트하고 있습니다.
 
 따라서 해당 이슈를 경험하셨더라도 업데이트할 때 해결될 것입니다.
 

@@ -1,8 +1,11 @@
 # 트러블 슈팅
 
 ## 목차
-- [background와 contentscript 간의 메세징 비동기 이슈](#background와-contentscript-간의-메세징-비동기-이슈)
-- [익스텐션 세부사항 변경 시 에러](#익스텐션-세부사항-변경-시-에러)
+
+- [트러블 슈팅](#트러블-슈팅)
+  - [목차](#목차)
+  - [background와 contentscript 간의 메세징 비동기 이슈](#background와-contentscript-간의-메세징-비동기-이슈)
+  - [익스텐션 세부사항 변경 시 에러](#익스텐션-세부사항-변경-시-에러)
 
 <br />
 
@@ -27,12 +30,12 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
   if (request.method === 'postCurrentSolution') {
     try {
       // 비동기 작업 생략
-      
+
       sendResponse({ status: true });
     } catch (error) {
       console.log('[Pro Solve] 로그인을 하지 않아 업로드가 되지 않습니다!', error);
       sendResponse({ status: false });
-   }
+    }
   }
 
   return true;
@@ -40,8 +43,8 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
 
 // 이슈코드: content script
 chrome.runtime.sendMessage({ method: 'postCurrentSolution', data: { code } }, response => {
-    resolve(response.status);
-    console.log('[Pro Solve] 코드 업로드 성공 여부 :>>', response.status);
+  resolve(response.status);
+  console.log('[Pro Solve] 코드 업로드 성공 여부 :>>', response.status);
 });
 ```
 
@@ -71,14 +74,16 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
-
 // 수정코드: content script
-const uploadResult = await new Promise<boolean>(resolve => {
-  chrome.runtime.sendMessage({ method: 'postCurrentSolution' }, response => {
-    resolve(response.status);
-    console.log('[Pro Solve] 코드 업로드 성공 여부 :>>', response.status);
+const uploadResult =
+  (await new Promise()) <
+  boolean >
+  (resolve => {
+    chrome.runtime.sendMessage({ method: 'postCurrentSolution' }, response => {
+      resolve(response.status);
+      console.log('[Pro Solve] 코드 업로드 성공 여부 :>>', response.status);
+    });
   });
-});
 ```
 
 <br />
