@@ -102,4 +102,4 @@ Chart는 유저가 각 레벨 문제들을 전체 중 몇 개(퍼센트) 풀었�
 ## 📜 링크 & 문서
 
 - [전체 문제 저장소](https://github.com/dev-redo/programmers-problems)
-- [개발 시 경험한 Troble Shooting](https://github.com/dev-redo/pro-solve/blob/main/md/TROUBLE_SHOOTING.md.md)
+- [개발 시 경험한 Troble Shooting](https://github.com/dev-redo/pro-solve/blob/main/md/TROUBLE_SHOOTING.md)
