@@ -3,10 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../../styles/theme';
 import GlobalStyles from '../../../styles/global';
+import { ALL_PROBLEM_URL, PROBLEM_URL } from '../../../constants/url';
 import { fetchRequest } from '../../../utils/fetchRequest';
-import { ALL_PROBLEM_URL } from '../../../constants/url';
 import {
-  ProblemType,
   SolvedProblemType,
   SolvedProblemProps,
   ProblemsCntType,
@@ -20,8 +19,6 @@ import { navOption, sortOption } from '../../../store/profile';
 import Statistics from './Statistics';
 import Problems from './Problems';
 
-document.title = `프로솔브 - 나의 풀이 페이지`;
-
 const ProfileTabLayout = () => {
   const [isLoaded, setIsLoaded] = React.useState(true);
   const [allProblems, setAllSolvedProblems] = React.useState<SolvedProblemType>([]);
@@ -33,9 +30,8 @@ const ProfileTabLayout = () => {
       const allProblems = await getAllProblemsList();
       setAllSolvedProblems(allProblems);
 
-      const { solvedProblem } = await chrome.storage.local.get(['solvedProblem']);
-      const solvedProblemList = await getSolvedProblemList(allProblems, solvedProblem);
-      setSolvedProblems(solvedProblemList);
+      const solvedProblems = await getSuccessProblemList();
+      setSolvedProblems(solvedProblems);
 
       setIsLoaded(false);
     })();
@@ -69,18 +65,18 @@ const getAllProblemsList = async () =>
     url: ALL_PROBLEM_URL,
   });
 
-const getSolvedProblemList = async (
-  allProblems: SolvedProblemType,
-  solvedProblemIdList: number[],
-) =>
-  allProblems.reduce((prev: SolvedProblemType, curr: ProblemType) => {
-    solvedProblemIdList.forEach(problem => {
-      if (problem === curr.id) {
-        prev.push(curr);
-      }
-    });
-    return prev;
-  }, []);
+const getSuccessProblemList = async () => {
+  const { totalPages } = await fetchRequest({ url: PROBLEM_URL + 1 });
+  const promisedFetchedDataList = [...new Array(totalPages)].map((_, idx) =>
+    fetchProblemPageList(idx + 1),
+  );
+
+  const fetchedDataList = await Promise.all(promisedFetchedDataList);
+  return fetchedDataList.reduce((prev, curr) => [...prev, ...curr], []);
+};
+
+const fetchProblemPageList = async (pageNum: number) =>
+  (await fetchRequest({ url: PROBLEM_URL + pageNum })).result;
 
 const getProblemsCnt = ({ allProblems, solvedProblems }: ProblemsCntType) => ({
   allCnt: allProblems.length,
