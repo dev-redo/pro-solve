@@ -19,6 +19,8 @@ import { navOption, sortOption } from '../../../store/profile';
 import Statistics from './Statistics';
 import Problems from './Problems';
 
+document.title = '프로솔브 - 나의 풀이 페이지';
+
 const ProfileTabLayout = () => {
   const [isLoaded, setIsLoaded] = React.useState(true);
   const [allProblems, setAllSolvedProblems] = React.useState<SolvedProblemType>([]);

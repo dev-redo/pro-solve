@@ -136,7 +136,7 @@ Statistics.TableCell = ({ chart }: { chart: ChartInfo }) => {
         <span>{allCnt}</span>
       </td>
       <td>
-        <span>{percentile}</span>
+        <span>{percentile} %</span>
       </td>
     </TableCellStyle>
   );
