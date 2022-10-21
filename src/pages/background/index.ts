@@ -2,7 +2,7 @@ import { postCurrentSolution } from './postCurrentSolution';
 import { getAllSolutions } from './getAllSolutions';
 import { createSolutionsTab } from './createSolutionsTab';
 import { createSuccessProblemTab } from './createSuccessProblemTab';
-import { getSuccessProblemIdList } from './getSuccessProblems';
+import { setSolvedProblems } from './setSolvedProblems';
 
 export const createChromeTab = (url: string) =>
   chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
@@ -10,16 +10,8 @@ export const createChromeTab = (url: string) =>
     chrome.tabs.create({ url, index: tabIndex + 1 });
   });
 
-chrome.runtime.onInstalled.addListener(details => {
-  chrome.storage.local.get(['solvedProblem'], async response => {
-    const { solvedProblem } = response;
-    chrome.storage.local.set({
-      solvedProblem: 'solvedProblem' in response ? solvedProblem : await getSuccessProblemIdList(),
-    });
-  });
-});
-
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  setSolvedProblems();
   const message = { request, sender, sendResponse };
 
   if (request.method === 'postCurrentSolution') {
