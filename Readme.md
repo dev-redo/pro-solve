@@ -98,7 +98,7 @@ Chart는 유저가 각 레벨 문제들을 전체 중 몇 개(퍼센트) 풀었�
 
 프로솔브 익스텐션을 이용하다가 궁금하신 점이 생기셨나요?
 
-[Q&A](https://github.com/dev-redo/pro-solve/blob/main/md/Q%26A.md) 문서를 참고해주신 다음, 해당 문서에 존재하지 않는 질문일 시 이슈를 남겨주세요
+[Q&A](https://github.com/dev-redo/pro-solve/blob/main/md/QNA.md) 문서를 참고해주신 다음, 해당 문서에 존재하지 않는 질문일 시 이슈를 남겨주세요
 
 <br />
 
