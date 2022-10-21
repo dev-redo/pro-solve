@@ -19,8 +19,8 @@
 
 프로솔브가 유저가 성공한 문제 list를 받아오기 위해 아래의 flow를 따르고 있습니다.
 
-- 처음 익스텐션을 다운로드 할 때 프로그래머스의 api 크롤링을 통해 지금까지 유저가 성공한 문제들의 id를 chrome api의 local storage에 저장합니다. <br />
-- 사용자가 새로운 문제를 성공할 시 local storage에 해당 문제의 id를 추가합니다. <br />
+- 사용자가 나의 풀이 페이지 tab에 진입하거나 새로운 문제를 성공할 시 <br />
+  성공한 문제 id list를 fetch한 후 chrome storage api인 local storage에 id list를 저장합니다.
 - 성공한 문제 차트 & 표 tab에 진입 시 프로그래머스 전체 문제 list를 받아옵니다.
   - 전체 문제 list는 github action을 이용해 매일 UTC 기준 0시에 크롤링 한 후 jsDelivr Opensource CDN를 이용해 제공하고 있습니다.
   - [해당 cdn 주소](https://cdn.jsdelivr.net/gh/dev-redo/programmers-problems@main/problems.json)로 request하여 전체 문제 list를 받아옵니다.
@@ -29,7 +29,7 @@
 
 따라서 추가된 문제를 업데이트하지 못했을 시 그 문제는 보여지지 않게 됩니다.
 
-따라서 해당 이슈를 경험하셨더라도 업데이트할 때 해결될 것입니다.
+그러므로 해당 이슈를 경험하셨더라도 업데이트할 때 해결될 것입니다.
 
 ## 4. 풀이 업로드가 되지 않아요!
 
