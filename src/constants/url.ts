@@ -6,4 +6,6 @@ const PROBLEM_URL =
 
 const SOLVING_PROBLEM_URL = 'https://school.programmers.co.kr/learn/courses/30/lessons/';
 
-export { ALL_PROBLEM_URL, PROBLEM_URL, SOLVING_PROBLEM_URL };
+const USER_INFO_URL = 'https://school.programmers.co.kr/api/v1/users/current';
+
+export { ALL_PROBLEM_URL, PROBLEM_URL, SOLVING_PROBLEM_URL, USER_INFO_URL };

@@ -26,7 +26,7 @@ const CreateSolutionsButton = (href: ButtonProps) => {
   return (
     <>
       <Modal isOpen={isModalOpen} closeModal={() => setIsModalOpen(false)}>
-        <RefreshRequestBox />
+        <RefreshRequestBox>새로고침을 해주세요!</RefreshRequestBox>
       </Modal>
       <ButtonStyle onClick={createSolutionTab}>저장된 모든 풀이</ButtonStyle>
     </>
