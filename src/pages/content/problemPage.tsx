@@ -12,6 +12,7 @@ import { fetchRequest } from '../../utils/fetchRequest';
 const OpenSuccessTabButton = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const onOpenModal = () => setIsModalOpen(true);
 
   React.useEffect(() => {
     (async () => {
@@ -27,7 +28,7 @@ const OpenSuccessTabButton = () => {
           새로고침을 해주세요!
         </RefreshRequestBox>
       </Modal>
-      <ButtonStyle onClick={() => createSuccessProblemTab({ isLoggedIn, setIsLoggedIn })}>
+      <ButtonStyle onClick={() => createSuccessProblemTab({ isLoggedIn, onOpenModal })}>
         {isLoggedIn && <ToolTipStyle>나의 풀이 바로가기</ToolTipStyle>}
         {isLoggedIn || <ToolTipStyle>로그인을 해주세요!</ToolTipStyle>}
         <Profile />
@@ -38,17 +39,17 @@ const OpenSuccessTabButton = () => {
 
 type ProblemTabType = {
   isLoggedIn: boolean;
-  setIsLoggedIn: (isModalOpen: boolean) => void;
+  onOpenModal: () => void;
 };
 
-const createSuccessProblemTab = ({ isLoggedIn, setIsLoggedIn }: ProblemTabType) => {
+const createSuccessProblemTab = ({ isLoggedIn, onOpenModal }: ProblemTabType) => {
   if (!isLoggedIn) {
     alert(`프로그래머스에 로그아웃이 된 상태입니다.\n로그인을 해주세요!`);
     return;
   }
 
   if (chrome.runtime?.id === undefined) {
-    setIsLoggedIn(true);
+    onOpenModal();
     return;
   }
 
