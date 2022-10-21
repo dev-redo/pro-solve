@@ -2,14 +2,15 @@ import styled from 'styled-components';
 import { theme } from '../../styles/theme';
 
 type BoxProps = {
+  children: React.ReactNode;
   backgroundColor?: string;
   color?: string;
 };
 
-const RefreshRequestBox = ({ backgroundColor, color }: BoxProps) => {
+const RefreshRequestBox = ({ children, backgroundColor, color }: BoxProps) => {
   return (
     <BoxStyle backgroundColor={backgroundColor} color={color}>
-      새로고침을 해주세요!
+      {children}
     </BoxStyle>
   );
 };
