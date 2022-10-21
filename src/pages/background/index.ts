@@ -2,7 +2,6 @@ import { postCurrentSolution } from './postCurrentSolution';
 import { getAllSolutions } from './getAllSolutions';
 import { createSolutionsTab } from './createSolutionsTab';
 import { createSuccessProblemTab } from './createSuccessProblemTab';
-import { setSolvedProblems } from './setSolvedProblems';
 
 export const createChromeTab = (url: string) =>
   chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
@@ -11,7 +10,6 @@ export const createChromeTab = (url: string) =>
   });
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  setSolvedProblems();
   const message = { request, sender, sendResponse };
 
   if (request.method === 'postCurrentSolution') {
