@@ -59,6 +59,9 @@ Chart는 유저가 각 레벨 문제들을 전체 중 몇 개(퍼센트) 풀었�
 
 표는 난이도와 완료한 사람, 정답률을 기준으로 정렬한 성공한 문제 list를 확인할 수 있습니다.
 
+유저가 성공한 문제 정보를 받아오기 위해서는 프로그래머스 로그인이 필요합니다.<br />
+따라서 로그아웃된 상태일 시 로그인을 하게끔 alert를 띄워주고 있습니다.
+
 <br />
 
 ### 기능 2. 제출한 풀이 저장
@@ -95,11 +98,11 @@ Chart는 유저가 각 레벨 문제들을 전체 중 몇 개(퍼센트) 풀었�
 
 프로솔브 익스텐션을 이용하다가 궁금하신 점이 생기셨나요?
 
-[Q&A](https://github.com/dev-redo/pro-solve/blob/main/md/Q%26A.md) 문서를 참고해주신 다음, 해당 문서에 존재하지 않는 질문일 시 이슈를 남겨주세요
+[Q&A](https://github.com/dev-redo/pro-solve/blob/main/md/QNA.md) 문서를 참고해주신 다음, 해당 문서에 존재하지 않는 질문일 시 이슈를 남겨주세요
 
 <br />
 
 ## 📜 링크 & 문서
 
 - [전체 문제 저장소](https://github.com/dev-redo/programmers-problems)
-- [개발 시 경험한 Troble Shooting](https://github.com/dev-redo/pro-solve/blob/main/md/TROUBLE_SHOOTING.md.md)
+- [개발 시 경험한 Troble Shooting](https://github.com/dev-redo/pro-solve/blob/main/md/TROUBLE_SHOOTING.md)

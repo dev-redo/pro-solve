@@ -1,11 +1,28 @@
 # 트러블 슈팅
 
-## 목차
+# 목차
 
 - [트러블 슈팅](#트러블-슈팅)
-  - [목차](#목차)
+- [목차](#목차)
+  - [구글 Oauth로 로그인하기](#구글-oauth로-로그인하기)
   - [background와 contentscript 간의 메세징 비동기 이슈](#background와-contentscript-간의-메세징-비동기-이슈)
   - [익스텐션 세부사항 변경 시 에러](#익스텐션-세부사항-변경-시-에러)
+
+<br />
+
+## 구글 Oauth로 로그인하기
+
+자료를 찾아봐도 크롬 익스텐션에서 로그인 하는 방법은 나와있으나 동작 원리에 대한 설명이 별로 없어서 가장 헤맸던 기능이다. <br />
+
+나는 프로그래머스에서 풀이를 제출 시 firebase database로 풀이 정보를 fetch하는 작업을 하고자 하였다. <br />
+
+해당 작업을 하기 위해서 인증이 필요하기에 Popup에서 구글 Oauth로 로그인처리를 하면 content.js에서 로그인이 필요한 작업을 수행할 수 있게끔 구현하고 싶었다.
+
+하지만 Popup의 로직은 popup이 열려있는 상태일 때만 실행되며, 로그인을 위해 필요한 chrome identity api가 popup과 background(service worker) 이용이 가능하다.
+
+따라서 나는 Popup에서 로그인을 하고 content js에서 firebase database 작업을 background와 Message passing을 통해 수행하였다.
+
+popup에서 로그인을 할 시 getAuthToken에서 accessToken을 캐싱하게 되는데, 이를 통해 크롬 익스텐션 background과 popup에서 로그인 인증처리가 유지될 수 있게 된다.
 
 <br />
 
@@ -103,3 +120,5 @@ Uncaught Error: Extension context invalidated.
 따라서 새로고침을 하여 새로운 콘텐츠 스크립트가 백그라운드와 메세지를 패싱할 수 있게끔 해주어야 한다. <br />
 
 (ref) [stackoverflow - "Chrome Extension: Extension context invalidated when getting URL"](https://stackoverflow.com/questions/63521378/chrome-extension-extension-context-invalidated-when-getting-url)
+
+##
