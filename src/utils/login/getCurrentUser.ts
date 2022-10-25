@@ -1,4 +1,4 @@
-import { auth } from '../firebase';
+import { auth } from '../../firebase';
 import { User } from 'firebase/auth';
 
 type GetCurrentUserFn = () => Promise<User | null>;
