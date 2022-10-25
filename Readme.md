@@ -15,7 +15,7 @@
 
 |           **성공한 문제 차트**            |            **성공한 문제 표**             |
 | :---------------------------------------: | :---------------------------------------: |
-| <img src="https://imgur.com/ee3Gjqs.png"> | <img src="https://imgur.com/5BQfmJh.png"> |
+| <img src="https://imgur.com/QupH6ua.png"> | <img src="https://imgur.com/5BQfmJh.png"> |
 |               **풀이 저장**               |             **풀이 클립보드**             |
 | <img src="https://imgur.com/pUFGw2U.png"> | <img src="https://imgur.com/DXv3A8N.png"> |
 
@@ -23,7 +23,7 @@
 
 ## 🎞 동작 화면
 
-https://user-images.githubusercontent.com/69149030/196756245-4cccaffe-3f1b-44f9-9309-1585142cb75f.mp4
+https://user-images.githubusercontent.com/69149030/197547870-2cdcc3e3-fccc-4162-8a5d-227b5f9e0f1a.mp4
 
 <p align="center">성공한 문제 차트 & 표</p>
 
@@ -98,7 +98,7 @@ Chart는 유저가 각 레벨 문제들을 전체 중 몇 개(퍼센트) 풀었�
 
 프로솔브 익스텐션을 이용하다가 궁금하신 점이 생기셨나요?
 
-[Q&A](https://github.com/dev-redo/pro-solve/blob/main/md/QNA.md) 문서를 참고해주신 다음, 해당 문서에 존재하지 않는 질문일 시 이슈를 남겨주세요
+[Q&A](https://github.com/dev-redo/pro-solve/blob/main/md/Q&A.md) 문서를 참고해주신 다음, 해당 문서에 존재하지 않는 질문일 시 이슈를 남겨주세요
 
 <br />
 
