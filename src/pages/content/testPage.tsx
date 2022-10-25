@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { theme } from '../../styles/theme';
 import { ThemeProvider } from 'styled-components';
 import CreateSolutionsButton from '../../components/button/CreateSolutionsButton';
+import { addSolvedProblemId } from '../../utils/solution/addSolvedProblemId';
 
 const $submitBtn = document.querySelector('#submit-code') as HTMLButtonElement;
 const $modal = document.querySelector('.modal') as HTMLDivElement;
@@ -70,6 +71,9 @@ const uploadCurrentSolution = async () => {
   }
 
   const data = parsingDomNodeToUpload();
+  const { problemId, isSuccess } = data;
+  addSolvedProblemId(Number(problemId), isSuccess);
+
   const uploadResult = await new Promise<boolean>(resolve => {
     chrome.runtime.sendMessage({ method: 'postCurrentSolution', data }, response => {
       resolve(response.status);

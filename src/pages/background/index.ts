@@ -2,6 +2,11 @@ import { postCurrentSolution } from './postCurrentSolution';
 import { getAllSolutions } from './getAllSolutions';
 import { createSolutionsTab } from './createSolutionsTab';
 import { createSuccessProblemTab } from './createSuccessProblemTab';
+import { initSuccessProblems } from '../../utils/solution/initSuccessProblems';
+
+chrome.runtime.onInstalled.addListener(details => {
+  initSuccessProblems();
+});
 
 export const createChromeTab = (url: string) =>
   chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
@@ -11,6 +16,7 @@ export const createChromeTab = (url: string) =>
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   const message = { request, sender, sendResponse };
+  initSuccessProblems();
 
   if (request.method === 'postCurrentSolution') {
     postCurrentSolution(message).catch(error => {

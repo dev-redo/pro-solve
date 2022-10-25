@@ -19,11 +19,12 @@
 
 프로솔브가 유저가 전체 문제와 성공한 문제 list를 받아오기 위해 아래의 flow를 따르고 있습니다.
 
+- 해당 익스텐션이 install될 때 프로그래머스 api를 이용해 성공한 문제 id list를 받아옵니다.
 - 성공한 문제 차트 & 표 tab에 진입 시 jsDelivr cdn으로부터 전체 문제 list를 받아옵니다.
   - 전체 문제 list는 github action을 이용해 매일 6시간마다 크롤링 한 후 jsDelivr Opensource CDN를 이용해 제공하고 있습니다.
   - [해당 cdn 주소](https://cdn.jsdelivr.net/gh/dev-redo/programmers-problems@main/problems.json)로 request하여 전체 문제 list를 받아옵니다.
   - [전체 문제를 저장하는 리포지토리](https://github.com/dev-redo/programmers-problems)
-- 또한 프로그래머스 api를 크롤링해 성공한 문제 list를 받아옵니다.
+- 전체 문제 list를 이용해 성공한 문제 정보 list를 얻습니다.
 
 따라서 추가된 문제를 업데이트하지 못했을 시 그 문제는 보여지지 않게 됩니다.
 
