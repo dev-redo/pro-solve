@@ -44,6 +44,10 @@ Statistics.Header = ({ problemCnt }: { problemCnt: ProblemCntType }) => {
         <BoldTextStyle>{solvedCnt}</BoldTextStyle>
         <span>문제 성공</span>
       </SolvedHeaderStyle>
+      <UpdateInfoStyle>
+        <UpdateInfoIconStyle>!</UpdateInfoIconStyle>
+        <span>전체 문제 정보는 6시간마다 업데이트됩니다.</span>
+      </UpdateInfoStyle>
     </>
   );
 };
@@ -132,7 +136,7 @@ Statistics.TableCell = ({ chart }: { chart: ChartInfo }) => {
         <span>{allCnt}</span>
       </td>
       <td>
-        <span>{percentile}</span>
+        <span>{percentile} %</span>
       </td>
     </TableCellStyle>
   );
@@ -153,6 +157,29 @@ const StatisticsContentStyle = styled.div`
 const SolvedHeaderStyle = styled.div`
   padding: 0.75rem 0;
   font-size: 1.5rem;
+`;
+
+const UpdateInfoStyle = styled.div`
+  font-size: 0.9rem;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #8a8f95;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+`;
+
+const UpdateInfoIconStyle = styled.span`
+  background-color: #8a8f95;
+  width: 1.2rem;
+  height: 1.2rem;
+  display: inline-block;
+  border-radius: 50%;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1rem;
+  transform: translate(0px, -1px);
 `;
 
 const DoughnutWrapperStyle = styled.div`

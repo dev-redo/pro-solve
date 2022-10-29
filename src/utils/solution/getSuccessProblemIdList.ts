@@ -1,9 +1,8 @@
-import { fetchRequest } from '../../utils/fetchRequest';
 import { PROBLEM_URL } from '../../constants/url';
+import { fetchRequest } from '../../utils/fetchRequest';
 
 const getSuccessProblemIdList = async () => {
   const { totalPages } = await fetchRequest({ url: PROBLEM_URL + 1 });
-
   const promisedFetchedDataList = [...new Array(totalPages)].map((_, idx) =>
     fetchProblemPageList(idx + 1),
   );

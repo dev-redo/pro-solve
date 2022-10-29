@@ -1,7 +1,7 @@
 {
   "name": "프로솔브(Pro-Solve)",
   "description": "제출한 모든 프로그래머스 풀이를 확인할 수 있게 해주는 크롬 익스텐션",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "manifest_version": 3,
   "icons": {
     "16": "icon.png",

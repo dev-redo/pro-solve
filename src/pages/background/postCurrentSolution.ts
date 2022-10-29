@@ -1,7 +1,7 @@
 import { db } from '../../firebase';
 import { User } from 'firebase/auth';
 import { doc, setDoc, Timestamp } from 'firebase/firestore';
-import { getCurrentUser } from '../../utils/getCurrentUser';
+import { getCurrentUser } from '../../utils/login/getCurrentUser';
 import { Message } from '../../types/global';
 
 const postCurrentSolution = async ({ request, sendResponse }: Message) => {
@@ -24,18 +24,4 @@ const postCurrentSolution = async ({ request, sendResponse }: Message) => {
   sendResponse({ status: true });
 };
 
-const addSolvedProblemId = (id: number) => {
-  chrome.storage.local.get(['solvedProblem'], response => {
-    const { solvedProblem } = response;
-    if (solvedProblem.includes(id)) {
-      console.log(`[Pro-Solve] 이전에 성공한 문제입니다. :>> ${id}`);
-      return;
-    }
-
-    chrome.storage.local.set({
-      solvedProblem: [...solvedProblem, id],
-    });
-  });
-};
-
-export { postCurrentSolution, addSolvedProblemId };
+export { postCurrentSolution };

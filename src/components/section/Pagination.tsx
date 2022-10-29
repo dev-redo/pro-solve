@@ -18,35 +18,33 @@ const Pagination = ({ total, unit, limit, pageIdx, onChangePageIdx }: Pagination
   });
 
   return (
-    <>
-      <NavStyle>
-        <ButtonStyle
-          onClick={() => onChangePageIdx(pageIdx - 1)}
-          disabled={pageIdx === 0}
-          aria-label="이전 페이지"
-        >
-          &lt;
-        </ButtonStyle>
-        <PageListStyle>
-          {pageButtonList.map((pageNum, idx) => (
-            <ButtonStyle
-              key={uid(idx + 1)}
-              onClick={() => onChangePageIdx(pageNum - 1)}
-              aria-current={pageIdx + 1 === pageNum ? 'page' : null}
-            >
-              {pageNum}
-            </ButtonStyle>
-          ))}
-        </PageListStyle>
-        <ButtonStyle
-          onClick={() => onChangePageIdx(pageIdx + 1)}
-          disabled={pageIdx === numPages - 1}
-          aria-label="다음 페이지"
-        >
-          &gt;
-        </ButtonStyle>
-      </NavStyle>
-    </>
+    <NavStyle>
+      <ButtonStyle
+        onClick={() => onChangePageIdx(pageIdx - 1)}
+        disabled={pageIdx === 0}
+        aria-label="이전 페이지"
+      >
+        &lt;
+      </ButtonStyle>
+      <PageListStyle>
+        {pageButtonList.map((pageNum, idx) => (
+          <ButtonStyle
+            key={uid(idx + 1)}
+            onClick={() => onChangePageIdx(pageNum - 1)}
+            aria-current={pageIdx + 1 === pageNum ? 'page' : null}
+          >
+            {pageNum}
+          </ButtonStyle>
+        ))}
+      </PageListStyle>
+      <ButtonStyle
+        onClick={() => onChangePageIdx(pageIdx + 1)}
+        disabled={pageIdx === numPages - 1}
+        aria-label="다음 페이지"
+      >
+        &gt;
+      </ButtonStyle>
+    </NavStyle>
   );
 };
 

@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../../styles/theme';
 import GlobalStyles from '../../../styles/global';
-import { fetchRequest } from '../../../utils/fetchRequest';
 import { ALL_PROBLEM_URL } from '../../../constants/url';
+import { fetchRequest } from '../../../utils/fetchRequest';
 import {
   ProblemType,
   SolvedProblemType,
@@ -19,6 +19,9 @@ import { RecoilRoot, useRecoilValue } from 'recoil';
 import { navOption, sortOption } from '../../../store/profile';
 import Statistics from './Statistics';
 import Problems from './Problems';
+import { getUserEmail } from '../../../utils/solution/getUserEmail';
+
+document.title = '프로솔브 - 나의 풀이 페이지';
 
 const ProfileTabLayout = () => {
   const [isLoaded, setIsLoaded] = React.useState(true);
@@ -31,9 +34,9 @@ const ProfileTabLayout = () => {
       const allProblems = await getAllProblemsList();
       setAllSolvedProblems(allProblems);
 
-      const { solvedProblem } = await chrome.storage.local.get(['solvedProblem']);
-      const solvedProblemList = await getSolvedProblemList(allProblems, solvedProblem);
-      setSolvedProblems(solvedProblemList);
+      const solvedProblemIdList = await getSolvedProblemIdList();
+      const solvedProblems = await getSolvedProblemList(allProblems, solvedProblemIdList);
+      setSolvedProblems(solvedProblems);
 
       setIsLoaded(false);
     })();
@@ -66,6 +69,12 @@ const getAllProblemsList = async () =>
   await fetchRequest({
     url: ALL_PROBLEM_URL,
   });
+
+const getSolvedProblemIdList = async () => {
+  const userEmail = await getUserEmail();
+
+  return (await chrome.storage.local.get([userEmail]))[userEmail];
+};
 
 const getSolvedProblemList = async (
   allProblems: SolvedProblemType,
