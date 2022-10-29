@@ -4,13 +4,14 @@
 
 - [트러블 슈팅](#트러블-슈팅)
 - [목차](#목차)
-  - [구글 Oauth로 로그인하기](#구글-oauth로-로그인하기)
-  - [background와 contentscript 간의 메세징 비동기 이슈](#background와-contentscript-간의-메세징-비동기-이슈)
-  - [익스텐션 세부사항 변경 시 에러](#익스텐션-세부사항-변경-시-에러)
+  - [1. 구글 Oauth로 로그인하기](#1-구글-oauth로-로그인하기)
+  - [2. background와 contentscript 간의 메세징 비동기 이슈](#2-background와-contentscript-간의-메세징-비동기-이슈)
+  - [3. 익스텐션 세부사항 변경 시 에러](#3-익스텐션-세부사항-변경-시-에러)
+  - [4. 문제 정보 자동 크롤링 이슈](#4-문제-정보-자동-크롤링-이슈)
 
 <br />
 
-## 구글 Oauth로 로그인하기
+## 1. 구글 Oauth로 로그인하기
 
 자료를 찾아봐도 크롬 익스텐션에서 로그인 하는 방법은 나와있으나 동작 원리에 대한 설명이 별로 없어서 가장 헤맸던 기능이다. <br />
 
@@ -26,7 +27,7 @@ popup에서 로그인을 할 시 getAuthToken에서 accessToken을 캐싱하게 
 
 <br />
 
-## background와 contentscript 간의 메세징 비동기 이슈
+## 2. background와 contentscript 간의 메세징 비동기 이슈
 
 <p align="center">
   <img src="https://imgur.com/nLYR6fv.png" width="800">
@@ -105,7 +106,7 @@ const uploadResult =
 
 <br />
 
-## 익스텐션 세부사항 변경 시 에러
+## 3. 익스텐션 세부사항 변경 시 에러
 
 익스텐션 세부사항을 변경한 후 새로고침을 하지 않은 채 크롬 익스텐션을 이용하게 될시 아래의 에러가 발생한다.
 
@@ -121,4 +122,72 @@ Uncaught Error: Extension context invalidated.
 
 (ref) [stackoverflow - "Chrome Extension: Extension context invalidated when getting URL"](https://stackoverflow.com/questions/63521378/chrome-extension-extension-context-invalidated-when-getting-url)
 
-##
+<br />
+
+## 4. 문제 정보 자동 크롤링 이슈
+
+현재 프로솔브는 리소스를 줄이기 위해 [해당 리포지토리](https://github.com/dev-redo/programmers-problems)에서 Github action으로 전체 문제 정보를 6시간마다 크롤링 후 cdn을 통해 제공하고 있다.
+
+그러기 위해 6시간마다 크롤링을 한 후, 크롤링한 정보와 현재 문제 정보가 저장되어 있는 `problems.json`과 비교를 한 후, 변경사항이 있을 때마다 push하고자 하였다.
+
+그래서 파일의 변경 사항을 추적하기 위한 github action으로 paths-filter를 이용하였다.
+
+초기 action 구성은 아래와 같았다.
+
+```
+- name: Check Problem.json is Change
+  uses: dorny/paths-filter@v2
+  id: filter
+  with:
+    filters: |
+      problems:
+        - 'problems.json'
+```
+
+이 경우 아래와 같이 remote 에서 변경 사항을 확인되었다.
+
+<p align="center">
+  <img src="https://imgur.com/xs7LQwQ.png" width="800">
+</p>
+
+`git diff A..B` 는 Commit `A` 와 Commit `B` 를 서로 비교한다.
+
+먼저 Commit `A` 를 확인해보자
+
+<p align="center">
+  <img src="https://imgur.com/taPj9tW.png" width="800">
+</p>
+
+해당 Commit과 비교하는 Commit은 `remote/origin/main`이다.
+
+현재 remote/origin/main을 보면 아래와 같다.
+
+<p align="center">
+  <img src="https://imgur.com/xs7LQwQ.png" width="800">
+</p>
+
+사진을 보면 sync-problems.yaml 파일 하나만 변경사항이 존재한다고 계속 나오고 있다!
+
+우리가 원하는 것은 로컬의 `problems.json` 변경사항이다.
+따라서 Commit `B`가 remote가 아닌 local이 되어야 한다.
+
+```
+- name: Check Problem.json is Change
+  uses: dorny/paths-filter@v2
+  id: filter
+  with:
+    base: HEAD
+    filters: |
+      problems:
+        - 'problems.json'
+```
+
+문서에서 paths-filter가 `local diff`를 하기 위해서는 `base: HEAD`로 명시하라고 나온다.
+
+그럼 아래와 같이 action이 동작하게 된다.
+
+<p align="center">
+  <img src="https://imgur.com/e2fL7rQ.png" width="800">
+</p>
+
+현재의 HEAD와 local Modified와 비교하게 되니, 우리가 원하던 `problems.json` 변경만 추적되는 것을 확인할 수 있다.
