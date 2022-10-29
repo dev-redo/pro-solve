@@ -8,7 +8,8 @@
     "build": "webpack --progress --config webpack.prod.js",
     "build-zip": "yarn run build && bestzip build.zip dist/",
     "storybook": "npx storybook dev -p 6006",
-    "build-storybook": "npx storybook build"
+    "build-storybook": "npx storybook build",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -63,6 +64,8 @@
     "firebase-tools": "^11.8.0",
     "fork-ts-checker-webpack-plugin": "^7.2.13",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
     "mini-css-extract-plugin": "^2.6.1",
     "storybook": "7.0.0-alpha.35",
     "style-loader": "^3.3.1",
@@ -100,5 +103,11 @@
     "@storybook/react": "7.0.0-alpha.35",
     "@storybook/react-webpack5": "7.0.0-alpha.35",
     "@storybook/testing-library": "0.0.13"
+  },
+  "lint-staged": {
+    "*.{ts,ts}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   }
 }
