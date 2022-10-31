@@ -2,10 +2,10 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 import Select from '.';
 import CheckOption from './CheckOption';
-import { sortedOption } from '../../store/select';
-import { SORT_LIST as options, SORT_TYPE as filterState } from '../../constants/solution';
-import '../../styles/font.css';
-import { SortType } from '../../types/select';
+import { sortedOption } from '@src/store/select';
+import { SORT_LIST as options, SORT_TYPE as filterState } from '@src/constants/solution';
+import '@src/styles/font.css';
+import { SortType } from '@src/types/select';
 
 const SortSelect = () => {
   const [isOpen, setIsOpen] = React.useState(false);

@@ -1,8 +1,8 @@
-import { db } from '../../firebase';
+import { db } from '@src/firebase';
 import { User } from 'firebase/auth';
 import { doc, setDoc, Timestamp } from 'firebase/firestore';
-import { getCurrentUser } from '../../api/login/getCurrentUser';
-import { Message } from '../../types/global';
+import { getCurrentUser } from '@src/api/login/getCurrentUser';
+import { Message } from '@src/types/global';
 
 const postCurrentSolution = async ({ request, sendResponse }: Message) => {
   const { isSuccess, code, selectedLanguage, problemId, passedTestCase, failedTestCase } =

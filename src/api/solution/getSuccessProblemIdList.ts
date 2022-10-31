@@ -1,5 +1,5 @@
-import { PROBLEM_URL } from '../../constants/url';
-import { fetchRequest } from '../../utils/fetchRequest';
+import { PROBLEM_URL } from '@src/constants/url';
+import { fetchRequest } from '@src/utils/fetchRequest';
 
 const getSuccessProblemIdList = async () => {
   const { totalPages } = await fetchRequest({ url: PROBLEM_URL + 1 });

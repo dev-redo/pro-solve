@@ -2,7 +2,7 @@ import { postCurrentSolution } from './postCurrentSolution';
 import { getAllSolutions } from './getAllSolutions';
 import { createSolutionsTab } from './createSolutionsTab';
 import { createSuccessProblemTab } from './createSuccessProblemTab';
-import { initSuccessProblems } from '../../api/solution/initSuccessProblems';
+import { initSuccessProblems } from '@src/api/solution/initSuccessProblems';
 
 chrome.runtime.onInstalled.addListener(() => {
   initSuccessProblems();

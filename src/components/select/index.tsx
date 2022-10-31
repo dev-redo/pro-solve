@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { uid } from 'react-uid';
-import { SelectProps, TriggerProps, MenuProps, ItemProps } from '../../types/select';
-import '../../styles/font.css';
-import { Children } from '../../types/global';
+import { SelectProps, TriggerProps, MenuProps, ItemProps } from '@src/types/select';
+import '@src/styles/font.css';
+import { Children } from '@src/types/global';
 
 const Select = ({ isOpen, trigger, options, onChangeDropdown, filterState }: SelectProps) => {
   return (

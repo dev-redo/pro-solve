@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from 'styled-components';
-import { theme } from '../../styles/theme';
-import GlobalStyles from '../../styles/global';
-import { auth } from '../../firebase';
+import { theme } from '@src/styles/theme';
+import GlobalStyles from '@src/styles/global';
+import { auth } from '@src/firebase';
 import Popup from './Popup';
 
 function PopupLayout() {

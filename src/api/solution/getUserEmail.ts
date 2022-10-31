@@ -1,5 +1,5 @@
-import { USER_INFO_URL } from '../../constants/url';
-import { fetchRequest } from '../../utils/fetchRequest';
+import { USER_INFO_URL } from '@src/constants/url';
+import { fetchRequest } from '@src/utils/fetchRequest';
 
 const getUserEmail = async () => {
   const { userInfo } = await fetchRequest({ url: USER_INFO_URL });

@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import styled from 'styled-components';
 import { ThemeProvider } from 'styled-components';
-import { theme } from '../../styles/theme';
-import Profile from '../../../assets/icons/Profile.svg';
-import Modal from '../../components/modal/Modal';
-import RefreshRequestBox from '../../components/box/RefreshRequestBox';
-import { USER_INFO_URL as url } from '../../constants/url';
-import { fetchRequest } from '../../utils/fetchRequest';
+import { theme } from '@src/styles/theme';
+import Profile from '@assets/icons/Profile.svg';
+import Modal from '@src/components/modal/Modal';
+import RefreshRequestBox from '@src/components/box/RefreshRequestBox';
+import { USER_INFO_URL as url } from '@src/constants/url';
+import { fetchRequest } from '@src/utils/fetchRequest';
 
 const OpenSuccessTabButton = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);

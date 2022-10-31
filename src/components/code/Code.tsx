@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import CodeMirror from './CodeMirror';
 import SubmissionDetail from './SubmissionDetail';
-import { Solution } from '../../types/solution';
+import { Solution } from '@src/types/solution';
 
 const Code = ({ solution }: { solution: Solution }) => {
   return (
