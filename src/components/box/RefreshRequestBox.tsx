@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { theme } from '../../styles/theme';
+import { theme } from '@src/styles/theme';
 
 type BoxProps = {
   children: React.ReactNode;

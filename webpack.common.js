@@ -86,6 +86,10 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.json'],
+    alias: {
+      '@src': getAbsolutePath('./src'),
+      '@assets': getAbsolutePath('./assets'),
+    },
   },
   optimization: {
     minimizer: [

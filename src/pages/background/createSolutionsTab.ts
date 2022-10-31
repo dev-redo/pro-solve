@@ -1,4 +1,4 @@
-import { Message } from '../../types/global';
+import { Message } from '@src/types/global';
 import { createChromeTab } from './createChromeTab';
 
 type Problem = {

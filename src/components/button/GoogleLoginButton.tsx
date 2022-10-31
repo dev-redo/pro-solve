@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Spinner from '../../../assets/icons/WhiteSpinner.svg';
-import { auth } from '../../firebase';
+import Spinner from '@assets/icons/WhiteSpinner.svg';
+import { auth } from '@src/firebase';
 import { GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
-import '../../styles/font.css';
+import '@src/styles/font.css';
 
 export default function GoogleLoginButton() {
   const [isLoaded, setIsLoaded] = React.useState(false);

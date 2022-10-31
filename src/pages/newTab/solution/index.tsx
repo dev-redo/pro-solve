@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RecoilRoot } from 'recoil';
 import { ThemeProvider } from 'styled-components';
-import { theme } from '../../../styles/theme';
-import GlobalStyles from '../../../styles/global';
-import { SolutionResponse } from '../../../types/solution';
+import { theme } from '@src/styles/theme';
+import GlobalStyles from '@src/styles/global';
+import { SolutionResponse } from '@src/types/solution';
 import SolutionTab from './SolutionTab';
 
 const languageRegex = /&language=(.*)/;

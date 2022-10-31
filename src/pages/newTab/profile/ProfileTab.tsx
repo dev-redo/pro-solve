@@ -1,16 +1,16 @@
 import styled from 'styled-components';
-import { uid } from 'react-uid';
-import LogoWhite from '../../../../assets/images/logo-white.png';
-import 'chart.js/auto';
-import { NavType } from '../../../types/profile';
-import '../../../styles/font.css';
-import { GNBStyle } from '../../../styles/global';
-import { NAV_LIST, NAV_TYPE } from '../../../constants/profile';
 import { useRecoilState } from 'recoil';
-import { navOption } from '../../../store/profile';
-import Spinner from '../../../../assets/icons/BlackSpinner.svg';
-import { LoaderStyle } from '../../../styles/global';
-import { Children } from '../../../types/global';
+import { uid } from 'react-uid';
+import LogoWhite from '@assets/images/logo-white.png';
+import 'chart.js/auto';
+import { NavType } from '@src/types/profile';
+import '@src/styles/font.css';
+import { GNBStyle } from '@src/styles/global';
+import { NAV_LIST, NAV_TYPE } from '@src/constants/profile';
+import { navOption } from '@src/store/profile';
+import Spinner from '@assets/icons/BlackSpinner.svg';
+import { LoaderStyle } from '@src/styles/global';
+import { Children } from '@src/types/global';
 
 export default function ProfileTab({ children }: Children) {
   return <ContainerStyle>{children}</ContainerStyle>;

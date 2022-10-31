@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from 'styled-components';
-import { theme } from '../../../styles/theme';
-import GlobalStyles from '../../../styles/global';
-import { ALL_PROBLEM_URL } from '../../../constants/url';
-import { fetchRequest } from '../../../utils/fetchRequest';
+import { theme } from '@src/styles/theme';
+import GlobalStyles from '@src/styles/global';
+import { ALL_PROBLEM_URL } from '@src/constants/url';
+import { fetchRequest } from '@src/utils/fetchRequest';
 import {
   ProblemType,
   SolvedProblemType,
@@ -12,14 +12,14 @@ import {
   ProblemsCntType,
   SelectNameType,
   SortType,
-} from '../../../types/profile';
-import { levels, levelsColor } from '../../../constants/level';
+} from '@src/types/profile';
+import { levels, levelsColor } from '@src/constants/level';
 import ProfileTab from './ProfileTab';
 import { RecoilRoot, useRecoilValue } from 'recoil';
-import { navOption, sortOption } from '../../../store/profile';
+import { navOption, sortOption } from '@src/store/profile';
 import Statistics from './Statistics';
 import Problems from './Problems';
-import { getUserEmail } from '../../../api/solution/getUserEmail';
+import { getUserEmail } from '@src/api/solution/getUserEmail';
 
 document.title = '프로솔브 - 나의 풀이 페이지';
 

@@ -1,7 +1,7 @@
-import CloseBoxOnOutside from '../section/CloseBoxOnOutside';
-import DropdownIcon from '../../../assets/icons/Dropdown.svg';
-import '../../styles/font.css';
-import { CheckOptionStyle } from '../../styles/global';
+import CloseBoxOnOutside from '@src/components/section/CloseBoxOnOutside';
+import DropdownIcon from '@assets/icons/Dropdown.svg';
+import '@src/styles/font.css';
+import { CheckOptionStyle } from '@src/styles/global';
 
 interface CheckOptionProps {
   isOpen: boolean;

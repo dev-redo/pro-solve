@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { theme } from '../../styles/theme';
+import { theme } from '@src/styles/theme';
 import { ThemeProvider } from 'styled-components';
-import CreateSolutionsButton from '../../components/button/CreateSolutionsButton';
-import { addSolvedProblemId } from '../../api/solution/addSolvedProblemId';
+import CreateSolutionsButton from '@src/components/button/CreateSolutionsButton';
+import { addSolvedProblemId } from '@src/api/solution/addSolvedProblemId';
 
 const $submitBtn = document.querySelector('#submit-code') as HTMLButtonElement;
 const $modal = document.querySelector('.modal') as HTMLDivElement;

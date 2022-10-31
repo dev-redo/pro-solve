@@ -2,14 +2,14 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { uid } from 'react-uid';
 import { useRecoilState } from 'recoil';
-import { BoxStyle } from '../../../styles/global';
-import { ContentHeaderInfoStyle } from '../../../styles/global';
-import Book from '../../../../assets/icons/Book.svg';
-import ArrowUp from '../../../../assets/icons/ArrowUp.svg';
-import ArrowDown from '../../../../assets/icons/ArrowDown.svg';
-import { sortOption } from '../../../store/profile';
-import { PROBLEM_LIST, SORT_LIST, SORT_TYPE } from '../../../constants/profile';
-import '../../../styles/font.css';
+import { BoxStyle } from '@src/styles/global';
+import { ContentHeaderInfoStyle } from '@src/styles/global';
+import Book from '@assets/icons/Book.svg';
+import ArrowUp from '@assets/icons/ArrowUp.svg';
+import ArrowDown from '@assets/icons/ArrowDown.svg';
+import { sortOption } from '@src/store/profile';
+import { PROBLEM_LIST, SORT_LIST, SORT_TYPE } from '@src/constants/profile';
+import '@src/styles/font.css';
 import {
   ProblemType,
   SolvedProblemProps,
@@ -18,11 +18,11 @@ import {
   SortItemType,
   ProblemTableProps,
   SolvedProblemType,
-} from '../../../types/profile';
-import Pagination from '../../../components/section/Pagination';
-import { levelsColor } from '../../../constants/level';
-import { SOLVING_PROBLEM_URL as BASE_URL } from '../../../constants/url';
-import NoContent from '../../../../assets/images/noContent.png';
+} from '@src/types/profile';
+import Pagination from '@src/components/section/Pagination';
+import { levelsColor } from '@src/constants/level';
+import { SOLVING_PROBLEM_URL as BASE_URL } from '@src/constants/url';
+import NoContent from '@assets/images/noContent.png';
 
 export default function Problems({ solvedProblems }: SolvedProblemProps) {
   const [pageIdx, setPageIdx] = React.useState(0);

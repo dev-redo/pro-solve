@@ -1,8 +1,8 @@
 import { User } from 'firebase/auth';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import { db } from '../../firebase';
-import { getCurrentUser } from '../../api/login/getCurrentUser';
-import { Message } from '../../types/global';
+import { db } from '@src/firebase';
+import { getCurrentUser } from '@src/api/login/getCurrentUser';
+import { Message } from '@src/types/global';
 
 const getAllSolutions = async ({ request, sendResponse }: Message) => {
   const { selectedLanguage, problemId } = request.data;
