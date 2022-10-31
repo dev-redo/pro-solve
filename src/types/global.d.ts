@@ -1,4 +1,3 @@
-import React from 'react';
 import Chrome from 'chrome';
 import { Theme } from '../styles/theme';
 import { CSSProp } from 'styled-components';
@@ -23,9 +22,9 @@ declare module 'react-uid';
 declare module 'storybook';
 
 type Message = {
-  request: any;
+  request: unknown;
   sender: chrome.runtime.MessageSender;
-  sendResponse: Function;
+  sendResponse: (response?: unknown) => void;
 };
 
 type Children = {

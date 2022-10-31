@@ -19,7 +19,7 @@ import { RecoilRoot, useRecoilValue } from 'recoil';
 import { navOption, sortOption } from '../../../store/profile';
 import Statistics from './Statistics';
 import Problems from './Problems';
-import { getUserEmail } from '../../../utils/solution/getUserEmail';
+import { getUserEmail } from '../../../api/solution/getUserEmail';
 
 document.title = '프로솔브 - 나의 풀이 페이지';
 

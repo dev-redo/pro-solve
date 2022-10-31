@@ -1,4 +1,4 @@
-import { CSSProp, css } from "styled-components";
+import { CSSProp, css } from 'styled-components';
 
 type MediaQueryProps = {
   mobile: number;
@@ -33,9 +33,6 @@ const media = {
         ${css(literals, ...args)}
       }
     `,
-} as Record<
-  keyof typeof sizes,
-  (l: TemplateStringsArray, ...p: BackQuoteArgs) => CSSProp
->;
+} as Record<keyof typeof sizes, (l: TemplateStringsArray, ...p: BackQuoteArgs) => CSSProp>;
 
 export default media;

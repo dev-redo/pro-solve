@@ -83,7 +83,7 @@ const PageListStyle = styled.span`
   border-radius: 0.375rem;
 `;
 
-const ButtonStyle = styled.button.attrs(props => ({
+const ButtonStyle = styled.button.attrs(() => ({
   type: 'aria-current',
 }))`
   display: flex;

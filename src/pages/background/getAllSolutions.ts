@@ -1,7 +1,7 @@
 import { User } from 'firebase/auth';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../../firebase';
-import { getCurrentUser } from '../../utils/login/getCurrentUser';
+import { getCurrentUser } from '../../api/login/getCurrentUser';
 import { Message } from '../../types/global';
 
 const getAllSolutions = async ({ request, sendResponse }: Message) => {

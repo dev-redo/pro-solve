@@ -1,7 +1,7 @@
 import { db } from '../../firebase';
 import { User } from 'firebase/auth';
 import { doc, setDoc, Timestamp } from 'firebase/firestore';
-import { getCurrentUser } from '../../utils/login/getCurrentUser';
+import { getCurrentUser } from '../../api/login/getCurrentUser';
 import { Message } from '../../types/global';
 
 const postCurrentSolution = async ({ request, sendResponse }: Message) => {

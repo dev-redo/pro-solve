@@ -29,7 +29,7 @@ const useCloseBoxOnOutside = ({ ref, onClose }: HookProps) => {
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, [ref]);
+  }, [ref, onClose]);
 };
 
 export default CloseBoxOnOutside;
