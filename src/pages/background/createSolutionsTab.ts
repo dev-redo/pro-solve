@@ -1,5 +1,5 @@
 import { Message } from '../../types/global';
-import { createChromeTab } from './index';
+import { createChromeTab } from './createChromeTab';
 
 type Problem = {
   problemId: string;

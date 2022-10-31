@@ -22,7 +22,7 @@ const TransitionOut = ({
     }, duration);
 
     return () => timer && clearTimeout(timer);
-  }, [isOpen]);
+  }, [isOpen, closeModal, duration, onCloseCallback]);
 
   return isOpen ? <>{children}</> : null;
 };

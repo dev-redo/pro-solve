@@ -6,7 +6,7 @@ import { CheckOptionStyle } from '../../styles/global';
 interface CheckOptionProps {
   isOpen: boolean;
   value: string;
-  onModalChange: Function;
+  onModalChange: (isOpen: boolean) => void;
 }
 
 const CheckOption = ({ isOpen, value, onModalChange }: CheckOptionProps) => {

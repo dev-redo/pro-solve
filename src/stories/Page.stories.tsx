@@ -12,7 +12,7 @@ export default {
   },
 } as ComponentMeta<typeof Page>;
 
-const Template: ComponentStoryFn<typeof Page> = (args) => <Page {...args} />;
+const Template: ComponentStoryFn<typeof Page> = args => <Page {...args} />;
 
 export const LoggedOut = Template.bind({});
 

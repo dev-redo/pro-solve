@@ -2,17 +2,11 @@ import { postCurrentSolution } from './postCurrentSolution';
 import { getAllSolutions } from './getAllSolutions';
 import { createSolutionsTab } from './createSolutionsTab';
 import { createSuccessProblemTab } from './createSuccessProblemTab';
-import { initSuccessProblems } from '../../utils/solution/initSuccessProblems';
+import { initSuccessProblems } from '../../api/solution/initSuccessProblems';
 
-chrome.runtime.onInstalled.addListener(details => {
+chrome.runtime.onInstalled.addListener(() => {
   initSuccessProblems();
 });
-
-export const createChromeTab = (url: string) =>
-  chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-    const tabIndex = tabs[0]!.index;
-    chrome.tabs.create({ url, index: tabIndex + 1 });
-  });
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   const message = { request, sender, sendResponse };

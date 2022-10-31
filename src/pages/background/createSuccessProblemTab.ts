@@ -1,4 +1,4 @@
-import { createChromeTab } from './index';
+import { createChromeTab } from './createChromeTab';
 
 const createSuccessProblemTab = async () => {
   const url = getAllSuccessProblemTabUrl(chrome.runtime.id);
