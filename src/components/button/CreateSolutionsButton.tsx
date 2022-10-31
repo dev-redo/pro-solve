@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Modal from '../modal/Modal';
-import RefreshRequestBox from '../box/RefreshRequestBox';
+import Modal from '@src/components/modal/Modal';
+import RefreshRequestBox from '@src/components/box/RefreshRequestBox';
 
 interface ButtonProps {
   selectedLanguage: string;

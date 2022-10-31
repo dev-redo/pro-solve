@@ -2,10 +2,10 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 import Select from '.';
 import CheckOption from './CheckOption';
-import { solutionOption } from '../../store/select';
-import { SOLUTION_LIST as options, SOLUTION_TYPE as filterState } from '../../constants/solution';
-import '../../styles/font.css';
-import { SolutionType } from '../../types/select';
+import { solutionOption } from '@src/store/select';
+import { SOLUTION_LIST as options, SOLUTION_TYPE as filterState } from '@src/constants/solution';
+import '@src/styles/font.css';
+import { SolutionType } from '@src/types/select';
 
 const SolutionSelect = () => {
   const [isOpen, setIsOpen] = React.useState(false);

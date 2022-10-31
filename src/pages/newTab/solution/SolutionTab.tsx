@@ -1,19 +1,19 @@
 import styled from 'styled-components';
 import { uid } from 'react-uid';
 import { useRecoilValue } from 'recoil';
-import LogoWhite from '../../../../assets/images/logo-white.png';
-import ArrowRight from '../../../../assets/icons/ArrowRight.svg';
-import Spinner from '../../../../assets/icons/BlackSpinner.svg';
-import { GNBStyle, CenterContainer } from '../../../styles/global';
-import Code from '../../../components/code/Code';
-import SolutionSelect from '../../../components/select/SolutionSelect';
-import SortSelect from '../../../components/select/SortSelect';
-import '../../../styles/font.css';
-import { solutionOption, sortedOption } from '../../../store/select';
-import { Solution, SolutionList, SolutionResponse } from '../../../types/solution';
-import { formatTimestampToDate } from '../../../utils/formatTimestampToDate';
-import { LoaderStyle } from '../../../styles/global';
-import { Children } from '../../../types/global';
+import LogoWhite from '@assets/images/logo-white.png';
+import ArrowRight from '@assets/icons/ArrowRight.svg';
+import Spinner from '@assets/icons/BlackSpinner.svg';
+import { GNBStyle, CenterContainer } from '@src/styles/global';
+import Code from '@src/components/code/Code';
+import SolutionSelect from '@src/components/select/SolutionSelect';
+import SortSelect from '@src/components/select/SortSelect';
+import '@src/styles/font.css';
+import { solutionOption, sortedOption } from '@src/store/select';
+import { Solution, SolutionList, SolutionResponse } from '@src/types/solution';
+import { formatTimestampToDate } from '@src/utils/formatTimestampToDate';
+import { LoaderStyle } from '@src/styles/global';
+import { Children } from '@src/types/global';
 
 export default function SolutionTab({ children }: Children) {
   return <ContainerStyle>{children}</ContainerStyle>;

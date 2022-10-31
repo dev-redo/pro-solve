@@ -22,7 +22,7 @@ declare module 'react-uid';
 declare module 'storybook';
 
 type Message = {
-  request: unknown;
+  request: any;
   sender: chrome.runtime.MessageSender;
   sendResponse: (response?: unknown) => void;
 };

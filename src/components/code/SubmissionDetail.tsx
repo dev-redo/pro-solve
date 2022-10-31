@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { Solution } from '../../types/solution';
-import { formatDateToYmdhms } from '../../utils/formatDateToYmdhms';
-import '../../styles/font.css';
-import { formatTimestampToDate } from '../../utils/formatTimestampToDate';
+import { Solution } from '@src/types/solution';
+import { formatDateToYmdhms } from '@src/utils/formatDateToYmdhms';
+import '@src/styles/font.css';
+import { formatTimestampToDate } from '@src/utils/formatTimestampToDate';
 
 interface SolutionProps {
   solution: Solution;

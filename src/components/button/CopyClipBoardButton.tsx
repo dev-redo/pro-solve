@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import DocumentCopy from '../../../assets/icons/DocumentCopy.svg';
-import XCharacter from '../../../assets/icons/XCharacter.svg';
-import Check from '../../../assets/icons/Check.svg';
-import '../../styles/font.css';
+import DocumentCopy from '@assets/icons/DocumentCopy.svg';
+import XCharacter from '@assets/icons/XCharacter.svg';
+import Check from '@assets/icons/Check.svg';
+import '@src/styles/font.css';
 
 interface ClibBoardProps {
   codeText: string;

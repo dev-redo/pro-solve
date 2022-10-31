@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import GoogleLoginButton from '../../components/button/GoogleLoginButton';
-import GithubLogo from '../../../assets/images/github.png';
-import '../../styles/font.css';
+import GoogleLoginButton from '@src/components/button/GoogleLoginButton';
+import GithubLogo from '@assets/images/github.png';
+import '@src/styles/font.css';
 import { Children } from '../../types/global';
 
 export default function Popup({ children }: Children) {

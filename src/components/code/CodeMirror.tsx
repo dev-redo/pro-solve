@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import CopyClipBoardButton from '../button/CopyClipBoardButton';
-import { Solution } from '../../types/solution';
+import CopyClipBoardButton from '@src/components/button/CopyClipBoardButton';
+import { Solution } from '@src/types/solution';
 import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter';
 import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
 import hybrid from 'react-syntax-highlighter/dist/esm/styles/hljs/hybrid';
