@@ -4,6 +4,9 @@ import { theme } from '@src/styles/theme';
 import { ThemeProvider } from 'styled-components';
 import CreateSolutionsButton from '@src/components/button/CreateSolutionsButton';
 import { addSolvedProblemId } from '@src/api/solution/addSolvedProblemId';
+import { setUserInfo } from '@src/api/solution/setUserInfo';
+
+(async () => await setUserInfo())();
 
 const $submitBtn = document.querySelector('#submit-code') as HTMLButtonElement;
 const $modal = document.querySelector('.modal') as HTMLDivElement;
@@ -21,9 +24,12 @@ const modalMutationObserver = new MutationObserver(mutations => {
   modalMutationObserver.disconnect();
 });
 
-$submitBtn.addEventListener('click', () => {
-  modalMutationObserver.observe($modal, modalMutationOption);
-});
+const isUserLoggedIn = $submitBtn !== null;
+if (isUserLoggedIn) {
+  $submitBtn.addEventListener('click', () => {
+    modalMutationObserver.observe($modal, modalMutationOption);
+  });
+}
 
 const printLoadingText = () => {
   const $modalContent = document.querySelector('div.modal-body') as HTMLDivElement;
