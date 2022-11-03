@@ -1,6 +1,6 @@
 {
   "name": "prosolve",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "index.js",
   "pretty": "prettier --write \"src/**/*.(ts|tsx)\"",
   "scripts": {
