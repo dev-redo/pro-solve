@@ -1,0 +1,43 @@
+name: build and deploy
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up node 18
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+      - name: Build distributable
+        run: |
+          yarn install --immutable --immutable-cache --check-cache
+          yarn run build-zip
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - run: git pull
+
+      - name: Zip files
+        run: zip -r build.zip ./dist/*
+
+      - name: Install CLI Tool
+        run: npm install chrome-webstore-upload-cli@2.0.1 -g
+
+      - name: Upload Files
+        run: |
+          cd dist && chrome-webstore-upload upload --auto-publish
+        env:
+          EXTENSION_ID: ${{ secrets.EXTENSION_ID }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
