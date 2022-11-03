@@ -24,11 +24,14 @@ import {
   getUserEmailStorage,
   getSuccessProblemsIdListStorage,
 } from '@src/api/solution/getUserInfoStorage';
+import { getUserEmail } from '@src/api/solution/getUserEmail';
 
 document.title = '프로솔브 - 나의 풀이 페이지';
 
 const ProfileTabLayout = () => {
   const [isLoaded, setIsLoaded] = React.useState(true);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
+
   const [allProblems, setAllSolvedProblems] = React.useState<SolvedProblemType>([]);
   const [solvedProblems, setSolvedProblems] = React.useState<SolvedProblemType>([]);
   const selectedItem = useRecoilValue(navOption);
@@ -37,16 +40,16 @@ const ProfileTabLayout = () => {
     (async () => {
       await setUserInfoStorage();
 
-      const { userEmail } = await getUserEmailStorage();
-      console.log('[Pro-Solve] 현재 로그인한 이메일 :>> ', await userEmail);
+      const userEmail = await getUserEmail();
+      if (userEmail === undefined) {
+        setIsLoggedIn(false);
+        return;
+      }
 
       const allProblems = await getAllProblemsList();
       setAllSolvedProblems(allProblems);
 
-      const solvedProblemsIdList = await getSuccessProblemsIdListStorage(userEmail);
-      console.log('[Pro-Solve] 현재 유저가 성공한 문제 id list :>> ', await solvedProblemsIdList);
-
-      const solvedProblems = await getSolvedProblemList(allProblems, solvedProblemsIdList);
+      const solvedProblems = await getSolvedProblemList(userEmail, allProblems);
       setSolvedProblems(solvedProblems);
 
       setIsLoaded(false);
@@ -61,7 +64,7 @@ const ProfileTabLayout = () => {
     <ProfileTab>
       <ProfileTab.Header />
       <ProfileTab.Nav />
-      <ProfileTab.Content isLoaded={isLoaded}>
+      <ProfileTab.Content isLoggedIn={isLoggedIn} isLoaded={isLoaded}>
         {selectedItem === 'MAIN' && (
           <Statistics
             problemCnt={problemCnt}
@@ -81,11 +84,10 @@ const getAllProblemsList = async () =>
     url: ALL_PROBLEM_URL,
   });
 
-const getSolvedProblemList = async (
-  allProblems: SolvedProblemType,
-  solvedProblemIdList: number[],
-) =>
-  allProblems.reduce((prev: SolvedProblemType, curr: ProblemType) => {
+const getSolvedProblemList = async (userEmail: string, allProblems: SolvedProblemType) => {
+  const solvedProblemIdList = await getSuccessProblemsIdListStorage(userEmail);
+
+  return allProblems.reduce((prev: SolvedProblemType, curr: ProblemType) => {
     solvedProblemIdList.forEach(problem => {
       if (problem === curr.id) {
         prev.push(curr);
@@ -93,6 +95,7 @@ const getSolvedProblemList = async (
     });
     return prev;
   }, []);
+};
 
 const getProblemsCnt = ({ allProblems, solvedProblems }: ProblemsCntType) => ({
   allCnt: allProblems.length,
