@@ -28,15 +28,12 @@ jobs:
         uses: actions/checkout@v2
       - run: git pull
 
-      - name: Zip files
-        run: zip -r build.zip ./dist/*
-
       - name: Install CLI Tool
         run: npm install chrome-webstore-upload-cli@2.0.1 -g
 
       - name: Upload Files
         run: |
-          cd dist && chrome-webstore-upload upload --auto-publish
+          chrome-webstore-upload upload --auto-publish
         env:
           EXTENSION_ID: ${{ secrets.EXTENSION_ID }}
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
