@@ -1,8 +1,10 @@
+import { getUserEmailStorage, getSuccessProblemsIdListStorage } from './getUserInfoStorage';
+
 const addSolvedProblemId = async (id: number, isSuccess: boolean) => {
   if (!isSuccess) return;
 
-  const { userEmail } = await chrome.storage.local.get('userEmail');
-  const solvedProblem = (await chrome.storage.local.get([userEmail]))[userEmail];
+  const { userEmail } = await getUserEmailStorage();
+  const solvedProblem = await getSuccessProblemsIdListStorage(userEmail);
 
   if (solvedProblem.includes(id)) {
     console.log(`[Pro-Solve] 이전에 성공한 문제입니다. :>> ${id}`);

@@ -2,9 +2,9 @@ import { postCurrentSolution } from './postCurrentSolution';
 import { getAllSolutions } from './getAllSolutions';
 import { createSolutionsTab } from './createSolutionsTab';
 import { createSuccessProblemTab } from './createSuccessProblemTab';
-import { setUserInfo } from '@src/api/solution/setUserInfo';
+import { setUserInfoStorage } from '@src/api/solution/setUserInfoStorage';
 
-chrome.runtime.onInstalled.addListener(() => setUserInfo());
+chrome.runtime.onInstalled.addListener(() => setUserInfoStorage());
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   const message = { request, sender, sendResponse };

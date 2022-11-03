@@ -1,12 +1,12 @@
 import { getUserEmail } from './getUserEmail';
 import { getSuccessProblemIdList } from './getSuccessProblemIdList';
 
-const setUserInfo = async () => {
-  const userEmail = await setUserEmail();
-  await setSuccessProblems(userEmail);
+const setUserInfoStorage = async () => {
+  const userEmail = await setUserEmailStorage();
+  await setSuccessProblemsIdListStorage(userEmail);
 };
 
-const setUserEmail = async () => {
+const setUserEmailStorage = async () => {
   const newUserEmail = await getUserEmail();
 
   await chrome.storage.local.set({
@@ -16,7 +16,7 @@ const setUserEmail = async () => {
   return newUserEmail;
 };
 
-const setSuccessProblems = async (userEmail: string) => {
+const setSuccessProblemsIdListStorage = async (userEmail: string) => {
   console.log('[Pro-Solve] 현재 로그인한 프로그래머스 계정 이메일 :>> ', userEmail);
 
   if (userEmail === undefined) return;
@@ -28,4 +28,4 @@ const setSuccessProblems = async (userEmail: string) => {
   });
 };
 
-export { setUserInfo };
+export { setUserInfoStorage };
