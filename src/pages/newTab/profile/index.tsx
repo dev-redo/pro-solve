@@ -19,7 +19,11 @@ import { RecoilRoot, useRecoilValue } from 'recoil';
 import { navOption, sortOption } from '@src/store/profile';
 import Statistics from './Statistics';
 import Problems from './Problems';
-import { getUserEmail } from '@src/api/solution/getUserEmail';
+import { setUserInfoStorage } from '@src/api/solution/setUserInfoStorage';
+import {
+  getUserEmailStorage,
+  getSuccessProblemsIdListStorage,
+} from '@src/api/solution/getUserInfoStorage';
 
 document.title = '프로솔브 - 나의 풀이 페이지';
 
@@ -31,11 +35,18 @@ const ProfileTabLayout = () => {
 
   React.useEffect(() => {
     (async () => {
+      await setUserInfoStorage();
+
+      const { userEmail } = await getUserEmailStorage();
+      console.log('[Pro-Solve] 현재 로그인한 이메일 :>> ', await userEmail);
+
       const allProblems = await getAllProblemsList();
       setAllSolvedProblems(allProblems);
 
-      const solvedProblemIdList = await getSolvedProblemIdList();
-      const solvedProblems = await getSolvedProblemList(allProblems, solvedProblemIdList);
+      const solvedProblemsIdList = await getSuccessProblemsIdListStorage(userEmail);
+      console.log('[Pro-Solve] 현재 유저가 성공한 문제 id list :>> ', await solvedProblemsIdList);
+
+      const solvedProblems = await getSolvedProblemList(allProblems, solvedProblemsIdList);
       setSolvedProblems(solvedProblems);
 
       setIsLoaded(false);
@@ -69,12 +80,6 @@ const getAllProblemsList = async () =>
   await fetchRequest({
     url: ALL_PROBLEM_URL,
   });
-
-const getSolvedProblemIdList = async () => {
-  const userEmail = await getUserEmail();
-
-  return (await chrome.storage.local.get([userEmail]))[userEmail];
-};
 
 const getSolvedProblemList = async (
   allProblems: SolvedProblemType,

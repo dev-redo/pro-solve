@@ -2,15 +2,12 @@ import { postCurrentSolution } from './postCurrentSolution';
 import { getAllSolutions } from './getAllSolutions';
 import { createSolutionsTab } from './createSolutionsTab';
 import { createSuccessProblemTab } from './createSuccessProblemTab';
-import { initSuccessProblems } from '@src/api/solution/initSuccessProblems';
+import { setUserInfoStorage } from '@src/api/solution/setUserInfoStorage';
 
-chrome.runtime.onInstalled.addListener(() => {
-  initSuccessProblems();
-});
+chrome.runtime.onInstalled.addListener(() => setUserInfoStorage());
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   const message = { request, sender, sendResponse };
-  initSuccessProblems();
 
   if (request.method === 'postCurrentSolution') {
     postCurrentSolution(message).catch(error => {
