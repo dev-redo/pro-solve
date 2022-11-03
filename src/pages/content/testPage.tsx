@@ -4,9 +4,9 @@ import { theme } from '@src/styles/theme';
 import { ThemeProvider } from 'styled-components';
 import CreateSolutionsButton from '@src/components/button/CreateSolutionsButton';
 import { addSolvedProblemId } from '@src/api/solution/addSolvedProblemId';
-import { setUserInfo } from '@src/api/solution/setUserInfo';
+import { setUserInfoStorage } from '@src/api/solution/setUserInfoStorage';
 
-(async () => await setUserInfo())();
+(async () => await setUserInfoStorage())();
 
 const $submitBtn = document.querySelector('#submit-code') as HTMLButtonElement;
 const $modal = document.querySelector('.modal') as HTMLDivElement;

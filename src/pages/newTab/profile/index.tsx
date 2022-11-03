@@ -19,40 +19,34 @@ import { RecoilRoot, useRecoilValue } from 'recoil';
 import { navOption, sortOption } from '@src/store/profile';
 import Statistics from './Statistics';
 import Problems from './Problems';
-import { setUserInfo } from '@src/api/solution/setUserInfo';
+import { setUserInfoStorage } from '@src/api/solution/setUserInfoStorage';
+import {
+  getUserEmailStorage,
+  getSuccessProblemsIdListStorage,
+} from '@src/api/solution/getUserInfoStorage';
 
 document.title = '프로솔브 - 나의 풀이 페이지';
 
-// TODO: 이메일, 풀이한 id list storage를 get하는 로직 util로 빼주기
 const ProfileTabLayout = () => {
   const [isLoaded, setIsLoaded] = React.useState(true);
-  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
-
   const [allProblems, setAllSolvedProblems] = React.useState<SolvedProblemType>([]);
   const [solvedProblems, setSolvedProblems] = React.useState<SolvedProblemType>([]);
   const selectedItem = useRecoilValue(navOption);
 
   React.useEffect(() => {
-    // TODO: async 안의 로직 분리
     (async () => {
-      await setUserInfo();
+      await setUserInfoStorage();
 
-      const { userEmail } = await chrome.storage.local.get('userEmail');
-      console.log('newTab userEmail :>> ', await userEmail);
-
-      if (!userEmail) {
-        console.log('로그아웃');
-        setIsLoggedIn(false);
-        return;
-      }
+      const { userEmail } = await getUserEmailStorage();
+      console.log('[Pro-Solve] 현재 로그인한 이메일 :>> ', await userEmail);
 
       const allProblems = await getAllProblemsList();
       setAllSolvedProblems(allProblems);
 
-      const solvedProblemIdList = await getSolvedProblemIdList(userEmail);
-      console.log('newTab solvedProblemIdList :>> ', await solvedProblemIdList);
+      const solvedProblemsIdList = await getSuccessProblemsIdListStorage(userEmail);
+      console.log('[Pro-Solve] 현재 유저가 성공한 문제 id list :>> ', await solvedProblemsIdList);
 
-      const solvedProblems = await getSolvedProblemList(allProblems, solvedProblemIdList);
+      const solvedProblems = await getSolvedProblemList(allProblems, solvedProblemsIdList);
       setSolvedProblems(solvedProblems);
 
       setIsLoaded(false);
@@ -86,9 +80,6 @@ const getAllProblemsList = async () =>
   await fetchRequest({
     url: ALL_PROBLEM_URL,
   });
-
-const getSolvedProblemIdList = async (userEmail: string) =>
-  (await chrome.storage.local.get([userEmail]))[userEmail];
 
 const getSolvedProblemList = async (
   allProblems: SolvedProblemType,
