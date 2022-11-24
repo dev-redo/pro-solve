@@ -17,6 +17,16 @@ type SolvedProblemProps = {
 
 type SelectNameType = 'level' | 'finishedCount' | 'acceptanceRate';
 
+type SortProps = {
+  onChangePageIdx: (page: number) => void;
+  partTitleList: Array<string>;
+};
+
+type SortItemProps = {
+  item: SelectNameType;
+  onChangePageIdx: (page: number) => void;
+};
+
 type SortType = {
   [key: string]: string | boolean;
   type: SelectNameType;
@@ -45,6 +55,8 @@ export {
   ProblemType,
   SolvedProblemProps,
   SelectNameType,
+  SortProps,
+  SortItemProps,
   SortType,
   SortItemType,
   ProblemTableProps,

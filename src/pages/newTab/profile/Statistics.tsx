@@ -2,15 +2,24 @@ import styled from 'styled-components';
 import { uid } from 'react-uid';
 import 'chart.js/auto';
 import { Doughnut } from 'react-chartjs-2';
-import { levels, levelsColor } from '@src/constants/level';
-import Chart from '@assets/icons/Chart.svg';
-import { ProblemCntType, DoughnutType, ChartInfo, ChartInfoList } from '@src/types/profile';
-import '@src/styles/font.css';
-import { BoxStyle, BoldTextStyle } from '@src/styles/global';
+
 import { getPercentile } from '@src/utils/getPercentile';
+
+import { BoxStyle, BoldTextStyle } from '@src/styles/global';
 import { Children } from '@src/types/global';
 import { ContentHeaderInfoStyle } from '@src/styles/global';
 import { STATIST_HEAD } from '@src/constants/profile';
+import { levels, levelsColor } from '@src/constants/level';
+
+import {
+  ProblemCntType,
+  DoughnutType,
+  ChartInfo,
+  ChartInfoList,
+} from '@src/types/profile/profile-statistics';
+
+import Chart from '@assets/icons/Chart.svg';
+import '@src/styles/font.css';
 
 interface StatisticsType {
   problemCnt: ProblemCntType;

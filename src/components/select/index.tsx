@@ -35,13 +35,13 @@ Dropdown.Menu = ({ isOpen, children }: MenuProps) => {
 };
 
 Dropdown.Item = ({ onChangeDropdown, filterState, children }: ItemProps) => {
-  const optionName = filterState[children];
+  const optionName = filterState === undefined ? children : filterState[children];
 
   const onPreventEvent = (event: React.MouseEvent) => event.preventDefault();
   const onChangeOption = () => onChangeDropdown(children);
 
   return (
-    <ItemStyle type="button" value={children} onMouseDown={onPreventEvent} onClick={onChangeOption}>
+    <ItemStyle value={children} onMouseDown={onPreventEvent} onClick={onChangeOption}>
       {optionName}
     </ItemStyle>
   );
@@ -51,15 +51,16 @@ const ContainerStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  position: relative;
 `;
 
-const MenuStyle = styled.div<{ isOpen: boolean }>`
+const MenuStyle = styled.ul<{ isOpen: boolean }>`
   visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
   display: flex;
   flex-direction: column;
   position: absolute;
   z-index: 2;
-  top: 8rem;
+  top: 3rem;
   padding: 0.5rem 0rem;
   font-size: 1rem;
   color: ${({ theme }) => theme.color.darkGrey};
@@ -69,15 +70,18 @@ const MenuStyle = styled.div<{ isOpen: boolean }>`
   border-radius: 0.25rem;
   line-height: 1.6;
   background-color: ${({ theme }) => theme.color.white};
+  max-height: 18.5rem;
+  overflow: auto;
 `;
 
 const ItemStyle = styled.button`
-  padding: 0.3rem 0.875rem;
+  padding: 0.5rem 1rem;
   font-size: 1rem;
   font-family: 'Nanum Gothic', sans-serif;
   font-weight: 400;
   color: ${({ theme }) => theme.color.darkGrey};
   background-color: transparent;
+  display: flex;
 `;
 
 export default Select;

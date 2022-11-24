@@ -20,12 +20,6 @@ interface ProblemCntType {
   solvedCnt: number;
 }
 
-type FilterProps = {
-  solvedProblems: SolvedProblemType;
-  type: SelectNameType;
-  isAscending: boolean;
-};
-
 type SortType = {
   [key: string]: string | boolean;
   type: SelectNameType;
@@ -49,7 +43,6 @@ export {
   SolvedProblemType,
   ProblemsCntType,
   ProblemCntType,
-  FilterProps,
   SortType,
   SortItemType,
   LevelListFunc,

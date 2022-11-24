@@ -1,30 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { RecoilRoot, useRecoilValue } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '@src/styles/theme';
 import GlobalStyles from '@src/styles/global';
-import { ALL_PROBLEM_URL } from '@src/constants/url';
+
+import ProfileTab from './ProfileTab';
+import Problems from './Problems';
+import Statistics from './Statistics';
+
 import { fetchRequest } from '@src/utils/fetchRequest';
+import { setUserInfoStorage } from '@src/api/solution/setUserInfoStorage';
+import { getSuccessProblemsIdListStorage } from '@src/api/solution/getUserInfoStorage';
+import { getUserEmail } from '@src/api/solution/getUserEmail';
+import { ALL_PROBLEM_URL } from '@src/constants/url';
+import { levels, levelsColor } from '@src/constants/level';
 import {
   ProblemType,
   SolvedProblemType,
-  SolvedProblemProps,
   ProblemsCntType,
-  SelectNameType,
   SortType,
-} from '@src/types/profile';
-import { levels, levelsColor } from '@src/constants/level';
-import ProfileTab from './ProfileTab';
-import { RecoilRoot, useRecoilValue } from 'recoil';
+  LevelListFunc,
+} from '@src/types/profile/profile-layout';
 import { navOption, sortOption } from '@src/store/profile';
-import Statistics from './Statistics';
-import Problems from './Problems';
-import { setUserInfoStorage } from '@src/api/solution/setUserInfoStorage';
-import {
-  getUserEmailStorage,
-  getSuccessProblemsIdListStorage,
-} from '@src/api/solution/getUserInfoStorage';
-import { getUserEmail } from '@src/api/solution/getUserEmail';
+import { problemTitleOption } from '@src/store/select';
 
 document.title = '프로솔브 - 나의 풀이 페이지';
 
@@ -59,7 +58,8 @@ const ProfileTabLayout = () => {
   const problemCnt = getProblemsCnt({ allProblems, solvedProblems });
   const solvedLevelCnt = getProblemsLevelList(solvedProblems);
   const chartInfoList = getChartInfoList({ allProblems, solvedProblems });
-  const filteredSolvedProblems = getFilteredSolvedProblems({ solvedProblems });
+  const filteredSolvedProblems = getFilteredSolvedProblems(solvedProblems);
+  const partTitleList = getPartTitleListOfSolvedProblems(solvedProblems);
   return (
     <ProfileTab>
       <ProfileTab.Header />
@@ -72,7 +72,9 @@ const ProfileTabLayout = () => {
             chartInfoList={chartInfoList}
           />
         )}
-        {selectedItem === 'PROBLEM' && <Problems solvedProblems={filteredSolvedProblems} />}
+        {selectedItem === 'PROBLEM' && (
+          <Problems solvedProblems={filteredSolvedProblems} partTitleList={partTitleList} />
+        )}
       </ProfileTab.Content>
       <ProfileTab.Footer />
     </ProfileTab>
@@ -102,7 +104,6 @@ const getProblemsCnt = ({ allProblems, solvedProblems }: ProblemsCntType) => ({
   solvedCnt: solvedProblems.length,
 });
 
-type LevelListFunc = (problems: SolvedProblemType) => number[];
 const getProblemsLevelList: LevelListFunc = (problems: SolvedProblemType) =>
   problems.reduce((prev, { level }) => {
     prev[level] += 1;
@@ -121,24 +122,36 @@ const getChartInfoList = ({ allProblems, solvedProblems }: ProblemsCntType) => {
   }));
 };
 
-const getFilteredSolvedProblems = ({ solvedProblems }: SolvedProblemProps) => {
+const getPartTitleListOfSolvedProblems = (solvedProblems: SolvedProblemType) => {
+  const partTitleList = solvedProblems.reduce<Set<string>>((partTitleList, { partTitle }) => {
+    partTitleList.add(partTitle);
+    return partTitleList;
+  }, new Set());
+
+  return [...partTitleList];
+};
+
+const getFilteredSolvedProblems = (solvedProblems: SolvedProblemType) => {
+  const sortedSolvedProblems = sortSolvedProblems(solvedProblems);
+  return filterSolvedProblemsByPartTitle(sortedSolvedProblems);
+};
+
+const sortSolvedProblems = (solvedProblems: SolvedProblemType) => {
   const sortType = useRecoilValue(sortOption);
   const { type, isAscending } = sortType as SortType;
 
-  return filterSolvedProblems({ solvedProblems, type, isAscending });
-};
-
-type FilterProps = {
-  solvedProblems: SolvedProblemType;
-  type: SelectNameType;
-  isAscending: boolean;
-};
-
-const filterSolvedProblems = ({ solvedProblems, type, isAscending }: FilterProps) =>
-  solvedProblems.sort((prev, curr) => {
-    if (isAscending) return prev[type] - curr[type];
-    return curr[type] - prev[type];
+  return solvedProblems.sort((prevProblem, currProblem) => {
+    if (isAscending) return prevProblem[type] - currProblem[type];
+    return currProblem[type] - prevProblem[type];
   });
+};
+
+const filterSolvedProblemsByPartTitle = (solvedProblems: SolvedProblemType) => {
+  const selectedPartTitle = useRecoilValue(problemTitleOption);
+
+  if (selectedPartTitle === '전체 문제') return solvedProblems;
+  return solvedProblems.filter(({ partTitle }) => partTitle === selectedPartTitle);
+};
 
 const root = document.createElement('div');
 root.style.cssText = `

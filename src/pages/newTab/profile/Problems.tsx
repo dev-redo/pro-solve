@@ -2,29 +2,35 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { uid } from 'react-uid';
 import { useRecoilState } from 'recoil';
+
+import PartTitleSelect from '@src/components/select/PartTitleSelect';
+import Pagination from '@src/components/section/Pagination';
+
+import { sortOption } from '@src/store/profile';
 import { BoxStyle } from '@src/styles/global';
 import { ContentHeaderInfoStyle } from '@src/styles/global';
-import Book from '@assets/icons/Book.svg';
-import ArrowUp from '@assets/icons/ArrowUp.svg';
-import ArrowDown from '@assets/icons/ArrowDown.svg';
-import { sortOption } from '@src/store/profile';
+
+import { levelsColor } from '@src/constants/level';
 import { PROBLEM_LIST, SORT_LIST, SORT_TYPE } from '@src/constants/profile';
-import '@src/styles/font.css';
+import { SOLVING_PROBLEM_URL as BASE_URL } from '@src/constants/url';
 import {
   ProblemType,
   SolvedProblemProps,
   SelectNameType,
+  SortProps,
+  SortItemProps,
   SortType,
   SortItemType,
   ProblemTableProps,
-  SolvedProblemType,
-} from '@src/types/profile';
-import Pagination from '@src/components/section/Pagination';
-import { levelsColor } from '@src/constants/level';
-import { SOLVING_PROBLEM_URL as BASE_URL } from '@src/constants/url';
+  ContentProps,
+} from '@src/types/profile/profile-problems';
+import Book from '@assets/icons/Book.svg';
+import ArrowUp from '@assets/icons/ArrowUp.svg';
+import ArrowDown from '@assets/icons/ArrowDown.svg';
 import NoContent from '@assets/images/noContent.png';
+import '@src/styles/font.css';
 
-export default function Problems({ solvedProblems }: SolvedProblemProps) {
+export default function Problems({ solvedProblems, partTitleList }: SolvedProblemProps) {
   const [pageIdx, setPageIdx] = React.useState(0);
   const limit = 10;
   const offset = pageIdx * limit;
@@ -32,7 +38,7 @@ export default function Problems({ solvedProblems }: SolvedProblemProps) {
   return (
     <BoxStyle>
       <Problems.Header />
-      <Problems.Sort onChangePageIdx={setPageIdx} />
+      <Problems.Sort onChangePageIdx={setPageIdx} partTitleList={partTitleList} />
       <Problems.Content solvedProblems={solvedProblems}>
         <Problems.ItemList start={offset} end={offset + limit} solvedProblems={solvedProblems} />
         <Pagination
@@ -56,19 +62,17 @@ Problems.Header = () => {
   );
 };
 
-Problems.Sort = ({ onChangePageIdx }: { onChangePageIdx: (page: number) => void }) => (
-  <SortStyle>
-    <SortTextItemStyle>정렬 —</SortTextItemStyle>
-    {SORT_LIST.map((item, idx) => (
-      <Problems.SortItem key={uid(idx)} item={item} onChangePageIdx={onChangePageIdx} />
-    ))}
-  </SortStyle>
+Problems.Sort = ({ onChangePageIdx, partTitleList }: SortProps) => (
+  <SortContainerStyle>
+    <SortStyle>
+      <SortTextItemStyle>정렬 —</SortTextItemStyle>
+      {SORT_LIST.map((item, idx) => (
+        <Problems.SortItem key={uid(idx)} item={item} onChangePageIdx={onChangePageIdx} />
+      ))}
+    </SortStyle>
+    <PartTitleSelect partTitleList={partTitleList} />
+  </SortContainerStyle>
 );
-
-type SortItemProps = {
-  item: SelectNameType;
-  onChangePageIdx: (page: number) => void;
-};
 
 Problems.SortItem = ({ item, onChangePageIdx }: SortItemProps) => {
   const [sortType, setSortType] = useRecoilState(sortOption);
@@ -103,11 +107,6 @@ Problems.SortItem = ({ item, onChangePageIdx }: SortItemProps) => {
       {isAscending || <ArrowDown />}
     </SortSelectedItemStyle>
   );
-};
-
-type ContentProps = {
-  children: JSX.Element | JSX.Element[];
-  solvedProblems: SolvedProblemType;
 };
 
 Problems.Content = ({ children, solvedProblems }: ContentProps) => {
@@ -183,15 +182,22 @@ const HeaderStyle = styled.div`
   gap: 0.5rem;
 `;
 
-const SortStyle = styled.div`
+const SortContainerStyle = styled.div`
   white-space: nowrap;
   height: 3rem;
   vertical-align: middle;
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+  align-items: baseline;
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 500;
   margin: 1rem 0;
+`;
+
+const SortStyle = styled.ul`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const SortItemStyle = styled.span`

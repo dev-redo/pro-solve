@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { SortType } from '@src/types/profile';
+import { SortType } from '@src/types/profile/profile-problems';
 
 export const navOption = atom<string>({
   key: 'Nav/Option',
