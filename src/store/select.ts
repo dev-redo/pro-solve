@@ -10,4 +10,9 @@ const sortedOption = atom<string>({
   default: 'DESC',
 });
 
-export { solutionOption, sortedOption };
+const problemTitleOption = atom<string>({
+  key: 'Select/ProblemTitle',
+  default: '전체 문제',
+});
+
+export { solutionOption, sortedOption, problemTitleOption };

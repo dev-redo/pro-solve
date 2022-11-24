@@ -1,16 +1,18 @@
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { uid } from 'react-uid';
-import LogoWhite from '@assets/images/logo-white.png';
 import 'chart.js/auto';
-import { NavType } from '@src/types/profile';
 import '@src/styles/font.css';
+
+import { navOption } from '@src/store/profile';
+import { NavType, ContentType } from '@src/types/profile/profile-tab';
+import { Children } from '@src/types/global';
+import { LoaderStyle } from '@src/styles/global';
 import { GNBStyle } from '@src/styles/global';
 import { NAV_LIST, NAV_TYPE } from '@src/constants/profile';
-import { navOption } from '@src/store/profile';
+
+import LogoWhite from '@assets/images/logo-white.png';
 import Spinner from '@assets/icons/BlackSpinner.svg';
-import { LoaderStyle } from '@src/styles/global';
-import { Children } from '@src/types/global';
 
 export default function ProfileTab({ children }: Children) {
   return <ContainerStyle>{children}</ContainerStyle>;
@@ -45,11 +47,6 @@ ProfileTab.NavItem = ({ item }: { item: string }) => {
   );
 };
 
-type ContentType = {
-  children: React.ReactNode;
-  isLoaded: boolean;
-  isLoggedIn: boolean;
-};
 ProfileTab.Content = ({ children, isLoaded, isLoggedIn }: ContentType) => {
   if (isLoggedIn === false) {
     return (
