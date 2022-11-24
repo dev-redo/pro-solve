@@ -3,7 +3,7 @@ interface SelectProps {
   trigger: React.ReactNode;
   options: Array<string>;
   onChangeDropdown: (selected: string) => void;
-  filterState: object;
+  filterState?: any;
 }
 
 interface TriggerProps {
@@ -17,7 +17,7 @@ interface MenuProps {
 
 interface ItemProps {
   onChangeDropdown: (selected: string) => void;
-  filterState: Array<string>;
+  filterState?: any;
   children: string;
 }
 
@@ -28,10 +28,22 @@ interface SolutionType {
   FAILED: string;
 }
 
+interface PartTitleSelectProps {
+  partTitleList: Array<string>;
+}
+
 interface SortType {
   [key: string]: string;
   ASC: string;
   DESC: string;
 }
 
-export { SelectProps, TriggerProps, MenuProps, ItemProps, SolutionType, SortType };
+export {
+  SelectProps,
+  TriggerProps,
+  MenuProps,
+  ItemProps,
+  PartTitleSelectProps,
+  SolutionType,
+  SortType,
+};
