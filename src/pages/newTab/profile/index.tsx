@@ -123,12 +123,19 @@ const getChartInfoList = ({ allProblems, solvedProblems }: ProblemsCntType) => {
 };
 
 const getPartTitleListOfSolvedProblems = (solvedProblems: SolvedProblemType) => {
-  const partTitleList = solvedProblems.reduce<Set<string>>((partTitleList, { partTitle }) => {
-    partTitleList.add(partTitle);
-    return partTitleList;
-  }, new Set());
+  const problemsTitleMap = solvedProblems.reduce<Record<string, number>>(
+    (partTitleList, { partTitle }) => {
+      partTitleList[partTitle] = (partTitleList[partTitle] ?? 0) + 1;
+      return partTitleList;
+    },
+    {},
+  );
 
-  return [...partTitleList];
+  const partTitleList = Object.entries(problemsTitleMap)
+    .sort(([prevTitle, prevCnt], [currTitle, currCnt]) => currCnt - prevCnt)
+    .map(([title]) => title);
+
+  return ['전체 문제', ...partTitleList];
 };
 
 const getFilteredSolvedProblems = (solvedProblems: SolvedProblemType) => {

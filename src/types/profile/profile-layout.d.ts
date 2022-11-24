@@ -1,4 +1,5 @@
 interface ProblemType {
+  [key: string]: number;
   id: number;
   title: string;
   partTitle: string;
