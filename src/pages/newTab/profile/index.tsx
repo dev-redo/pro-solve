@@ -123,12 +123,20 @@ const getChartInfoList = ({ allProblems, solvedProblems }: ProblemsCntType) => {
 };
 
 const getPartTitleListOfSolvedProblems = (solvedProblems: SolvedProblemType) => {
-  const partTitleList = solvedProblems.reduce<Set<string>>((partTitleList, { partTitle }) => {
-    partTitleList.add(partTitle);
-    return partTitleList;
-  }, new Set());
+  const problemsTitleMap = solvedProblems.reduce<Record<string, number>>(
+    (partTitleList, { partTitle }) => {
+      partTitleList[partTitle] = (partTitleList[partTitle] ?? 0) + 1;
+      return partTitleList;
+    },
+    {},
+  );
 
-  return [...partTitleList];
+  const partTitleList = Object.entries(problemsTitleMap)
+    .sort(([prevTitle, prevCnt], [currTitle, currCnt]) => currCnt - prevCnt)
+    .map(([title, cnt]) => `${title} (${cnt})`);
+
+  const allProblemTitle = `전체 문제 (${solvedProblems.length})`;
+  return [allProblemTitle, ...partTitleList];
 };
 
 const getFilteredSolvedProblems = (solvedProblems: SolvedProblemType) => {
@@ -149,8 +157,8 @@ const sortSolvedProblems = (solvedProblems: SolvedProblemType) => {
 const filterSolvedProblemsByPartTitle = (solvedProblems: SolvedProblemType) => {
   const selectedPartTitle = useRecoilValue(problemTitleOption);
 
-  if (selectedPartTitle === '전체 문제') return solvedProblems;
-  return solvedProblems.filter(({ partTitle }) => partTitle === selectedPartTitle);
+  if (selectedPartTitle.includes('전체 문제')) return solvedProblems;
+  return solvedProblems.filter(({ partTitle }) => selectedPartTitle.includes(partTitle));
 };
 
 const root = document.createElement('div');

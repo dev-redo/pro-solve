@@ -70,7 +70,7 @@ Problems.Sort = ({ onChangePageIdx, partTitleList }: SortProps) => (
         <Problems.SortItem key={uid(idx)} item={item} onChangePageIdx={onChangePageIdx} />
       ))}
     </SortStyle>
-    <PartTitleSelect partTitleList={partTitleList} />
+    <PartTitleSelect partTitleList={partTitleList} onChangePageIdx={onChangePageIdx} />
   </SortContainerStyle>
 );
 

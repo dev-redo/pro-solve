@@ -30,6 +30,7 @@ interface SolutionType {
 
 interface PartTitleSelectProps {
   partTitleList: Array<string>;
+  onChangePageIdx: (page: number) => void;
 }
 
 interface SortType {
