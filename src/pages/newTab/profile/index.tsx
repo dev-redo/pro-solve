@@ -133,9 +133,10 @@ const getPartTitleListOfSolvedProblems = (solvedProblems: SolvedProblemType) => 
 
   const partTitleList = Object.entries(problemsTitleMap)
     .sort(([prevTitle, prevCnt], [currTitle, currCnt]) => currCnt - prevCnt)
-    .map(([title]) => title);
+    .map(([title, cnt]) => `${title} (${cnt})`);
 
-  return ['전체 문제', ...partTitleList];
+  const allProblemTitle = `전체 문제 (${solvedProblems.length})`;
+  return [allProblemTitle, ...partTitleList];
 };
 
 const getFilteredSolvedProblems = (solvedProblems: SolvedProblemType) => {
@@ -156,8 +157,8 @@ const sortSolvedProblems = (solvedProblems: SolvedProblemType) => {
 const filterSolvedProblemsByPartTitle = (solvedProblems: SolvedProblemType) => {
   const selectedPartTitle = useRecoilValue(problemTitleOption);
 
-  if (selectedPartTitle === '전체 문제') return solvedProblems;
-  return solvedProblems.filter(({ partTitle }) => partTitle === selectedPartTitle);
+  if (selectedPartTitle.includes('전체 문제')) return solvedProblems;
+  return solvedProblems.filter(({ partTitle }) => selectedPartTitle.includes(partTitle));
 };
 
 const root = document.createElement('div');

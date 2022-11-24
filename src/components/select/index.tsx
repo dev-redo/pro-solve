@@ -59,7 +59,7 @@ const MenuStyle = styled.ul<{ isOpen: boolean }>`
   display: flex;
   flex-direction: column;
   position: absolute;
-  z-index: 2;
+  z-index: 10;
   top: 3rem;
   padding: 0.5rem 0rem;
   font-size: 1rem;
