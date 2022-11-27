@@ -25,6 +25,8 @@ interface HeaderProps {
 }
 
 SolutionTab.Header = ({ selectedLanguage, problemName }: HeaderProps) => {
+  selectedLanguage = selectedLanguage.replace(/^[a-z]/, char => char.toUpperCase());
+
   return (
     <GNBStyle>
       <img src={LogoWhite} />
@@ -61,7 +63,7 @@ interface ContentProps {
 
 SolutionTab.Content = ({ isLoaded, solutions }: ContentProps) => {
   const { status, data } = solutions;
-  const submitedSolutions = filteredSolutions(data!);
+  const submittedSolutions = filteredSolutions(data!);
 
   if (isLoaded) {
     return (
@@ -82,14 +84,14 @@ SolutionTab.Content = ({ isLoaded, solutions }: ContentProps) => {
 
   return (
     <>
-      {submitedSolutions!.length > 0 && (
+      {submittedSolutions!.length > 0 && (
         <ContentStyle>
-          {submitedSolutions!.map((solution: Solution, index: number) => (
+          {submittedSolutions!.map((solution: Solution, index: number) => (
             <Code key={uid(index)} solution={solution} />
           ))}
         </ContentStyle>
       )}
-      {submitedSolutions!.length === 0 && <NoContentStyle>저장된 풀이가 없습니다.</NoContentStyle>}
+      {submittedSolutions!.length === 0 && <NoContentStyle>저장된 풀이가 없습니다.</NoContentStyle>}
     </>
   );
 };
@@ -121,6 +123,7 @@ const filteredSolutions = (solutions: SolutionList) => {
 
 const ContainerStyle = styled.div`
   height: 100%;
+  font-family: 'Noto Sans KR', sans-serif;
 `;
 
 const SelectStyle = styled.div`
@@ -141,7 +144,6 @@ const RequestLoginStyle = styled(CenterContainer)`
   gap: 0.6rem;
   line-height: 1.65rem;
   font-size: 1.1rem;
-  font-family: 'Nanum Gothic', sans-serif;
   font-weight: 400;
   color: ${({ theme }) => theme.color.darkGrey};
 
@@ -153,7 +155,6 @@ const RequestLoginStyle = styled(CenterContainer)`
 
 const NoContentStyle = styled(CenterContainer)`
   font-size: 1.1rem;
-  font-family: 'Nanum Gothic', sans-serif;
   font-weight: 400;
   color: ${({ theme }) => theme.color.darkGrey};
 `;

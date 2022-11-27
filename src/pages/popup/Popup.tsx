@@ -46,7 +46,7 @@ Popup.Login = ({ isLoaded, userEmail }: LoginProps) => {
       )}
       {userEmail === '' || (
         <UserInfoStyle>
-          <span>Your Email:</span>
+          <span>이메일 주소:</span>
           <span>{userEmail}</span>
         </UserInfoStyle>
       )}
@@ -72,6 +72,7 @@ const ContainerStyle = styled.div`
   height: 15rem;
   padding: 1.5rem 2rem;
   gap: 1rem;
+  font-family: 'Noto Sans KR', sans-serif;
 `;
 
 const ContentStyle = styled.div`
@@ -84,13 +85,11 @@ const TitleStyle = styled.div`
   margin-bottom: 1rem;
   h1 {
     font-size: 2.3rem;
-    font-family: 'SCDream', sans-serif;
     font-weight: 500;
     padding-bottom: 0.8rem;
   }
   span {
     font-size: 1rem;
-    font-family: 'SCDream', sans-serif;
     font-weight: 400;
     color: ${({ theme }) => theme.color.darkGrey};
   }
@@ -102,7 +101,6 @@ const LoadingStyle = styled.div`
   div {
     font-size: 0.8rem;
     color: ${({ theme }) => theme.color.darkGrey};
-    font-family: 'SCDream', sans-serif;
     font-weight: 400;
   }
 `;
@@ -110,7 +108,6 @@ const LoadingStyle = styled.div`
 const UserInfoStyle = styled.div`
   font-size: 1.1rem;
   gap: 1rem;
-  font-family: 'SCDream', sans-serif;
   font-weight: 500;
   span:first-child {
     color: ${({ theme }) => theme.color.darkGrey};
@@ -124,7 +121,6 @@ const UserInfoStyle = styled.div`
 const LoginStyle = styled.div`
   & > span {
     font-size: 0.8rem;
-    font-family: 'SCDream', sans-serif;
     font-weight: 400;
     color: ${({ theme }) => theme.color.darkGrey};
   }
@@ -141,7 +137,6 @@ const FooterStyle = styled.a`
   span {
     font-size: 1rem;
     margin-right: 0.3rem;
-    font-family: 'SCDream', sans-serif;
     font-weight: 400;
   }
 `;

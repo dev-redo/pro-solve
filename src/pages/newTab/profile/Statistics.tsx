@@ -156,6 +156,7 @@ const StatisticsContentStyle = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 2rem;
+  font-family: 'Noto Sans KR', sans-serif;
   ${({ theme }) => theme.media.desktop`
     display:flex;
     flex-direction: column;
@@ -170,25 +171,25 @@ const SolvedHeaderStyle = styled.div`
 
 const UpdateInfoStyle = styled.div`
   font-size: 0.9rem;
-  font-family: 'Noto Sans KR', sans-serif;
   color: #8a8f95;
   font-weight: 400;
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.3rem;
 `;
 
 const UpdateInfoIconStyle = styled.span`
   background-color: #8a8f95;
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 1rem;
+  height: 1rem;
   display: inline-block;
   border-radius: 50%;
   color: white;
   text-align: center;
   vertical-align: middle;
-  font-size: 1rem;
+  font-size: 0.8rem;
   transform: translate(0px, -1px);
+  line-height: 0.9rem;
 `;
 
 const DoughnutWrapperStyle = styled.div`
@@ -216,7 +217,6 @@ const TableHeadStyle = styled.thead`
   }
   td {
     font-size: 1rem;
-    font-family: 'Noto Sans KR';
     font-weight: 500;
     text-align: center;
     border-bottom: 1px solid #dddfe0;
@@ -226,7 +226,6 @@ const TableHeadStyle = styled.thead`
 
 const TableBodyStyle = styled.tbody`
   display: table-row-group;
-  font-family: 'Noto Sans KR';
   font-size: 1.1rem;
   font-weight: 400;
   color: ${({ theme }) => theme.color.darkGrey};
@@ -255,7 +254,6 @@ const CenterTextStyle = styled.div`
   justify-content: center;
   align-items: center;
   line-height: 1.5;
-  font-family: 'Noto Sans KR';
   position: absolute;
   top: 57%;
   left: 50%;

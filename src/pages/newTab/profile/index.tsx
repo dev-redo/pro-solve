@@ -33,7 +33,7 @@ const ProfileTabLayout = () => {
 
   const [allProblems, setAllSolvedProblems] = React.useState<SolvedProblemType>([]);
   const [solvedProblems, setSolvedProblems] = React.useState<SolvedProblemType>([]);
-  const selectedItem = useRecoilValue(navOption);
+  const selectedNavOption = useRecoilValue(navOption);
 
   React.useEffect(() => {
     (async () => {
@@ -65,14 +65,14 @@ const ProfileTabLayout = () => {
       <ProfileTab.Header />
       <ProfileTab.Nav />
       <ProfileTab.Content isLoggedIn={isLoggedIn} isLoaded={isLoaded}>
-        {selectedItem === 'MAIN' && (
+        {selectedNavOption === 'MAIN' && (
           <Statistics
             problemCnt={problemCnt}
             solvedLevelCnt={solvedLevelCnt}
             chartInfoList={chartInfoList}
           />
         )}
-        {selectedItem === 'PROBLEM' && (
+        {selectedNavOption === 'PROBLEM' && (
           <Problems solvedProblems={filteredSolvedProblems} partTitleList={partTitleList} />
         )}
       </ProfileTab.Content>

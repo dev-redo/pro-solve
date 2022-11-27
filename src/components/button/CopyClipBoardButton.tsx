@@ -81,7 +81,7 @@ const ToolTipStyle = styled.p`
   width: 5rem;
   padding: 0.4rem;
   top: 2.2rem;
-  right: -1.65rem;
+  right: -1.7rem;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 0.5rem;

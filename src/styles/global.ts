@@ -39,8 +39,9 @@ const GNBStyle = styled.div`
   padding: 0.375rem 1rem;
   background-color: ${({ theme }) => theme.color.jetBlack};
   color: ${({ theme }) => theme.color.greyBlue};
-  font-family: 'Inter', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-weight: 400;
+  user-select: none;
   & > img {
     width: 1.5rem;
     height: 1.5rem;

@@ -53,7 +53,7 @@ const GoogleLoginButtonStyle = styled.button`
   background-color: ${({ theme }) => theme.color.skyBlue};
   margin-top: 0.4rem;
   font-size: 1.2rem;
-  font-family: 'SCDream', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-weight: 500;
   color: ${({ theme }) => theme.color.white};
   & > svg {

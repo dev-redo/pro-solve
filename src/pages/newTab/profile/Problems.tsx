@@ -16,7 +16,6 @@ import { SOLVING_PROBLEM_URL as BASE_URL } from '@src/constants/url';
 import {
   ProblemType,
   SolvedProblemProps,
-  SelectNameType,
   SortProps,
   SortItemProps,
   SortType,
