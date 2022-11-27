@@ -22,7 +22,7 @@ ProfileTab.Header = () => (
   <GNBStyle>
     <img src={LogoWhite} />
     <div>
-      <span>성공한 문제 정보</span>
+      <span>나의 풀이 페이지</span>
     </div>
   </GNBStyle>
 );
@@ -73,6 +73,7 @@ ProfileTab.Footer = () => <FooterStyle />;
 const ContainerStyle = styled.div`
   background-color: ${({ theme }) => theme.color.whiter};
   min-width: 768px;
+  user-select: none;
 `;
 
 const LogoutStyle = styled.div`

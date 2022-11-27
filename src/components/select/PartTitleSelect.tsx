@@ -6,9 +6,18 @@ import { problemTitleOption } from '@src/store/select';
 import { PartTitleSelectProps } from '@src/types/select';
 import '@src/styles/font.css';
 
-const PartTitleSelect = ({ partTitleList, onChangePageIdx }: PartTitleSelectProps) => {
+const PartTitleSelect = ({
+  allSolvedCnt,
+  partTitleList,
+  onChangePageIdx,
+}: PartTitleSelectProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [selected, setSelected] = useRecoilState(problemTitleOption);
+
+  React.useEffect(() => {
+    console.log(allSolvedCnt);
+    if (selected === 'ALL') setSelected(`전체 문제 (${allSolvedCnt})`);
+  }, []);
 
   const onChangePartTitle = (option: string) => {
     onChangePageIdx(0);

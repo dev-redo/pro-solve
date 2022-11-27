@@ -73,7 +73,11 @@ const ProfileTabLayout = () => {
           />
         )}
         {selectedNavOption === 'PROBLEM' && (
-          <Problems solvedProblems={filteredSolvedProblems} partTitleList={partTitleList} />
+          <Problems
+            allSolvedCnt={solvedProblems.length}
+            solvedProblems={filteredSolvedProblems}
+            partTitleList={partTitleList}
+          />
         )}
       </ProfileTab.Content>
       <ProfileTab.Footer />

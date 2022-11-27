@@ -77,6 +77,7 @@ const BoxStyle = styled.div`
   border-radius: 0.5rem;
   padding: 1.5rem;
   font-family: 'Noto Sans KR', sans-serif;
+  user-select: none;
 `;
 
 const ContentHeaderInfoStyle = styled.div`

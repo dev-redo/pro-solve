@@ -29,6 +29,7 @@ interface SolutionType {
 }
 
 interface PartTitleSelectProps {
+  allSolvedCnt: number;
   partTitleList: Array<string>;
   onChangePageIdx: (page: number) => void;
 }
