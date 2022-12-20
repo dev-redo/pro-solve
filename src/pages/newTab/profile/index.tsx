@@ -25,15 +25,13 @@ import {
 import { navOption, sortOption } from '@src/store/profile';
 import { problemTitleOption } from '@src/store/select';
 
-document.title = '프로솔브 - 나의 풀이 페이지';
-
 const ProfileTabLayout = () => {
   const [isLoaded, setIsLoaded] = React.useState(true);
   const [isLoggedIn, setIsLoggedIn] = React.useState(true);
 
   const [allProblems, setAllSolvedProblems] = React.useState<SolvedProblemType>([]);
   const [solvedProblems, setSolvedProblems] = React.useState<SolvedProblemType>([]);
-  const selectedItem = useRecoilValue(navOption);
+  const selectedNavOption = useRecoilValue(navOption);
 
   React.useEffect(() => {
     (async () => {
@@ -65,15 +63,19 @@ const ProfileTabLayout = () => {
       <ProfileTab.Header />
       <ProfileTab.Nav />
       <ProfileTab.Content isLoggedIn={isLoggedIn} isLoaded={isLoaded}>
-        {selectedItem === 'MAIN' && (
+        {selectedNavOption === 'MAIN' && (
           <Statistics
             problemCnt={problemCnt}
             solvedLevelCnt={solvedLevelCnt}
             chartInfoList={chartInfoList}
           />
         )}
-        {selectedItem === 'PROBLEM' && (
-          <Problems solvedProblems={filteredSolvedProblems} partTitleList={partTitleList} />
+        {selectedNavOption === 'PROBLEM' && (
+          <Problems
+            allSolvedCnt={solvedProblems.length}
+            solvedProblems={filteredSolvedProblems}
+            partTitleList={partTitleList}
+          />
         )}
       </ProfileTab.Content>
       <ProfileTab.Footer />

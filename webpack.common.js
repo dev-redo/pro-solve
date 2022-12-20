@@ -3,9 +3,9 @@ const path = require('path');
 const getAbsolutePath = pathDir => path.resolve(__dirname, pathDir);
 const getHtmlPlugins = chunks => {
   return chunks.map(
-    chunk =>
+    ({ chunk, title }) =>
       new HtmlPlugin({
-        title: '프로솔브',
+        title: `${title}`,
         filename: `${chunk}.html`,
         chunks: [chunk],
       }),
@@ -118,6 +118,10 @@ module.exports = {
         },
       ],
     }),
-    ...getHtmlPlugins(['popup', 'solutionTab', 'profileTab']),
+    ...getHtmlPlugins([
+      { chunk: 'popup', title: '프로솔브 - PopUp 페이지' },
+      { chunk: 'solutionTab', title: '프로솔브 - 문제 풀이 페이지' },
+      { chunk: 'profileTab', title: '프로솔브 - 나의 풀이 페이지' },
+    ]),
   ],
 };

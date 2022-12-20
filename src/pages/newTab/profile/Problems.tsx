@@ -16,7 +16,6 @@ import { SOLVING_PROBLEM_URL as BASE_URL } from '@src/constants/url';
 import {
   ProblemType,
   SolvedProblemProps,
-  SelectNameType,
   SortProps,
   SortItemProps,
   SortType,
@@ -30,7 +29,11 @@ import ArrowDown from '@assets/icons/ArrowDown.svg';
 import NoContent from '@assets/images/noContent.png';
 import '@src/styles/font.css';
 
-export default function Problems({ solvedProblems, partTitleList }: SolvedProblemProps) {
+export default function Problems({
+  allSolvedCnt,
+  solvedProblems,
+  partTitleList,
+}: SolvedProblemProps) {
   const [pageIdx, setPageIdx] = React.useState(0);
   const limit = 10;
   const offset = pageIdx * limit;
@@ -38,7 +41,11 @@ export default function Problems({ solvedProblems, partTitleList }: SolvedProble
   return (
     <BoxStyle>
       <Problems.Header />
-      <Problems.Sort onChangePageIdx={setPageIdx} partTitleList={partTitleList} />
+      <Problems.Sort
+        allSolvedCnt={allSolvedCnt}
+        onChangePageIdx={setPageIdx}
+        partTitleList={partTitleList}
+      />
       <Problems.Content solvedProblems={solvedProblems}>
         <Problems.ItemList start={offset} end={offset + limit} solvedProblems={solvedProblems} />
         <Pagination
@@ -62,7 +69,7 @@ Problems.Header = () => {
   );
 };
 
-Problems.Sort = ({ onChangePageIdx, partTitleList }: SortProps) => (
+Problems.Sort = ({ allSolvedCnt, onChangePageIdx, partTitleList }: SortProps) => (
   <SortContainerStyle>
     <SortStyle>
       <SortTextItemStyle>정렬 —</SortTextItemStyle>
@@ -70,7 +77,11 @@ Problems.Sort = ({ onChangePageIdx, partTitleList }: SortProps) => (
         <Problems.SortItem key={uid(idx)} item={item} onChangePageIdx={onChangePageIdx} />
       ))}
     </SortStyle>
-    <PartTitleSelect partTitleList={partTitleList} onChangePageIdx={onChangePageIdx} />
+    <PartTitleSelect
+      allSolvedCnt={allSolvedCnt}
+      partTitleList={partTitleList}
+      onChangePageIdx={onChangePageIdx}
+    />
   </SortContainerStyle>
 );
 

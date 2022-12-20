@@ -77,7 +77,7 @@ const MenuStyle = styled.ul<{ isOpen: boolean }>`
 const ItemStyle = styled.button`
   padding: 0.5rem 1rem;
   font-size: 1rem;
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-weight: 400;
   color: ${({ theme }) => theme.color.darkGrey};
   background-color: transparent;

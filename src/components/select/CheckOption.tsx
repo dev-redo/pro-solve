@@ -29,7 +29,7 @@ const CheckOptionStyle = styled.div<{ isOpen: boolean }>`
   z-index: 1;
   cursor: pointer;
   font-size: 1rem;
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-weight: 400;
   color: ${({ theme }) => theme.color.darkGrey};
   background-color: ${({ isOpen, theme }) =>

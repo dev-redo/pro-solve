@@ -1,4 +1,4 @@
-import { SelectNameType } from '@src/types/profile';
+import { SelectNameType } from '@src/types/profile/profile-layout';
 
 const NAV_LIST = ['MAIN', 'PROBLEM'];
 const NAV_TYPE = {

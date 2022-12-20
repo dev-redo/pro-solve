@@ -11,6 +11,7 @@ interface ProblemType {
 type SolvedProblemType = ProblemType[];
 
 type SolvedProblemProps = {
+  allSolvedCnt: number;
   solvedProblems: SolvedProblemType;
   partTitleList: Array<string>;
 };
@@ -18,6 +19,7 @@ type SolvedProblemProps = {
 type SelectNameType = 'level' | 'finishedCount' | 'acceptanceRate';
 
 type SortProps = {
+  allSolvedCnt: number;
   onChangePageIdx: (page: number) => void;
   partTitleList: Array<string>;
 };

@@ -12,7 +12,7 @@ const sortedOption = atom<string>({
 
 const problemTitleOption = atom<string>({
   key: 'Select/ProblemTitle',
-  default: '전체 문제',
+  default: 'ALL',
 });
 
 export { solutionOption, sortedOption, problemTitleOption };

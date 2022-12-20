@@ -45,6 +45,7 @@ export {
   ProblemsCntType,
   ProblemCntType,
   SortType,
+  SelectNameType,
   SortItemType,
   LevelListFunc,
 };
