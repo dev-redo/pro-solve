@@ -4,7 +4,7 @@
 ![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/pjffalefhahlellpckbbiehmbljjhihl?label=users%40chrome)
 ![Chrome Web Store Rating Count](https://img.shields.io/chrome-web-store/rating-count/pjffalefhahlellpckbbiehmbljjhihl)
 ![Chrome Web Store Ratings](https://img.shields.io/chrome-web-store/rating/pjffalefhahlellpckbbiehmbljjhihl)
-[![sync-problems](https://github.com/dev-redo/programmers-problems/actions/workflows/sync-problems.yaml/badge.svg)](https://github.com/dev-redo/programmers-problems/actions/workflows/sync-problems.yaml)
+[![sync-problems](https://github.com/dev-red5/programmers-problems/actions/workflows/sync-problems.yaml/badge.svg)](https://github.com/dev-red5/programmers-problems/actions/workflows/sync-problems.yaml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [![Chrome Web Store](https://storage.googleapis.com/chrome-gcs-uploader.appspot.com/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/UV4C4ybeBTsZt43U4xis.png)](https://chrome.google.com/webstore/detail/%ED%94%84%EB%A1%9C%EC%86%94%EB%B8%8Cpro-solve/pjffalefhahlellpckbbiehmbljjhihl/related?hl=ko)
@@ -104,5 +104,5 @@ Chart는 유저가 각 레벨 문제들을 전체 중 몇 개(퍼센트) 풀었�
 
 ## 📜 링크 & 문서
 
-- [전체 문제 저장소](https://github.com/dev-redo/programmers-problems)
+- [전체 문제 저장소](https://github.com/dev-red5/programmers-problems)
 - [개발 회고록](https://velog.io/@dev-redo/%ED%94%84%EB%A1%9C%EC%86%94%EB%B8%8C-%ED%81%AC%EB%A1%AC-%EC%9D%B5%EC%8A%A4%ED%85%90%EC%85%98-%EA%B0%9C%EB%B0%9C-%ED%9B%84%EA%B8%B0)
