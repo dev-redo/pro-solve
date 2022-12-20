@@ -25,8 +25,6 @@ import {
 import { navOption, sortOption } from '@src/store/profile';
 import { problemTitleOption } from '@src/store/select';
 
-document.title = '프로솔브 - 나의 풀이 페이지';
-
 const ProfileTabLayout = () => {
   const [isLoaded, setIsLoaded] = React.useState(true);
   const [isLoggedIn, setIsLoggedIn] = React.useState(true);
