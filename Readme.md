@@ -40,7 +40,7 @@
 
 ## 🎞 동작 화면
 
-https://user-images.githubusercontent.com/69149030/197547870-2cdcc3e3-fccc-4162-8a5d-227b5f9e0f1a.mp4
+https://user-images.githubusercontent.com/69149030/208983900-57fd1ad7-03f8-4345-ace4-cba6adaf4b09.mp4
 
 <p align="center">성공한 문제 차트 & 표</p>
 
