@@ -9,6 +9,23 @@
 
 [![Chrome Web Store](https://storage.googleapis.com/chrome-gcs-uploader.appspot.com/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/UV4C4ybeBTsZt43U4xis.png)](https://chrome.google.com/webstore/detail/%ED%94%84%EB%A1%9C%EC%86%94%EB%B8%8Cpro-solve/pjffalefhahlellpckbbiehmbljjhihl/related?hl=ko)
 
+## 📜 목차
+
+- [프로솔브(Pro-Solve) ](#프로솔브pro-solve-)
+  - [📜 목차](#-목차)
+  - [✨ 지원 기능](#-지원-기능)
+  - [🎞 동작 화면](#-동작-화면)
+  - [🎨 프로젝트 아키텍처](#-프로젝트-아키텍처)
+  - [💡 왜 만들게 되었나요?](#-왜-만들게-되었나요)
+    - [기능 1. 성공한 문제 차트 \& 표](#기능-1-성공한-문제-차트--표)
+    - [기능 2. 제출한 풀이 저장](#기능-2-제출한-풀이-저장)
+    - [기능 3. 풀이 클립보드](#기능-3-풀이-클립보드)
+  - [🙋‍♀️ 어떻게 사용할 수 있나요?](#️-어떻게-사용할-수-있나요)
+  - [😲 Q\&A](#-qa)
+  - [📚 링크 \& 문서](#-링크--문서)
+
+<br />
+
 ## ✨ 지원 기능
 
 프로솔브는 **크롬 브라우저**에서만 이용할 수 있습니다.
@@ -23,7 +40,7 @@
 
 ## 🎞 동작 화면
 
-https://user-images.githubusercontent.com/69149030/197547870-2cdcc3e3-fccc-4162-8a5d-227b5f9e0f1a.mp4
+https://user-images.githubusercontent.com/69149030/208983900-57fd1ad7-03f8-4345-ace4-cba6adaf4b09.mp4
 
 <p align="center">성공한 문제 차트 & 표</p>
 
@@ -38,6 +55,20 @@ https://user-images.githubusercontent.com/69149030/194714332-ec61e267-1d86-42e3-
 https://user-images.githubusercontent.com/69149030/196757224-1fd436c6-cef2-45b7-931f-d216c19c3ae3.mp4
 
 <p align="center">다른 사람 풀이 페이지의 코드 클립보드</p>
+
+<br />
+
+## 🎨 프로젝트 아키텍처
+
+<img src="https://imgur.com/jCb4Wzw.png" />
+
+- **Presentational-Container**과 **Compound Component** 디자인 패턴을 이용해 프로젝트를 구성했습니다.
+
+- **사용자가 제출한 문제 정보를 저장 및 조회** 기능을 구현하기 위해 **Firebase**를 이용했습니다. <br />
+  유저들을 식별하기 위해 **Firebase Google 소셜 로그인**을 이용하였으며, **Firebase Cloud FireStore**을 이용해 사용자가 제출한 풀이 정보를 저장 및 조회합니다.
+
+- **성공한 문제 차트 & 표** 기능을 구현하기 위해 전체 문제와 유저가 성공한 문제 정보가 필요합니다. <br />
+  문제 정보를 얻기 위해 **GitHub Actions과 jsDelivr, Chrome Storage API**를 이용하였습니다.
 
 <br />
 
@@ -102,7 +133,7 @@ Chart는 유저가 각 레벨 문제들을 전체 중 몇 개(퍼센트) 풀었�
 
 <br />
 
-## 📜 링크 & 문서
+## 📚 링크 & 문서
 
 - [전체 문제 저장소](https://github.com/dev-red5/programmers-problems)
 - [개발 회고록](https://velog.io/@dev-redo/%ED%94%84%EB%A1%9C%EC%86%94%EB%B8%8C-%ED%81%AC%EB%A1%AC-%EC%9D%B5%EC%8A%A4%ED%85%90%EC%85%98-%EA%B0%9C%EB%B0%9C-%ED%9B%84%EA%B8%B0)
