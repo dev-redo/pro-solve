@@ -9,21 +9,19 @@ import ProfileTab from './ProfileTab';
 import Problems from './Problems';
 import Statistics from './Statistics';
 
-import { fetchRequest } from '@src/utils/fetchRequest';
 import { setUserInfoStorage } from '@src/api/solution/setUserInfoStorage';
-import { getSuccessProblemsIdListStorage } from '@src/api/solution/getUserInfoStorage';
 import { getUserEmail } from '@src/api/solution/getUserEmail';
-import { ALL_PROBLEM_URL } from '@src/constants/url';
-import { levels, levelsColor } from '@src/constants/level';
+import { SolvedProblemType } from '@src/types/profile/profile-layout';
+import { navOption } from '@src/store/profile';
 import {
-  ProblemType,
-  SolvedProblemType,
-  ProblemsCntType,
-  SortType,
-  LevelListFunc,
-} from '@src/types/profile/profile-layout';
-import { navOption, sortOption } from '@src/store/profile';
-import { problemTitleOption } from '@src/store/select';
+  getAllProblemsList,
+  getChartInfoList,
+  getFilteredSolvedProblems,
+  getPartTitleListOfSolvedProblems,
+  getProblemsCnt,
+  getProblemsLevelList,
+  getSolvedProblemList,
+} from '@src/service/profile';
 
 const ProfileTabLayout = () => {
   const [isLoaded, setIsLoaded] = React.useState(true);
@@ -81,86 +79,6 @@ const ProfileTabLayout = () => {
       <ProfileTab.Footer />
     </ProfileTab>
   );
-};
-
-const getAllProblemsList = async () =>
-  await fetchRequest({
-    url: ALL_PROBLEM_URL,
-  });
-
-const getSolvedProblemList = async (userEmail: string, allProblems: SolvedProblemType) => {
-  const solvedProblemIdList = await getSuccessProblemsIdListStorage(userEmail);
-
-  return allProblems.reduce((prev: SolvedProblemType, curr: ProblemType) => {
-    solvedProblemIdList.forEach(problem => {
-      if (problem === curr.id) {
-        prev.push(curr);
-      }
-    });
-    return prev;
-  }, []);
-};
-
-const getProblemsCnt = ({ allProblems, solvedProblems }: ProblemsCntType) => ({
-  allCnt: allProblems.length,
-  solvedCnt: solvedProblems.length,
-});
-
-const getProblemsLevelList: LevelListFunc = (problems: SolvedProblemType) =>
-  problems.reduce((prev, { level }) => {
-    prev[level] += 1;
-    return prev;
-  }, new Array(6).fill(0));
-
-const getChartInfoList = ({ allProblems, solvedProblems }: ProblemsCntType) => {
-  const problemsCnt = getProblemsLevelList(allProblems);
-  const solvedCnt = getProblemsLevelList(solvedProblems);
-
-  return levels.map((level, idx) => ({
-    level,
-    color: levelsColor[idx],
-    allCnt: problemsCnt[idx],
-    solvedCnt: solvedCnt[idx],
-  }));
-};
-
-const getPartTitleListOfSolvedProblems = (solvedProblems: SolvedProblemType) => {
-  const problemsTitleMap = solvedProblems.reduce<Record<string, number>>(
-    (partTitleList, { partTitle }) => {
-      partTitleList[partTitle] = (partTitleList[partTitle] ?? 0) + 1;
-      return partTitleList;
-    },
-    {},
-  );
-
-  const partTitleList = Object.entries(problemsTitleMap)
-    .sort(([prevTitle, prevCnt], [currTitle, currCnt]) => currCnt - prevCnt)
-    .map(([title, cnt]) => `${title} (${cnt})`);
-
-  const allProblemTitle = `전체 문제 (${solvedProblems.length})`;
-  return [allProblemTitle, ...partTitleList];
-};
-
-const getFilteredSolvedProblems = (solvedProblems: SolvedProblemType) => {
-  const sortedSolvedProblems = sortSolvedProblems(solvedProblems);
-  return filterSolvedProblemsByPartTitle(sortedSolvedProblems);
-};
-
-const sortSolvedProblems = (solvedProblems: SolvedProblemType) => {
-  const sortType = useRecoilValue(sortOption);
-  const { type, isAscending } = sortType as SortType;
-
-  return solvedProblems.sort((prevProblem, currProblem) => {
-    if (isAscending) return prevProblem[type] - currProblem[type];
-    return currProblem[type] - prevProblem[type];
-  });
-};
-
-const filterSolvedProblemsByPartTitle = (solvedProblems: SolvedProblemType) => {
-  const selectedPartTitle = useRecoilValue(problemTitleOption);
-
-  if (selectedPartTitle.includes('전체 문제')) return solvedProblems;
-  return solvedProblems.filter(({ partTitle }) => selectedPartTitle.includes(partTitle));
 };
 
 const root = document.createElement('div');
