@@ -1,21 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from 'styled-components';
+
 import { theme } from '@src/styles/theme';
 import GlobalStyles from '@src/styles/global';
-import { auth } from '@src/firebase';
+import { useAuth } from '@src/hooks/popup/useAuth';
+
 import Popup from './Popup';
 
 function PopupLayout() {
-  const [userEmail, setUserEmail] = React.useState('');
-  const [isLoaded, setIsLoaded] = React.useState(true);
-
-  auth.onAuthStateChanged(firebaseUser => {
-    if (firebaseUser) {
-      setUserEmail(firebaseUser.email as string);
-    }
-    setIsLoaded(false);
-  });
+  const { isLoaded, userEmail } = useAuth();
 
   return (
     <Popup>
