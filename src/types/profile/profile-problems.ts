@@ -1,3 +1,5 @@
+import { SelectSortType } from './profile-layout';
+
 interface ProblemType {
   id: number;
   title: string;
