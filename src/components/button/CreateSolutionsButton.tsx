@@ -35,7 +35,7 @@ const CreateSolutionsButton = (href: ButtonProps) => {
 
 const ButtonStyle = styled.button`
   background-color: ${({ theme }) => theme.color.darkGrey};
-  margin: 0rem 0.25rem;
+  margin: 0;
   border-radius: 0.25rem;
   border: none;
   color: ${({ theme }) => theme.color.white};
