@@ -5,27 +5,25 @@ import { ThemeProvider } from 'styled-components';
 
 import { theme } from '@src/styles/theme';
 import GlobalStyles from '@src/styles/global';
+
+import { getQueryParams } from '@src/utils/location/getQueryParams';
 import { useAllSolution } from '@src/hooks/solution/useAllSolution';
 import { SelectedLanguage } from '@src/types/problem/problem';
 
 import SolutionTab from './SolutionTab';
 
-const languageRegex = /&language=(.*)/;
-const problemIdRegex = /num=(.*?)&name/;
-const problemNameRegex = /name=(.*?)&language/;
-
-const href = window.location.href;
-const selectedLanguage = href.match(languageRegex)![1] as SelectedLanguage;
-const problemId = href.match(problemIdRegex)![1];
-const problemName = decodeURI(href.match(problemNameRegex)![1]);
-document.title = `프로솔브 - ${problemName}`;
+const { num, name, language } = getQueryParams();
+document.title = `프로솔브 - ${name}`;
 
 const SolutionTabLayout = () => {
-  const { isLoaded, solutions } = useAllSolution({ selectedLanguage, problemId });
+  const { isLoaded, solutions } = useAllSolution({
+    selectedLanguage: language as SelectedLanguage,
+    problemId: num,
+  });
 
   return (
     <SolutionTab>
-      <SolutionTab.Header selectedLanguage={selectedLanguage} problemName={problemName} />
+      <SolutionTab.Header selectedLanguage={language} problemName={name} />
       <SolutionTab.Select isLoaded={isLoaded} />
       <SolutionTab.Content isLoaded={isLoaded} solutions={solutions} />
     </SolutionTab>
