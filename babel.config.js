@@ -1,14 +1,13 @@
 module.exports = {
-  exclude: [/node_modules[\\\/]core-js/, /node_modules[\\\/]webpack[\\\/]buildin/],
   presets: [
-    ['@babel/preset-env', { modules: false }],
+    ['@babel/preset-env', { targets: '> 0.25%' }],
     ['@babel/preset-react', { runtime: 'automatic' }],
-    "@babel/preset-typescript"
+    '@babel/preset-typescript',
   ],
   plugins: [
     '@babel/plugin-transform-template-literals',
     '@babel/plugin-transform-arrow-functions',
-    '@babel/plugin-transform-runtime',
+    ['@babel/plugin-transform-runtime', { corejs: 3 }],
     '@babel/plugin-syntax-dynamic-import',
   ],
   env: {
