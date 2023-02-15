@@ -1,9 +1,6 @@
-import { fetchRequest } from '@src/utils/fetchRequest';
-import { ALL_PROBLEM_URL } from '@src/constants/url';
+import { getJSON } from '@src/utils/fetchRequest';
+import { ALL_PROBLEM_URL as url } from '@src/constants/url';
 
-const getAllProblemsList = async () =>
-  await fetchRequest({
-    url: ALL_PROBLEM_URL,
-  });
+const getAllProblemsList = async () => await getJSON({ url });
 
 export { getAllProblemsList };

@@ -11,7 +11,7 @@ import SortSelect from '@src/components/select/SortSelect';
 import '@src/styles/font.css';
 import { solutionOption, sortedOption } from '@src/store/select';
 import { Solution, SolutionList, SolutionResponse } from '@src/types/solution';
-import { formatTimestampToDate } from '@src/utils/formatTimestampToDate';
+import { formatTimestampToDate } from '@src/utils/date/formatTimestampToDate';
 import { LoaderStyle } from '@src/styles/global';
 import { Children } from '@src/types/global';
 

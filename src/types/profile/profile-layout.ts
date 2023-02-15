@@ -1,5 +1,5 @@
 interface ProblemType {
-  [key: string]: number;
+  [key: string]: number | string;
   id: number;
   title: string;
   partTitle: string;
@@ -48,4 +48,5 @@ export {
   SelectNameType,
   SortItemType,
   LevelListFunc,
+  SelectSortType,
 };
