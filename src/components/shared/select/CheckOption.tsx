@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import CloseBoxOnOutside from '@src/components/section/CloseBoxOnOutside';
+import CloseBoxOnOutside from '@src/components/shared/section/CloseBoxOnOutside';
 import DropdownIcon from '@assets/icons/Dropdown.svg';
 import '@src/styles/font.css';
 

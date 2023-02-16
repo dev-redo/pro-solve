@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '@src/styles/theme';
 import ProfileLogo from '@assets/icons/ProfileLogo.svg';
-import Modal from '@src/components/modal/Modal';
-import RefreshRequestBox from '@src/components/box/RefreshRequestBox';
+import Modal from '@src/components/shared/modal/Modal';
+import RefreshRequestBox from '@src/components/shared/box/RefreshRequestBox';
 
 const OpenSuccessTabButton = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
-import TransitionOut from '@src/components/section/TransitionOut';
+import TransitionOut from '@src/components/shared/section/TransitionOut';
 import Portal from './Portal';
 
 interface ModalProps {
