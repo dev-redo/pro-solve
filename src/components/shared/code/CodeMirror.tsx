@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import CopyClipBoardButton from '@src/components/button/CopyClipBoardButton';
+import CopyClipBoardButton from '@src/components/shared/button/CopyClipBoardButton';
 import { Solution } from '@src/types/solution';
 import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter';
 import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';

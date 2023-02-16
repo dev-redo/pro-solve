@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '@src/styles/theme';
-import CreateSolutionsButton from '@src/components/button/CreateSolutionsButton';
-import CopyClipBoardButton from '@src/components/button/CopyClipBoardButton';
+import CreateSolutionsButton from '@src/components/shared/button/CreateSolutionsButton';
+import CopyClipBoardButton from '@src/components/shared/button/CopyClipBoardButton';
 
 (() => {
   createCodeClipboard();

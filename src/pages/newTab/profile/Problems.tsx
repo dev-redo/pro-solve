@@ -3,8 +3,8 @@ import styled, { css } from 'styled-components';
 import { uid } from 'react-uid';
 import { useRecoilState } from 'recoil';
 
-import PartTitleSelect from '@src/components/select/PartTitleSelect';
-import Pagination from '@src/components/section/Pagination';
+import PartTitleSelect from '@src/components/shared/select/PartTitleSelect';
+import Pagination from '@src/components/shared/section/Pagination';
 
 import { sortOption } from '@src/store/profile';
 import { BoxStyle } from '@src/styles/global';

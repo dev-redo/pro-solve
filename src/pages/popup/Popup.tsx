@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import GoogleLoginButton from '@src/components/button/GoogleLoginButton';
+import GoogleLoginButton from '@src/components/shared/button/GoogleLoginButton';
 import GithubLogo from '@assets/images/github.png';
 import '@src/styles/font.css';
 import { Children } from '../../types/global';
