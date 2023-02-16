@@ -90,6 +90,7 @@ module.exports = {
     alias: {
       '@src': getAbsolutePath('./src'),
       '@assets': getAbsolutePath('./assets'),
+      '@storybook': getAbsolutePath('./storybook'),
     },
   },
   optimization: {
