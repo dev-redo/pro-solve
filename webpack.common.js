@@ -27,6 +27,7 @@ module.exports = {
     problemContent: getAbsolutePath('src/pages/content/problemPage.tsx'),
     solutionTab: getAbsolutePath('src/pages/newTab/solution/index.tsx'),
     profileTab: getAbsolutePath('src/pages/newTab/profile/index.tsx'),
+    memoTab: getAbsolutePath('src/pages/newTab/memo/index.tsx'),
   },
   output: {
     filename: 'script/[name].js',
@@ -122,6 +123,7 @@ module.exports = {
       { chunk: 'popup', title: '프로솔브 - PopUp 페이지' },
       { chunk: 'solutionTab', title: '프로솔브 - 문제 풀이 페이지' },
       { chunk: 'profileTab', title: '프로솔브 - 나의 풀이 페이지' },
+      { chunk: 'memoTab', title: '프로솔브 - 문제 아카이빙 페이지' },
     ]),
   ],
 };

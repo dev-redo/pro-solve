@@ -1,8 +1,10 @@
+import { setUserInfoStorage } from '@src/api/solution/setUserInfoStorage';
+
 import { postCurrentSolution } from './postCurrentSolution';
 import { getAllSolutions } from './getAllSolutions';
 import { createSolutionsTab } from './createSolutionsTab';
 import { createSuccessProblemTab } from './createSuccessProblemTab';
-import { setUserInfoStorage } from '@src/api/solution/setUserInfoStorage';
+import { createMemoTab } from './createMemoTab';
 
 chrome.runtime.onInstalled.addListener(() => setUserInfoStorage());
 
@@ -29,6 +31,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
   if (request.method === 'createSolutionsTab') {
     createSolutionsTab(message);
+  }
+
+  if (request.method === 'createMemoTab') {
+    createMemoTab(message);
   }
 
   if (request.method === 'createSuccessProblemTab') {
