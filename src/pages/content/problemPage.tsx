@@ -68,10 +68,6 @@ const ProfileInfoStyle = styled.div`
 `;
 
 const btn = document.createElement('a');
-window.addEventListener('load', () => {
-  document.body.prepend(btn);
-});
-
 document.body.prepend(btn);
 ReactDOM.createRoot(btn as HTMLElement).render(
   <React.StrictMode>

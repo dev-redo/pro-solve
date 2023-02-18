@@ -3,7 +3,7 @@ import { getSuccessProblemIdList } from './getSuccessProblemIdList';
 
 const setUserInfoStorage = async () => {
   const userEmail = await setUserEmailStorage();
-  await setSuccessProblemsIdListStorage(userEmail);
+  await setSuccessProblemsIdListStorage(userEmail!);
 };
 
 const setUserEmailStorage = async () => {

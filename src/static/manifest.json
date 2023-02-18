@@ -20,16 +20,7 @@
   "host_permissions": ["https://programmers.co.kr/"],
   "web_accessible_resources": [
     {
-      "resources": [
-        "*.png",
-        "*.eot",
-        "*.woff",
-        "*.woff2",
-        "*.ttf",
-        "*.svg",
-        "solutionTab.html",
-        "script/solutionTab.js"
-      ],
+      "resources": ["*.png", "*.eot", "*.woff", "*.woff2", "*.ttf", "*.svg"],
       "matches": ["<all_urls>"]
     }
   ],
