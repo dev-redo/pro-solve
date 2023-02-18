@@ -1,7 +1,5 @@
-/* eslint-env es6 */
-const path = require('path');
-const getAbsolutePath = pathDir => path.resolve(__dirname, pathDir);
-const getHtmlPlugins = chunks => {
+const APP_PATH = require('./app-paths');
+const HTML_PLUGIN = chunks => {
   return chunks.map(
     ({ chunk, title }) =>
       new HtmlPlugin({
@@ -13,31 +11,30 @@ const getHtmlPlugins = chunks => {
 };
 
 const Dotenv = require('dotenv-webpack');
-const { ESBuildMinifyPlugin } = require('esbuild-loader');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
+const { env } = require('process');
 
 module.exports = {
   entry: {
-    popup: getAbsolutePath('src/pages/popup/index.tsx'),
-    background: getAbsolutePath('src/pages/background/index.ts'),
-    testContent: getAbsolutePath('src/pages/content/testPage.tsx'),
-    solutionContent: getAbsolutePath('src/pages/content/solutionPage.tsx'),
-    problemContent: getAbsolutePath('src/pages/content/problemPage.tsx'),
-    solutionTab: getAbsolutePath('src/pages/newTab/solution/index.tsx'),
-    profileTab: getAbsolutePath('src/pages/newTab/profile/index.tsx'),
-    memoTab: getAbsolutePath('src/pages/newTab/memo/index.tsx'),
+    popup: APP_PATH('src/pages/popup/index.tsx'),
+    background: APP_PATH('src/pages/background/index.ts'),
+    testContent: APP_PATH('src/pages/content/testPage.tsx'),
+    solutionContent: APP_PATH('src/pages/content/solutionPage.tsx'),
+    problemContent: APP_PATH('src/pages/content/problemPage.tsx'),
+    solutionTab: APP_PATH('src/pages/newTab/solution/index.tsx'),
+    profileTab: APP_PATH('src/pages/newTab/profile/index.tsx'),
+    memoTab: APP_PATH('src/pages/newTab/memo/index.tsx'),
   },
   output: {
-    filename: 'script/[name].js',
-    path: getAbsolutePath('dist'),
+    filename: 'script/[name].[fullhash].js',
+    path: APP_PATH('dist'),
   },
   cache: {
-    type: 'filesystem',
+    type: env.dev ? 'memory' : 'filesystem',
     buildDependencies: {
       config: [__filename],
     },
+    idleTimeout: 2000,
   },
   module: {
     rules: [
@@ -48,7 +45,7 @@ module.exports = {
         options: {
           loader: 'tsx',
           target: 'esnext',
-          tsconfigRaw: require('./tsconfig.json'),
+          tsconfigRaw: require('../tsconfig.json'),
         },
       },
       {
@@ -88,39 +85,15 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.json'],
     alias: {
-      '@src': getAbsolutePath('./src'),
-      '@assets': getAbsolutePath('./assets'),
-      '@storybook': getAbsolutePath('./storybook'),
+      '@src': APP_PATH('./src'),
+      '@assets': APP_PATH('./assets'),
     },
-  },
-  optimization: {
-    minimizer: [
-      new ESBuildMinifyPlugin({
-        target: 'es2015',
-      }),
-    ],
-  },
-  performance: {
-    hints: false,
-    maxEntrypointSize: 512000,
-    maxAssetSize: 512000,
   },
   plugins: [
     new Dotenv({
       path: '.env',
     }),
-    new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['**/*', path.resolve(process.cwd(), 'dist/**/*')],
-    }),
-    new CopyPlugin({
-      patterns: [
-        {
-          from: getAbsolutePath('src/static'),
-          to: getAbsolutePath('dist'),
-        },
-      ],
-    }),
-    ...getHtmlPlugins([
+    ...HTML_PLUGIN([
       { chunk: 'popup', title: '프로솔브 - PopUp 페이지' },
       { chunk: 'solutionTab', title: '프로솔브 - 문제 풀이 페이지' },
       { chunk: 'profileTab', title: '프로솔브 - 나의 풀이 페이지' },
