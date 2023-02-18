@@ -1,11 +1,28 @@
 const { ESBuildMinifyPlugin } = require('esbuild-loader');
-const CopyPlugin = require('copy-webpack-plugin');
-
-const APP_PATH = require('./app-paths');
 
 module.exports = {
   mode: 'production',
   devtool: 'source-map',
+  module: {
+    rules: [
+      {
+        test: /\.(jpe?g|png|gif)$/i,
+        type: 'asset/inline',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 8 * 1024, // 8KB
+          },
+        },
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/images/[name][ext]',
+        },
+      },
+    ],
+  },
   optimization: {
     minimizer: [
       new ESBuildMinifyPlugin({
@@ -13,17 +30,4 @@ module.exports = {
       }),
     ],
   },
-  plugins: [
-    new CopyPlugin({
-      patterns: [
-        {
-          from: APP_PATH('src/static'),
-          to: APP_PATH('dist'),
-          globOptions: {
-            ignore: ['**/*.md'],
-          },
-        },
-      ],
-    }),
-  ],
 };

@@ -1,3 +1,5 @@
+const path = require('path');
+
 const APP_PATH = require('./app-paths');
 const HTML_PLUGIN = chunks => {
   return chunks.map(
@@ -11,6 +13,8 @@ const HTML_PLUGIN = chunks => {
 };
 
 const Dotenv = require('dotenv-webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const { env } = require('process');
 
@@ -26,8 +30,9 @@ module.exports = {
     memoTab: APP_PATH('src/pages/newTab/memo/index.tsx'),
   },
   output: {
-    filename: 'script/[name].[fullhash].js',
     path: APP_PATH('dist'),
+    filename: 'script/[name].js',
+    publicPath: 'dist',
   },
   cache: {
     type: env.dev ? 'memory' : 'filesystem',
@@ -53,32 +58,8 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(jpe?g|png|gif)$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10000,
-              fallback: 'file-loader',
-            },
-          },
-        ],
-      },
-      {
         test: /\.svg$/i,
         use: ['@svgr/webpack'],
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10000,
-              fallback: 'file-loader',
-            },
-          },
-        ],
       },
     ],
   },
@@ -92,6 +73,17 @@ module.exports = {
   plugins: [
     new Dotenv({
       path: '.env',
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: APP_PATH('src/static'),
+          to: APP_PATH('dist'),
+        },
+      ],
+    }),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: ['**/*', path.resolve(process.cwd(), 'dist/**/*')],
     }),
     ...HTML_PLUGIN([
       { chunk: 'popup', title: '프로솔브 - PopUp 페이지' },

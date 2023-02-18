@@ -1,4 +1,3 @@
-const { env } = require('process');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
