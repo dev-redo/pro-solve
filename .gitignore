@@ -7,6 +7,7 @@
 /dist
 build.zip
 .firebase
+storybook-static
 
 # misc
 .DS_Store
@@ -20,3 +21,4 @@ yarn-debug.log*
 yarn-error.log*
 
 firebase-debug.log
+*.log

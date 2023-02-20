@@ -1,6 +1,5 @@
 import type { ComponentStoryFn, ComponentMeta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs } from '@storybook/addon-knobs';
 
 import Pagination from '@src/components/shared/section/Pagination';
 
@@ -28,7 +27,6 @@ export default {
       control: null,
     },
   },
-  decorators: [withKnobs],
 } as ComponentMeta<typeof Pagination>;
 
 const Template: ComponentStoryFn<typeof Pagination> = args => <Pagination {...args} />;
