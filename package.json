@@ -37,6 +37,7 @@
     "@babel/runtime-corejs3": "^7.20.13",
     "@storybook/addon-essentials": "7.0.0-alpha.35",
     "@storybook/addon-interactions": "7.0.0-alpha.35",
+    "@storybook/addon-knobs": "^6.4.0",
     "@storybook/addon-links": "7.0.0-alpha.35",
     "@storybook/jest": "^0.0.10",
     "@storybook/preset-typescript": "^3.0.0",

@@ -2,7 +2,6 @@ import React, { Suspense } from 'react';
 import ErrorBoundary from './ErrorBoundary';
 
 type ErrorBoundaryProps = React.ComponentProps<typeof ErrorBoundary>;
-
 interface AsyncBoundaryProps extends Omit<ErrorBoundaryProps, 'renderFallback'> {
   pendingFallback: React.ComponentProps<typeof Suspense>['fallback'];
   rejectedFallback: ErrorBoundaryProps['renderFallback'];
