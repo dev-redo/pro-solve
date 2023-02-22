@@ -15,7 +15,6 @@ module.exports = {
   core: {
     builder: 'webpack5',
   },
-  babel: async options => options,
   webpackFinal: async config => {
     config.resolve.plugins = [
       ...(config.resolve.plugins || []),

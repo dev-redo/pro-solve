@@ -4,10 +4,7 @@ import { RecoilRoot, useRecoilValue } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '@src/styles/theme';
 import GlobalStyles from '@src/styles/global';
-
-const MemoTab = () => {
-  return <div>메모</div>;
-};
+import MemoTab from './MemoTab';
 
 const root = document.createElement('div');
 document.body.appendChild(root);
