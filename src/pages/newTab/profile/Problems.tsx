@@ -9,13 +9,13 @@ import Pagination from '@src/components/shared/section/Pagination';
 import { sortOption } from '@src/store/profile';
 import { BoxStyle } from '@src/styles/global';
 import { ContentHeaderInfoStyle } from '@src/styles/global';
+import { getFilteredSolvedProblems, getPartTitleListOfSolvedProblems } from '@src/service/profile';
 
 import { levelsColor } from '@src/constants/level';
 import { PROBLEM_LIST, SORT_LIST, SORT_TYPE } from '@src/constants/profile';
 import { SOLVING_PROBLEM_URL as BASE_URL } from '@src/constants/url';
 import {
   ProblemType,
-  SolvedProblemProps,
   SortProps,
   SortItemProps,
   SortType,
@@ -23,17 +23,18 @@ import {
   ProblemTableProps,
   ContentProps,
 } from '@src/types/profile/profile-problems';
+import { SolvedProblemType } from '@src/types/profile/profile-layout';
 import Book from '@assets/icons/Book.svg';
 import ArrowUp from '@assets/icons/ArrowUp.svg';
 import ArrowDown from '@assets/icons/ArrowDown.svg';
 import NoContent from '@assets/images/noContent.png';
 import '@src/styles/font.css';
 
-export default function Problems({
-  allSolvedCnt,
-  solvedProblems,
-  partTitleList,
-}: SolvedProblemProps) {
+export default function Problems({ solvedProblems }: { solvedProblems: SolvedProblemType }) {
+  const allSolvedCnt = solvedProblems.length;
+  const filteredSolvedProblems = getFilteredSolvedProblems(solvedProblems);
+  const partTitleList = getPartTitleListOfSolvedProblems(solvedProblems);
+
   const [pageIdx, setPageIdx] = React.useState(0);
   const limit = 10;
   const offset = pageIdx * limit;
@@ -46,8 +47,12 @@ export default function Problems({
         onChangePageIdx={setPageIdx}
         partTitleList={partTitleList}
       />
-      <Problems.Content solvedProblems={solvedProblems}>
-        <Problems.ItemList start={offset} end={offset + limit} solvedProblems={solvedProblems} />
+      <Problems.Content solvedProblems={filteredSolvedProblems}>
+        <Problems.ItemList
+          start={offset}
+          end={offset + limit}
+          solvedProblems={filteredSolvedProblems}
+        />
         <Pagination
           total={solvedProblems.length}
           limit={limit}

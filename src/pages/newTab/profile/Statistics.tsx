@@ -10,24 +10,24 @@ import { Children } from '@src/types/global';
 import { ContentHeaderInfoStyle } from '@src/styles/global';
 import { STATIST_HEAD } from '@src/constants/profile';
 import { levels, levelsColor } from '@src/constants/level';
-
-import {
-  ProblemCntType,
-  DoughnutType,
-  ChartInfo,
-  ChartInfoList,
-} from '@src/types/profile/profile-statistics';
-
 import Chart from '@assets/icons/Chart.svg';
 import '@src/styles/font.css';
 
-interface StatisticsType {
-  problemCnt: ProblemCntType;
-  solvedLevelCnt: number[];
-  chartInfoList: ChartInfoList;
-}
+import { getChartInfoList, getProblemsCnt, getProblemsLevelList } from '@src/service/profile';
 
-export default function Statistics({ problemCnt, solvedLevelCnt, chartInfoList }: StatisticsType) {
+import {
+  DoughnutType,
+  ChartInfo,
+  ChartInfoList,
+  ProblemCntType,
+} from '@src/types/profile/profile-statistics';
+import { ProblemsType } from '@src/types/profile/profile-layout';
+
+export default function Statistics({ allProblems, solvedProblems }: ProblemsType) {
+  const problemCnt = getProblemsCnt({ allProblems, solvedProblems });
+  const solvedLevelCnt = getProblemsLevelList(solvedProblems);
+  const chartInfoList = getChartInfoList({ allProblems, solvedProblems });
+
   return (
     <BoxStyle>
       <Statistics.Header problemCnt={problemCnt} />

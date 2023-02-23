@@ -12,52 +12,45 @@ interface ProblemType {
 
 type SolvedProblemType = ProblemType[];
 
-type SolvedProblemProps = {
-  allSolvedCnt: number;
-  solvedProblems: SolvedProblemType;
-  partTitleList: Array<string>;
-};
-
 type SelectNameType = 'level' | 'finishedCount' | 'acceptanceRate';
 
-type SortProps = {
+interface SortProps {
   allSolvedCnt: number;
   onChangePageIdx: (page: number) => void;
   partTitleList: Array<string>;
-};
+}
 
-type SortItemProps = {
+interface SortItemProps {
   item: SelectNameType;
   onChangePageIdx: (page: number) => void;
-};
+}
 
-type SortType = {
+interface SortType {
   [key: string]: string | boolean;
   type: SelectNameType;
   isAscending: SelectSortType;
-};
+}
 
-type SortItemType = {
+interface SortItemType {
   [key: string]: string;
   level: string;
   finishedCount: string;
   acceptanceRate: string;
-};
+}
 
-type ProblemTableProps = {
+interface ProblemTableProps {
   start: number;
   end: number;
   solvedProblems: SolvedProblemType;
-};
+}
 
-type ContentProps = {
+interface ContentProps {
   children: JSX.Element | JSX.Element[];
   solvedProblems: SolvedProblemType;
-};
+}
 
 export {
   ProblemType,
-  SolvedProblemProps,
   SelectNameType,
   SortProps,
   SortItemProps,

@@ -1,6 +1,6 @@
-import { ProblemsCntType } from '@src/types/profile/profile-layout';
+import { ProblemsType } from '@src/types/profile/profile-layout';
 
-const getProblemsCnt = ({ allProblems, solvedProblems }: ProblemsCntType) => ({
+const getProblemsCnt = ({ allProblems, solvedProblems }: ProblemsType) => ({
   allCnt: allProblems.length,
   solvedCnt: solvedProblems.length,
 });
