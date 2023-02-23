@@ -12,8 +12,8 @@ interface SolutionProps {
 SyntaxHighlighter.registerLanguage('javascript', js);
 
 const GlobalStyle = createGlobalStyle`
-  body {
-    font-family: Hack, sans-serif;
+  code {
+    font-family: 'Inconsolata', sans-serif;
   }
 `;
 
@@ -29,9 +29,9 @@ const CodeMirror = ({ solution }: SolutionProps) => {
           style={hybrid}
           lineProps={{
             style: {
-              fontWeight: '400',
               fontSize: '1.05rem',
               lineHeight: '1.5rem',
+              letterSpacing: '0.1rem',
             },
           }}
           customStyle={{ padding: '1rem', borderRadius: '0.2rem' }}
