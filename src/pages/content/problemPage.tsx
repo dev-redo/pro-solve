@@ -44,8 +44,8 @@ const ProfileButtonStyle = styled.button`
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  top: 85%;
-  right: 5%;
+  bottom: 3rem;
+  right: 3rem;
   z-index: 10000;
   border: none;
   font-weight: 600;
