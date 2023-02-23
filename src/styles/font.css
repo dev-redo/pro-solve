@@ -113,3 +113,21 @@
   font-weight: 800;
   font-style: normal;
 }
+@font-face {
+  font-family: 'NanumSquareRound';
+  src: url(https://cdn.jsdelivr.net/gh/naen-nae/fonts@purge-cache-for-subsets/files/NanumSquareRound/NanumSquareRoundEB.ttf)
+    format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inconsolata/v31/QldgNThLqRwH-OJ1UHjlKENVzkWGVkL3GZQmAwLYxYWI2qfdm7Lpp7c8WRL2l2eY.woff2)
+    format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0,
+    U+1EA0-1EF9, U+20AB;
+}
