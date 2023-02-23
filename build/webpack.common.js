@@ -30,9 +30,9 @@ module.exports = {
     memoTab: APP_PATH('src/pages/newTab/memo/index.tsx'),
   },
   output: {
-    path: APP_PATH('dist'),
     filename: 'script/[name].js',
-    publicPath: 'dist',
+    publicPath: './',
+    path: APP_PATH('dist'),
   },
   cache: {
     type: env.dev ? 'memory' : 'filesystem',

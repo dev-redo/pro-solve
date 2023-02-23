@@ -11,7 +11,7 @@ interface ProblemType {
 
 type SolvedProblemType = ProblemType[];
 
-type ProblemsCntType = {
+type ProblemsType = {
   allProblems: SolvedProblemType;
   solvedProblems: SolvedProblemType;
 };
@@ -42,7 +42,7 @@ type LevelListFunc = (problems: SolvedProblemType) => number[];
 export {
   ProblemType,
   SolvedProblemType,
-  ProblemsCntType,
+  ProblemsType,
   ProblemCntType,
   SortType,
   SelectNameType,
