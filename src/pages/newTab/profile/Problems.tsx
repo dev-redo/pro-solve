@@ -36,6 +36,10 @@ export default function Problems({ solvedProblems }: { solvedProblems: SolvedPro
   const partTitleList = getPartTitleListOfSolvedProblems(solvedProblems);
 
   const [pageIdx, setPageIdx] = React.useState(0);
+  const onChangePageIdx = React.useCallback((pageIdx: number) => {
+    setPageIdx(pageIdx);
+  }, []);
+
   const limit = 10;
   const offset = pageIdx * limit;
 
@@ -44,7 +48,7 @@ export default function Problems({ solvedProblems }: { solvedProblems: SolvedPro
       <Problems.Header />
       <Problems.Sort
         allSolvedCnt={allSolvedCnt}
-        onChangePageIdx={setPageIdx}
+        onChangePageIdx={onChangePageIdx}
         partTitleList={partTitleList}
       />
       <Problems.Content solvedProblems={filteredSolvedProblems}>

@@ -1,5 +1,7 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
+import { uid } from 'react-uid';
+
 import Select from '.';
 import CheckOption from './CheckOption';
 import { solutionOption } from '@src/store/select';
@@ -16,10 +18,13 @@ const SolutionSelect = () => {
     <Select
       isOpen={isOpen}
       trigger={<CheckOption isOpen={isOpen} value={selectedName} onModalChange={setIsOpen} />}
-      options={options}
-      onChangeDropdown={setSelected}
-      filterState={filterState}
-    />
+    >
+      {options.map((option: string, index: number) => (
+        <Select.Item key={uid(index)} option={option} onChangeDropdown={setSelected}>
+          {filterState[option]}
+        </Select.Item>
+      ))}
+    </Select>
   );
 };
 
