@@ -1,54 +1,40 @@
 import React from 'react';
 import styled from 'styled-components';
-import { uid } from 'react-uid';
 import { SelectProps, TriggerProps, MenuProps, ItemProps } from '@src/types/select';
 import '@src/styles/font.css';
 import { Children } from '@src/types/global';
 
-const Select = ({ isOpen, trigger, options, onChangeDropdown, filterState }: SelectProps) => {
+const Select = ({ isOpen, trigger, children }: SelectProps) => {
   return (
     <Dropdown>
       <Dropdown.Trigger as={trigger} />
-      <Dropdown.Menu isOpen={isOpen}>
-        {options.map((option: string, index: number) => (
-          <Dropdown.Item
-            key={uid(index)}
-            onChangeDropdown={onChangeDropdown}
-            filterState={filterState}
-          >
-            {option}
-          </Dropdown.Item>
-        ))}
-      </Dropdown.Menu>
+      <Dropdown.Menu isOpen={isOpen}>{children}</Dropdown.Menu>
     </Dropdown>
   );
 };
 
-const Dropdown = ({ children }: Children) => {
-  return <ContainerStyle>{children}</ContainerStyle>;
-};
-
-Dropdown.Trigger = ({ as }: TriggerProps) => <>{as}</>;
-
-Dropdown.Menu = ({ isOpen, children }: MenuProps) => {
-  return <MenuStyle isOpen={isOpen}>{children}</MenuStyle>;
-};
-
-Dropdown.Item = ({ onChangeDropdown, filterState, children }: ItemProps) => {
-  const optionName = filterState === undefined ? children : filterState[children];
-
+Select.Item = ({ onChangeDropdown, option, children }: ItemProps) => {
   const onPreventEvent = (event: React.MouseEvent) => event.preventDefault();
-  const onChangeOption = () => onChangeDropdown(children);
+  const onChangeOption = (event: React.MouseEvent<HTMLButtonElement>) =>
+    onChangeDropdown(event.currentTarget.value);
 
   return (
-    <ItemStyle value={children} onMouseDown={onPreventEvent} onClick={onChangeOption}>
-      {optionName}
+    <ItemStyle value={option} onMouseDown={onPreventEvent} onClick={onChangeOption}>
+      {children}
     </ItemStyle>
   );
 };
 
+const Dropdown = ({ children }: Children) => <ContainerStyle>{children}</ContainerStyle>;
+
+Dropdown.Trigger = ({ as }: TriggerProps) => <>{as}</>;
+
+Dropdown.Menu = ({ isOpen, children }: MenuProps) => (
+  <MenuStyle isOpen={isOpen}>{children}</MenuStyle>
+);
+
 const ContainerStyle = styled.div`
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   align-items: flex-end;
   position: relative;
@@ -74,7 +60,7 @@ const MenuStyle = styled.ul<{ isOpen: boolean }>`
   overflow: auto;
 `;
 
-const ItemStyle = styled.button`
+export const ItemStyle = styled.button`
   padding: 0.5rem 1rem;
   font-size: 1rem;
   font-family: 'Noto Sans KR', sans-serif;

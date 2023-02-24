@@ -1,9 +1,7 @@
 interface SelectProps {
   isOpen: boolean;
   trigger: React.ReactNode;
-  options: Array<string>;
-  onChangeDropdown: (selected: string) => void;
-  filterState?: any;
+  children: JSX.Element[];
 }
 
 interface TriggerProps {
@@ -17,8 +15,8 @@ interface MenuProps {
 
 interface ItemProps {
   onChangeDropdown: (selected: string) => void;
-  filterState?: any;
   children: string;
+  option: string;
 }
 
 interface SolutionType {
