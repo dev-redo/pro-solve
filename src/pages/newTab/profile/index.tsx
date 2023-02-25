@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RecoilRoot, useRecoilValue } from 'recoil';
 import { ThemeProvider } from 'styled-components';
-import { theme } from '@src/styles/theme';
-import GlobalStyles from '@src/styles/global';
+import styled from 'styled-components';
 
 import ProfileTab from './ProfileTab';
 import Problems from './Problems';
 import Statistics from './Statistics';
 
+import { theme } from '@src/styles/theme';
+import GlobalStyles from '@src/styles/global';
 import { navOption } from '@src/store/profile';
 import { useProblems } from '@src/hooks/profile';
 
@@ -30,6 +31,12 @@ const ProfileTabLayout = () => {
     </ProfileTab>
   );
 };
+
+const ContainerStyle = styled.div`
+  background-color: ${({ theme }) => theme.color.whiter};
+  min-width: 768px;
+  user-select: none;
+`;
 
 const root = document.createElement('div');
 root.style.cssText = `

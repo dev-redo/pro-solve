@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getAllSolutions } from '@src/service/solution/getAllSolutions';
+import { getAllSolutions } from '@src/service/solution';
 import { useIsLoaded } from '../useIsLoaded';
 
 import { SolutionResponse } from '@src/types/solution';

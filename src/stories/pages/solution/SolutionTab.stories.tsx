@@ -29,30 +29,30 @@ const Template = ({ selectedLanguage, problemName, isLoaded, solutions }: Templa
   </ContainerStyle>
 );
 
-export const LoginCase: Story<TemplateInterface> = (args: TemplateInterface) => (
+export const SolutionTabLoginCase: Story<TemplateInterface> = (args: TemplateInterface) => (
   <Template {...args} />
 );
-LoginCase.args = {
+SolutionTabLoginCase.args = {
   selectedLanguage: 'javascript',
   problemName: '옹알이',
   isLoaded: false,
   solutions: loginMockData,
 };
 
-export const LoadingCase: Story<TemplateInterface> = (args: TemplateInterface) => (
+export const SolutionTabLoadingCase: Story<TemplateInterface> = (args: TemplateInterface) => (
   <Template {...args} />
 );
-LoadingCase.args = {
+SolutionTabLoadingCase.args = {
   selectedLanguage: 'javascript',
   problemName: '옹알이',
   isLoaded: true,
   solutions: loginMockData,
 };
 
-export const LogoutCase: Story<TemplateInterface> = (args: TemplateInterface) => (
+export const SolutionTabLogoutCase: Story<TemplateInterface> = (args: TemplateInterface) => (
   <Template {...args} />
 );
-LogoutCase.args = {
+SolutionTabLogoutCase.args = {
   selectedLanguage: 'javascript',
   problemName: '옹알이',
   isLoaded: false,

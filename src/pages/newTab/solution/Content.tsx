@@ -1,14 +1,12 @@
 import styled from 'styled-components';
 import { uid } from 'react-uid';
-import { useRecoilValue } from 'recoil';
 import Spinner from '@assets/icons/BlackSpinner.svg';
 import { CenterContainer } from '@src/styles/global';
 import Code from '@src/components/shared/code/Code';
 import '@src/styles/font.css';
-import { solutionOption, sortedOption } from '@src/store/select';
-import { Solution, SolutionList, SolutionResponse } from '@src/types/solution';
-import { formatTimestampToDate } from '@src/utils/date/formatTimestampToDate';
+import { Solution, SolutionResponse } from '@src/types/solution';
 import { LoaderStyle } from '@src/styles/global';
+import { filteredSolutions } from '@src/service/solution';
 
 interface ContentProps {
   isLoaded: boolean;
@@ -51,31 +49,6 @@ const Content = ({ isLoaded, solutions }: ContentProps) => {
 };
 
 export default Content;
-
-const filteredSolutions = (solutions: SolutionList) => {
-  solutions = solutions || [];
-
-  const selectedSolutionType = useRecoilValue(solutionOption);
-  const selectedSortType = useRecoilValue(sortedOption);
-
-  solutions!.sort(({ uploadTime: prevUploadTime }, { uploadTime: currUploadTime }) => {
-    const prevDate = formatTimestampToDate(prevUploadTime).valueOf();
-    const currDate = formatTimestampToDate(currUploadTime).valueOf();
-
-    if (selectedSortType === 'ASC') {
-      return prevDate - currDate;
-    }
-    return currDate - prevDate;
-  });
-
-  if (selectedSolutionType === 'SUCCESS') {
-    return solutions.filter(({ isSuccess }) => isSuccess);
-  }
-  if (selectedSolutionType === 'FAILED') {
-    return solutions.filter(({ isSuccess }) => !isSuccess);
-  }
-  return solutions;
-};
 
 const RequestLoginStyle = styled(CenterContainer)`
   display: flex;
