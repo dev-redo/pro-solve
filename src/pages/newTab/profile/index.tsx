@@ -10,11 +10,10 @@ import Problems from './Problems';
 import Statistics from './Statistics';
 
 import { navOption } from '@src/store/profile';
-import { useUserEmail, useProblems } from '@src/hooks/profile';
+import { useProblems } from '@src/hooks/profile';
 
 const ProfileTabLayout = () => {
-  const { isLoggedIn, userEmail } = useUserEmail();
-  const { isLoaded, allProblems, solvedProblems } = useProblems(userEmail as string);
+  const { isLoggedIn, isLoaded, allProblems, solvedProblems } = useProblems();
   const selectedNavOption = useRecoilValue(navOption);
 
   return (
