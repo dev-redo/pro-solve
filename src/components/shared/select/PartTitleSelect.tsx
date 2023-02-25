@@ -19,13 +19,10 @@ const PartTitleSelect = ({
     setSelected(`전체 문제 (${allSolvedCnt})`);
   }
 
-  const onChangePartTitle = React.useCallback(
-    (option: string) => {
-      onChangePageIdx(0);
-      setSelected(option);
-    },
-    [onChangePageIdx, setSelected],
-  );
+  const onChangePartTitle = React.useCallback((option: string) => {
+    onChangePageIdx(0);
+    setSelected(option);
+  }, []);
 
   return (
     <Select
