@@ -4,7 +4,7 @@ import SortSelect from '@src/components/shared/select/SortSelect';
 import '@src/styles/font.css';
 
 const SelectList = ({ isLoaded }: { isLoaded: boolean }) => {
-  if (isLoaded) {
+  if (!isLoaded) {
     return <></>;
   }
 

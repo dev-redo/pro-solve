@@ -9,9 +9,9 @@ export default {
 const Template: ComponentStoryFn<typeof SelectList> = args => <SelectList {...args} />;
 export const LoginCase = Template.bind({});
 LoginCase.args = {
-  isLoaded: false,
+  isLoaded: true,
 };
 export const LogoutCase = Template.bind({});
 LoginCase.args = {
-  isLoaded: true,
+  isLoaded: false,
 };

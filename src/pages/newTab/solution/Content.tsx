@@ -17,7 +17,7 @@ const Content = ({ isLoaded, solutions }: ContentProps) => {
   const { status, data } = solutions;
   const submittedSolutions = filteredSolutions(data!);
 
-  if (isLoaded) {
+  if (!isLoaded) {
     return (
       <LoaderStyle>
         <Spinner />

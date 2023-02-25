@@ -63,7 +63,7 @@ export const SolutionTabLoginCase: Story<TemplateInterface> = (args: TemplateInt
 SolutionTabLoginCase.args = {
   selectedLanguage: 'javascript',
   problemName: '옹알이',
-  isLoaded: false,
+  isLoaded: true,
   solutions: loginMockData,
 };
 
@@ -73,7 +73,7 @@ export const SolutionTabLoadingCase: Story<TemplateInterface> = (args: TemplateI
 SolutionTabLoadingCase.args = {
   selectedLanguage: 'javascript',
   problemName: '옹알이',
-  isLoaded: true,
+  isLoaded: false,
   solutions: loginMockData,
 };
 
@@ -83,6 +83,6 @@ export const SolutionTabLogoutCase: Story<TemplateInterface> = (args: TemplateIn
 SolutionTabLogoutCase.args = {
   selectedLanguage: 'javascript',
   problemName: '옹알이',
-  isLoaded: false,
+  isLoaded: true,
   solutions: logoutMockData,
 };

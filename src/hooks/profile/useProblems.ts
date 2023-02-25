@@ -6,8 +6,8 @@ import { SolvedProblemType } from '@src/types/profile/profile-layout';
 
 export const useProblems = () => {
   const { isLoggedIn, userEmail } = useUserEmail();
-
-  const [isLoaded, setIsLoaded] = React.useState(true);
+  // TODO: useIsLoaded로 변경
+  const [isLoaded, setIsLoaded] = React.useState(false);
   const [allProblems, setAllSolvedProblems] = React.useState<SolvedProblemType>([]);
   const [solvedProblems, setSolvedProblems] = React.useState<SolvedProblemType>([]);
 
@@ -23,7 +23,7 @@ export const useProblems = () => {
       const solvedProblems = await getSolvedProblemList(userEmail, allProblems);
       setSolvedProblems(solvedProblems);
 
-      setIsLoaded(false);
+      setIsLoaded(true);
     })();
   }, [userEmail]);
 

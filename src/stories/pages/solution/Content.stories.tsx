@@ -11,18 +11,18 @@ export default {
 const Template: ComponentStoryFn<typeof Content> = args => <Content {...args} />;
 export const LoginCase = Template.bind({});
 LoginCase.args = {
-  isLoaded: false,
+  isLoaded: true,
   solutions: loginMockData,
 };
 
 export const LoadingCase = Template.bind({});
 LoadingCase.args = {
-  isLoaded: true,
+  isLoaded: false,
   solutions: loginMockData,
 };
 
 export const LogoutCase = Template.bind({});
 LogoutCase.args = {
-  isLoaded: false,
+  isLoaded: true,
   solutions: logoutMockData,
 };

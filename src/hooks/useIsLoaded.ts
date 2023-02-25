@@ -1,7 +1,7 @@
 import React from 'react';
 
 const useIsLoaded = () => {
-  const [isLoaded, setIsLoaded] = React.useState(true);
+  const [isLoaded, setIsLoaded] = React.useState(false);
   return { isLoaded, setIsLoaded };
 };
 

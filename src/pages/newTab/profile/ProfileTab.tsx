@@ -57,7 +57,7 @@ ProfileTab.Content = ({ children, isLoaded, isLoggedIn }: ContentType) => {
     );
   }
 
-  if (isLoaded) {
+  if (!isLoaded) {
     return (
       <LoaderStyle>
         <Spinner />

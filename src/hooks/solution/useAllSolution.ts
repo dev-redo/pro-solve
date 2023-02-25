@@ -14,7 +14,7 @@ const useAllSolution = (problemInfo: ProblemInfo) => {
     (async () => {
       const allSolutions = await getAllSolutions(problemInfo);
       setSolutions(allSolutions);
-      setIsLoaded(false);
+      setIsLoaded(true);
     })();
   }, []);
 

@@ -7,7 +7,7 @@ interface LoginProps {
 }
 
 const Login = ({ isLoaded, userEmail }: LoginProps) => {
-  if (isLoaded) {
+  if (!isLoaded) {
     return (
       <LoadingStyle>
         <div>로그인 여부 확인하는 데 약 3초 정도 시간이 걸립니다.</div>
