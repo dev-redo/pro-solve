@@ -1,67 +1,21 @@
 import styled from 'styled-components';
 import { uid } from 'react-uid';
 import { useRecoilValue } from 'recoil';
-import LogoWhite from '@assets/images/logo-white.png';
-import ArrowRight from '@assets/icons/ArrowRight.svg';
 import Spinner from '@assets/icons/BlackSpinner.svg';
-import { GNBStyle, CenterContainer } from '@src/styles/global';
+import { CenterContainer } from '@src/styles/global';
 import Code from '@src/components/shared/code/Code';
-import SolutionSelect from '@src/components/shared/select/SolutionSelect';
-import SortSelect from '@src/components/shared/select/SortSelect';
 import '@src/styles/font.css';
 import { solutionOption, sortedOption } from '@src/store/select';
 import { Solution, SolutionList, SolutionResponse } from '@src/types/solution';
 import { formatTimestampToDate } from '@src/utils/date/formatTimestampToDate';
 import { LoaderStyle } from '@src/styles/global';
-import { Children } from '@src/types/global';
-
-export default function SolutionTab({ children }: Children) {
-  return <ContainerStyle>{children}</ContainerStyle>;
-}
-
-interface HeaderProps {
-  selectedLanguage: string;
-  problemName: string;
-}
-
-SolutionTab.Header = ({ selectedLanguage, problemName }: HeaderProps) => {
-  selectedLanguage = selectedLanguage.replace(/^[a-z]/, char => char.toUpperCase());
-
-  return (
-    <GNBStyle>
-      <img src={LogoWhite} />
-      <div>
-        <span>저장된 모든 풀이</span>
-        <span>
-          <ArrowRight />
-        </span>
-        <span>
-          [{selectedLanguage}] {problemName}
-        </span>
-      </div>
-    </GNBStyle>
-  );
-};
-
-SolutionTab.Select = ({ isLoaded }: { isLoaded: boolean }) => {
-  if (isLoaded) {
-    return <></>;
-  }
-
-  return (
-    <SelectStyle>
-      <SolutionSelect />
-      <SortSelect />
-    </SelectStyle>
-  );
-};
 
 interface ContentProps {
   isLoaded: boolean;
   solutions: SolutionResponse;
 }
 
-SolutionTab.Content = ({ isLoaded, solutions }: ContentProps) => {
+const Content = ({ isLoaded, solutions }: ContentProps) => {
   const { status, data } = solutions;
   const submittedSolutions = filteredSolutions(data!);
 
@@ -96,6 +50,8 @@ SolutionTab.Content = ({ isLoaded, solutions }: ContentProps) => {
   );
 };
 
+export default Content;
+
 const filteredSolutions = (solutions: SolutionList) => {
   solutions = solutions || [];
 
@@ -120,22 +76,6 @@ const filteredSolutions = (solutions: SolutionList) => {
   }
   return solutions;
 };
-
-const ContainerStyle = styled.div`
-  height: 100%;
-  font-family: 'Noto Sans KR', sans-serif;
-`;
-
-const SelectStyle = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  padding: 2rem 8rem;
-  gap: 1rem;
-
-  ${({ theme }) => theme.media.tablet`
-    padding: 2rem 5rem;
-  `}
-`;
 
 const RequestLoginStyle = styled(CenterContainer)`
   display: flex;

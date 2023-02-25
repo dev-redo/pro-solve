@@ -2,7 +2,7 @@ const { HotModuleReplacementPlugin } = require('webpack');
 
 module.exports = {
   mode: 'development',
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
   plugins: [new HotModuleReplacementPlugin()],
   module: {
     rules: [

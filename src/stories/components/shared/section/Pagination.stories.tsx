@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import Pagination from '@src/components/shared/section/Pagination';
 
 export default {
-  title: 'Component/Shared/Section/Button',
+  title: 'Component/Shared/Section/Pagination',
   component: Pagination,
   argTypes: {
     total: {

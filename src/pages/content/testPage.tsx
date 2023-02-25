@@ -6,7 +6,7 @@ import {
 import { createMemoTabButton } from '@src/service/testPage/memo';
 
 // TODO: 문제 아이디어 아카이빙 탭 생성 기능
-(() => createMemoTabButton())();
+// createMemoTabButton();
 
 // 문제 업로드 기능
 import { setUserInfoStorage } from '@src/api/solution/setUserInfoStorage';
