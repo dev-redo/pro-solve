@@ -3,11 +3,12 @@ import { useUserEmail } from './useUserEmail';
 
 import { getAllProblemsList, getSolvedProblemList } from '@src/service/profile';
 import { SolvedProblemType } from '@src/types/profile/profile-layout';
+import { useIsLoaded } from '../useIsLoaded';
 
 export const useProblems = () => {
   const { isLoggedIn, userEmail } = useUserEmail();
-  // TODO: useIsLoaded로 변경
-  const [isLoaded, setIsLoaded] = React.useState(false);
+  const { isLoaded, setIsLoaded } = useIsLoaded();
+
   const [allProblems, setAllSolvedProblems] = React.useState<SolvedProblemType>([]);
   const [solvedProblems, setSolvedProblems] = React.useState<SolvedProblemType>([]);
 

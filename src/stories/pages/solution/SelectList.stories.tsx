@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryFn } from '@storybook/react';
-import SelectList from '@src/pages/newTab/solution/SelectList';
+import SelectList from '@src/components/domain/solution/SelectList';
 
 export default {
   title: 'Page/SolutionTab/SelectList',

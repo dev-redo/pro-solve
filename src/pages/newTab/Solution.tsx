@@ -11,9 +11,9 @@ import { getQueryParams } from '@src/utils/location/getQueryParams';
 import { useAllSolution } from '@src/hooks/solution/useAllSolution';
 import { SelectedLanguage } from '@src/types/problem/problem';
 
-import Header from './Header';
-import SelectList from './SelectList';
-import Content from './Content';
+import Header from '@src/components/domain/solution/Header';
+import SelectList from '@src/components/domain/solution/SelectList';
+import Content from '@src/components/domain/solution/Content';
 
 const { num, name, language } = getQueryParams();
 document.title = `프로솔브 - ${name}`;

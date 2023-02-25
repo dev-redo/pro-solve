@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryFn } from '@storybook/react';
-import Header from '@src/pages/newTab/solution/Header';
+import Header from '@src/components/domain/solution/Header';
 
 export default {
   title: 'Page/SolutionTab/Header',

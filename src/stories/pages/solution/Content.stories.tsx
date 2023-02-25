@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStoryFn } from '@storybook/react';
 
-import Content from '@src/pages/newTab/solution/Content';
+import Content from '@src/components/domain/solution/Content';
 import { loginMockData, logoutMockData } from './mock-data';
 
 export default {

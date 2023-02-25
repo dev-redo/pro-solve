@@ -1,9 +1,9 @@
 import { ComponentMeta, Story } from '@storybook/react';
 
 import SolutionTab from '@src/pages/newTab/solution';
-import Header from '@src/pages/newTab/solution/Header';
-import SelectList from '@src/pages/newTab/solution/SelectList';
-import Content from '@src/pages/newTab/solution/Content';
+import Header from '@src/components/domain/solution/Header';
+import SelectList from '@src/components/domain/solution/SelectList';
+import Content from '@src/components/domain/solution/Content';
 import { ContainerStyle } from '@src/pages/newTab/solution';
 
 import { SolutionResponse } from '@src/types/solution';
