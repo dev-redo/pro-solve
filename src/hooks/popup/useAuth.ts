@@ -11,7 +11,7 @@ const useAuth = () => {
     if (firebaseUser) {
       setUserEmail(firebaseUser.email as string);
     }
-    setIsLoaded(false);
+    setIsLoaded(true);
   });
 
   return { isLoaded, userEmail };

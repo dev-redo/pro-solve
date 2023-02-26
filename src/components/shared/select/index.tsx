@@ -46,7 +46,7 @@ const MenuStyle = styled.ul<{ isOpen: boolean }>`
   flex-direction: column;
   position: absolute;
   z-index: 10;
-  top: 3rem;
+  top: 2.5rem;
   padding: 0.5rem 0rem;
   font-size: 1rem;
   color: ${({ theme }) => theme.color.darkGrey};

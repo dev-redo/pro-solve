@@ -14,10 +14,13 @@ const PartTitleSelect = ({
 }: PartTitleSelectProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [selected, setSelected] = useRecoilState(problemTitleOption);
+  console.log(partTitleList);
 
-  if (selected === 'ALL') {
-    setSelected(`전체 문제 (${allSolvedCnt})`);
-  }
+  React.useEffect(() => {
+    if (selected === 'ALL') {
+      setSelected(`전체 문제 (${allSolvedCnt})`);
+    }
+  }, []);
 
   const onChangePartTitle = React.useCallback((option: string) => {
     onChangePageIdx(0);

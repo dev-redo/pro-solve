@@ -1,7 +1,16 @@
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../src/styles/theme';
+import { RecoilRoot } from 'recoil';
+import GlobalStyles from '../src/styles/global';
 
-const themeDecorator = storyFn => <ThemeProvider theme={theme}>{storyFn()}</ThemeProvider>;
+const themeDecorator = Story => (
+  <ThemeProvider theme={theme}>
+    <RecoilRoot>
+      <GlobalStyles />
+      <Story />
+    </RecoilRoot>
+  </ThemeProvider>
+);
 export const decorators = [themeDecorator];
 
 export const parameters = {
