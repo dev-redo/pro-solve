@@ -1,27 +1,36 @@
 module.exports = {
-  exclude: [/node_modules[\\\/]core-js/, /node_modules[\\\/]webpack[\\\/]buildin/],
   presets: [
-    ['@babel/preset-env', { modules: false }],
+    ['@babel/preset-env', { targets: '> 0.25%' }],
     ['@babel/preset-react', { runtime: 'automatic' }],
-    "@babel/preset-typescript"
+    '@babel/preset-typescript',
   ],
   plugins: [
-    '@babel/plugin-transform-template-literals',
-    '@babel/plugin-transform-arrow-functions',
-    '@babel/plugin-transform-runtime',
+    ['@babel/plugin-transform-runtime', { corejs: 3 }],
     '@babel/plugin-syntax-dynamic-import',
   ],
-  env: {
-    development: {
-      plugins: ['babel-plugin-styled-components'],
-    },
-    production: {
-      only: ['src'],
-      plugins: [
-        ['transform-react-remove-prop-types', { removeImport: true }],
-        '@babel/plugin-transform-react-inline-elements',
-        '@babel/plugin-transform-react-constant-elements',
-      ],
-    },
-  },
 };
+
+// Fix: Storybook build시 오류 발생하는 설정 (env field 문제)
+// module.exports = {
+//   presets: [
+//     ['@babel/preset-env', { targets: '> 0.25%' }],
+//     ['@babel/preset-react', { runtime: 'automatic' }],
+//     '@babel/preset-typescript',
+//   ],
+//   plugins: [
+//     ['@babel/plugin-transform-runtime', { corejs: 3 }],
+//     '@babel/plugin-syntax-dynamic-import',
+//     'babel-plugin-styled-components',
+//   ],
+//   env: {
+//     production: {
+//       only: ['src'],
+//       plugins: [
+//         ['babel-plugin-styled-components', { displayName: false }],
+//         'transform-react-remove-prop-types',
+//         '@babel/plugin-transform-react-inline-elements',
+//         '@babel/plugin-transform-react-constant-elements',
+//       ],
+//     },
+//   },
+// };

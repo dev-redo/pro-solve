@@ -1,31 +1,77 @@
-import fetch, { Headers, BodyInit } from 'node-fetch';
-
-type reqConfigType = {
-  url: string;
+type FetchParams = {
   method?: string;
-  headers?: Headers;
-  body?: BodyInit | undefined;
+  headers?: Record<string, string>;
+  body?: unknown;
 };
 
-const fetchRequest = async (reqConfig: reqConfigType) => {
-  const { url, method, headers, body } = reqConfig;
+interface ErrorHandling {
+  [status: number]: () => void;
+}
 
-  try {
-    const res = await fetch(url, {
-      method: method || 'GET',
-      headers: headers || {},
-      body: body ? JSON.stringify(body) : undefined,
-    });
+interface RequestProps {
+  url: string;
+  fetchParams?: FetchParams;
+  handleError?: ErrorHandling;
+}
 
-    if (!res.ok) {
-      throw new Error('[Pro-Solve] 데이터 fetch하는데 실패했습니다.');
-    }
+const defaultJSONHeaders = {
+  Accept: 'application/json',
+};
 
-    const payload = await res.json();
-    return payload;
-  } catch (error) {
-    throw new Error(`${error}`);
+const defaultHTMLHeaders = {
+  Accept: 'text/html',
+};
+
+const parseJson = <T>(response: Response): Promise<T> => response.json();
+const parseHtml = (response: Response) => response.text();
+
+const request = async (url: string, fetchParams: FetchParams): Promise<Response> => {
+  const newFetchParams = {
+    ...fetchParams,
+    method: fetchParams?.method?.toUpperCase() ?? 'GET',
+    headers: {
+      ...(fetchParams?.headers ?? {}),
+      ...defaultJSONHeaders,
+    },
+    body: fetchParams?.body ? JSON.stringify(fetchParams.body) : undefined,
+  };
+
+  const response = await fetch(url, newFetchParams);
+  if (response.ok) {
+    return Promise.resolve(response);
   }
+
+  throw new Error();
 };
 
-export { fetchRequest };
+const getJSON = async <T>({
+  url,
+  fetchParams = {},
+  handleError = {},
+}: RequestProps): Promise<T> => {
+  return request(url, fetchParams)
+    .then(parseJson)
+    .catch(error => handleError[error.status]?.()) as Promise<T>;
+};
+
+const getHTML = async <T>({
+  url,
+  fetchParams = {},
+  handleError = {},
+}: RequestProps): Promise<T> => {
+  const newFetchParams = {
+    ...fetchParams,
+    method: fetchParams?.method?.toUpperCase() ?? 'GET',
+    headers: {
+      ...(fetchParams?.headers ?? {}),
+      ...defaultHTMLHeaders,
+    },
+    body: fetchParams?.body ? JSON.stringify(fetchParams.body) : undefined,
+  };
+
+  return request(url, newFetchParams)
+    .then(parseHtml)
+    .catch(error => handleError[error.status]?.()) as Promise<T>;
+};
+
+export { getJSON, getHTML };

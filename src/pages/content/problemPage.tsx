@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '@src/styles/theme';
 import ProfileLogo from '@assets/icons/ProfileLogo.svg';
-import Modal from '@src/components/modal/Modal';
-import RefreshRequestBox from '@src/components/box/RefreshRequestBox';
+import Modal from '@src/components/shared/modal/Modal';
+import RefreshRequestBox from '@src/components/shared/box/RefreshRequestBox';
 
 const OpenSuccessTabButton = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -44,8 +44,8 @@ const ProfileButtonStyle = styled.button`
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  top: 85%;
-  right: 5%;
+  bottom: 3rem;
+  right: 3rem;
   z-index: 10000;
   border: none;
   font-weight: 600;
@@ -68,10 +68,6 @@ const ProfileInfoStyle = styled.div`
 `;
 
 const btn = document.createElement('a');
-window.addEventListener('load', () => {
-  document.body.prepend(btn);
-});
-
 document.body.prepend(btn);
 ReactDOM.createRoot(btn as HTMLElement).render(
   <React.StrictMode>
