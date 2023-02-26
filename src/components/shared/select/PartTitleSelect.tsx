@@ -14,6 +14,7 @@ const PartTitleSelect = ({
 }: PartTitleSelectProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [selected, setSelected] = useRecoilState(problemTitleOption);
+  console.log(partTitleList);
 
   React.useEffect(() => {
     if (selected === 'ALL') {

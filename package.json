@@ -91,6 +91,7 @@
   },
   "dependencies": {
     "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-docs": "^6.5.16",
     "@types/estree": "^1.0.0",
     "bestzip": "^2.2.1",
     "chart.js": "^3.9.1",

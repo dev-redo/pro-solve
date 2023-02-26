@@ -23,9 +23,7 @@ const CheckOption = ({ isOpen, value, onModalChange }: CheckOptionProps) => {
   );
 };
 
-const CheckOptionStyle = styled.div<{ isOpen: boolean }>`
-  display: flex;
-  align-items: center;
+const CheckOptionStyle = styled.span<{ isOpen: boolean }>`
   z-index: 1;
   cursor: pointer;
   font-size: 1rem;

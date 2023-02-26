@@ -1,16 +1,16 @@
 import { ComponentMeta, Story } from '@storybook/react';
 
-import SolutionTab from '@src/pages/newTab/solution';
+import SolutionTab from '@src/pages/newTab/Solution';
 import Header from '@src/components/domain/solution/Header';
 import SelectList from '@src/components/domain/solution/SelectList';
 import Content from '@src/components/domain/solution/Content';
-import { ContainerStyle } from '@src/pages/newTab/solution';
+import { ContainerStyle } from '@src/pages/newTab/Solution';
 
 import { SolutionResponse } from '@src/types/solution';
 import { loginMockData, logoutMockData } from './mock-data';
 
 export default {
-  title: 'Page/SolutionTab',
+  title: 'Page/SolutionTab/Page',
   component: SolutionTab,
   argTypes: {
     selectedLanguage: {
@@ -23,7 +23,7 @@ export default {
     },
     isLoaded: {
       control: { type: 'boolean' },
-      defaultValue: false,
+      defaultValue: true,
       description: '데이터 로딩 여부',
     },
     solutions: {

@@ -52,6 +52,13 @@ FirstPage.args = {
   unit: 5,
   onChangePageIdx: action('onChangePageIdx'),
 };
+FirstPage.parameters = {
+  docs: {
+    description: {
+      story: '첫 번째 페이지를 보여주는 페이지네이션입니다.',
+    },
+  },
+};
 
 export const Disabled = Template.bind({});
 Disabled.args = {
@@ -61,6 +68,13 @@ Disabled.args = {
   pageIdx: 0,
   onChangePageIdx: action('onChangePageIdx'),
 };
+Disabled.parameters = {
+  docs: {
+    description: {
+      story: '데이터가 없는 경우 비활성화된 페이지네이션입니다.',
+    },
+  },
+};
 
 export const LastPage = Template.bind({});
 LastPage.args = {
@@ -69,4 +83,11 @@ LastPage.args = {
   unit: 5,
   pageIdx: 9,
   onChangePageIdx: action('onChangePageIdx'),
+};
+LastPage.parameters = {
+  docs: {
+    description: {
+      story: '마지막 페이지를 보여주는 페이지네이션입니다.',
+    },
+  },
 };

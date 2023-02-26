@@ -49,6 +49,6 @@ ReactDOM.createRoot(root as HTMLElement).render(
 );
 
 export const ContainerStyle = styled.div`
-  height: 100%;
+  height: 100vh;
   font-family: 'Noto Sans KR', sans-serif;
 `;

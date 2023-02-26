@@ -6,17 +6,17 @@ import Select from '.';
 import CheckOption from './CheckOption';
 import { sortedOption } from '@src/store/select';
 import { SORT_LIST as options, SORT_TYPE as filterState } from '@src/constants/solution';
-import { SortType } from '@src/types/select';
 
 const SortSelect = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [selected, setSelected] = useRecoilState(sortedOption);
-  const selectedName = (filterState as SortType)[selected];
 
   return (
     <Select
       isOpen={isOpen}
-      trigger={<CheckOption isOpen={isOpen} value={selectedName} onModalChange={setIsOpen} />}
+      trigger={
+        <CheckOption isOpen={isOpen} value={filterState[selected]} onModalChange={setIsOpen} />
+      }
     >
       {options.map((option: string, index: number) => (
         <Select.Item key={uid(index)} option={option} onChangeDropdown={setSelected}>
